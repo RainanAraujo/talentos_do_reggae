@@ -17,15 +17,15 @@ const config: Config = {
         yellow: "#FCFC08",
       },
       animation: {
-        pulse: "pulse 3s ease-in 0s infinite normal",
-        fadeIn: "fadeIn 1s ease-in 0s normal",
+        pulse: "pulse 5s ease-in 0s infinite ",
+        fadeIn: "fadeIn 1s ease-in 0s normal forwards",
         slideToLeft: "slideToLeft 0.3s ease-in 0s normal",
         slideToRight: "slideToRight 0.3s ease-in 0s normal",
       },
       keyframes: {
         pulse: {
           "0%": { transform: "scale(1)" },
-          "50%": { transform: "scale(1.05)" },
+          "50%": { transform: "scale(1.05)", opacity: "1" },
           "100%": { transform: "scale(1)" },
         },
         fadeIn: {
@@ -43,6 +43,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animation-delay")],
 };
 export default config;

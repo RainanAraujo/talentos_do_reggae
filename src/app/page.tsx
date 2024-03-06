@@ -36,14 +36,14 @@ export default function Home() {
           alt="Talentos do Reggae"
           width={500}
           height={500}
-          className={clsx("animate-pulse w-[64%]", "max-md:w-[80%]")}
+          className={clsx("animate-pulse w-[100%]", "max-md:w-[80%]")}
         />
         <div className="flex items-center flex-col gap-2">
           <h2 className="text-4xl font-bold text-center animate-fadeIn">
             EM BREVE
           </h2>
           <div className=" flex items-center flex-col gap-1 text-orange animate-fadeIn animation-delay-75  opacity-0">
-            <h4 className="tracking-[0.5em] text-lg font-thin text-center mr-[-0.5em]">
+            <h4 className="tracking-[0.5em] text-lg font-normal text-center mr-[-0.5em]">
               30 DE MARÇO
             </h4>
             <div className="h-[0.1px] w-full bg-orange" />
@@ -59,8 +59,8 @@ export default function Home() {
               "max-md:justify-center max-md:items-center max-md:h-auto"
             )}
           >
-            <span className="font-light">REALIZAÇÃO</span>
-            <Image src={logoKERA} alt="KERA" width={200} height={200} />
+            <span className="font-light text-xs">REALIZAÇÃO</span>
+            <Image src={logoKERA} alt="KERA" width={120} height={120} />
           </div>
           <div
             className={clsx(
@@ -68,8 +68,8 @@ export default function Home() {
               " max-md:justify-center max-md:items-center"
             )}
           >
-            <span className="font-light">APOIO</span>
-            <Image src={logoMaranhao} alt="KERA" width={200} height={200} />
+            <span className="font-light text-xs">APOIO</span>
+            <Image src={logoMaranhao} alt="KERA" width={120} height={120} />
           </div>
           <div
             className={clsx(
@@ -77,8 +77,8 @@ export default function Home() {
               " max-md:justify-center max-md:items-center"
             )}
           >
-            <span className="font-light">APOIO CULTURAL</span>
-            <Image src={logoDeputado} alt="KERA" width={200} height={200} />
+            <span className="font-light text-xs">APOIO CULTURAL</span>
+            <Image src={logoDeputado} alt="KERA" width={120} height={120} />
           </div>
         </div>
       </div>

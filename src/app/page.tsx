@@ -4,7 +4,6 @@ import side from "@/../public/sideDetail.svg";
 import sideY from "@/../public/sideDetailY.svg";
 import detailFlag from "@/../public/detailFlag.svg";
 import logoKERA from "@/../public/logoKERA.svg";
-
 import logoMaranhao from "@/../public/logoMaranhao.svg";
 import logoDeputado from "@/../public/logoDeputado.svg";
 import clsx from "clsx";
@@ -127,7 +126,7 @@ export default function Home() {
         </section>
         <section
           id="about"
-          className="flex flex-col  gap-8 justify-center items-center min-h-screen relative w-full pt-20 max-md:pt-0 max-md:p-5"
+          className="flex flex-col  gap-8 justify-center items-center min-h-screen relative w-full pt-20 max-md:pt-0 max-md:p-5 max-w-6xl m-auto"
         >
           <div className="flex flex-col gap-2 items-center w-full">
             <h5 className=" ">Sobre o evento</h5>
@@ -142,7 +141,7 @@ export default function Home() {
             </p>
           </div>
           <div className="flex gap-5 flex-wrap justify-center items-center w-full">
-            <div className="p-5 bg-green flex flex-col gap-4 w-96 h-60">
+            <div className="p-5 bg-green flex flex-col gap-4 w-80 h-60">
               <h5 className=" font-anton text-2xl">DESCOBERTA DE TALENTOS</h5>
               <p className="">
                 Evento promove oportunidade para artistas mostrarem suas
@@ -150,14 +149,14 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="p-5 bg-yellow text-black flex flex-col gap-4 w-96 h-60">
+            <div className="p-5 bg-yellow text-black flex flex-col gap-4 w-80 h-60">
               <h5 className=" font-anton text-2xl">DESCOBERTA DE TALENTOS</h5>
               <p className="">
                 Evento promove oportunidade para artistas mostrarem suas
                 habilidades musicais e de dança.
               </p>
             </div>
-            <div className="p-5 bg-red flex flex-col gap-4 w-96 h-60">
+            <div className="p-5 bg-red flex flex-col gap-4 w-80 h-60">
               <h5 className=" font-anton text-2xl">DESCOBERTA DE TALENTOS</h5>
               <p>
                 Evento promove oportunidade para artistas mostrarem suas
@@ -178,7 +177,7 @@ export default function Home() {
         <InstagramViewer />
       </section>
       <section className="flex flex-col gap-8 justify-center items-center min-h-screen  bg-orange w-full max-md:p-5 px-20">
-        <h1 className="font-anton text-9xl text-center leading-[1.1] text-black w-full max-md:text-[4.2rem] max-md:leading-[1.2]">
+        <h1 className="font-anton text-9xl text-center leading-[1.1] text-black w-full max-md:text-[4.2rem] max-md:leading-[1.2] max-w-6xl ">
           O <span className="text-white">REGGAE MARANHENSE</span> É UMA
           EXPRESSÃO DE <span className="text-white">LIBERDADE</span> E{" "}
           <span className="text-white">UNIÃO</span>

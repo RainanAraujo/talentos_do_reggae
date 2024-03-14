@@ -1,9 +1,17 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Anton, Inria_Sans, Inter } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
-
+const inriaSans = Inria_Sans({
+  subsets: ["latin"],
+  weight: ["400", "700", "300"],
+  variable: "--font-inria-sans",
+});
+const anton = Anton({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-anton",
+});
 export const metadata: Metadata = {
   title: "Talentos do Reggae",
   description:
@@ -17,7 +25,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br">
-      <body className={inter.className}>{children}</body>
+      <body
+        className={`${anton.variable} ${inriaSans.variable} font-inria-sans`}
+      >
+        {children}
+      </body>
     </html>
   );
 }

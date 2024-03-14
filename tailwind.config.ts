@@ -10,6 +10,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        "inria-sans": "var(--font-inria-sans)",
+        anton: "var(--font-anton)",
+      },
       colors: {
         orange: "#F2A543",
         green: "#40AA4B",

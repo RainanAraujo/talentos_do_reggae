@@ -92,7 +92,7 @@ export default function Home() {
           )}
         />
       </main>
-      <section className="flex flex-col p-20 gap-11 justify-center items-center h-screen relative w-full bg-[url('/greenLight.svg')] bg-no-repeat bg-cover">
+      <section className="flex flex-col p-20 gap-11 justify-center items-center min-h-screen relative w-full bg-[url('/greenLight.svg')] bg-no-repeat bg-contain">
         <Image
           src={detailFlag}
           alt="Detail Right"
@@ -113,7 +113,7 @@ export default function Home() {
             "max-md:w-[50%] transform rotate-180 "
           )}
         />
-        <h1 className="font-anton text-7xl">ASSISTA AO VIVO</h1>
+        <h1 className="font-anton text-8xl">ASSISTA AO VIVO</h1>
         <iframe
           width="860"
           height="415"
@@ -123,7 +123,46 @@ export default function Home() {
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
         ></iframe>
+        <section className="flex flex-col p-20 gap-8 justify-center items-center min-h-screen relative w-full">
+          <div className="flex flex-col gap-2 items-center">
+            <h5 className=" ">Sobre o evento</h5>
+            <h1 className="font-anton text-8xl text-center mb-3">
+              O <span className="text-green leading-[1.2]">MAIOR EVENTO</span>{" "}
+              DEDICADO AO REGGAE NO MARANHÃO
+            </h1>
+            <p className="text-center w-[700px]">
+              O Talentos do Reggae é um evento vibrante que destaca talentos
+              musicais e de dança, proporcionando uma noite inesquecível de
+              celebração e valorização da cultura reggae.
+            </p>
+          </div>
+          <div className="flex gap-5">
+            <div className="p-5 bg-green flex flex-col gap-4 w-96 h-60">
+              <h5 className=" font-anton text-2xl">DESCOBERTA DE TALENTOS</h5>
+              <p className="">
+                Evento promove oportunidade para artistas mostrarem suas
+                habilidades musicais e de dança.
+              </p>
+            </div>
+
+            <div className="p-5 bg-yellow text-black flex flex-col gap-4 w-96 h-60">
+              <h5 className=" font-anton text-2xl">DESCOBERTA DE TALENTOS</h5>
+              <p className="">
+                Evento promove oportunidade para artistas mostrarem suas
+                habilidades musicais e de dança.
+              </p>
+            </div>
+            <div className="p-5 bg-red flex flex-col gap-4 w-96 h-60">
+              <h5 className=" font-anton text-2xl">DESCOBERTA DE TALENTOS</h5>
+              <p>
+                Evento promove oportunidade para artistas mostrarem suas
+                habilidades musicais e de dança.
+              </p>
+            </div>
+          </div>
+        </section>
       </section>
+
       {/* <section>
         <Image
           src={side}

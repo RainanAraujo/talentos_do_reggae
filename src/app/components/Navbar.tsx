@@ -46,7 +46,6 @@ export default function Navbar() {
             />
           </div>
 
-          <MenuHamburger options={options} />
           <ul
             className={clsx(
               "flex gap-6 text-white text-base font-medium items-center justify-center flex-1 whitespace-nowrap",
@@ -69,6 +68,7 @@ export default function Navbar() {
               INSCREVA-SE
             </CustomButton>
           </div>
+          <MenuHamburger options={options} />
         </div>
       </nav>
     </>
@@ -84,27 +84,27 @@ function MenuHamburger({ options }: MenuHamburgerProps) {
   return (
     <>
       <div
-        className={clsx("hidden", "max-xl:flex")}
+        className={clsx("hidden flex-1 justify-end", "max-xl:flex")}
         onClick={() => setIsOpen(true)}
       >
         <List className="cursor-pointer hover:opacity-70" size={32} />
       </div>
       {isOpen && (
         <div
-          className="fixed top-0 right-0 w-full h-full bg-black bg-opacity-20 animate-fade-in"
+          className="fixed top-0 right-0 w-full h-full animate-slideToLeft  bg-opacity-20 animate-fade-in"
           onClick={() => setIsOpen(false)}
         >
           <div
-            className="fixed top-0 right-0 h-full bg-white w-3/4
+            className="fixed top-0 right-0 h-screen bg-black w-3/4
             flex justify-start items-start p-10 py-20 animate-slide-right-to-left"
             onClick={(e) => e.stopPropagation()}
           >
             <X
-              className="absolute right-5 top-10"
+              className="absolute right-5 top-10 cursor-pointer"
               size={32}
               onClick={() => setIsOpen(false)}
             />
-            <ul className="flex flex-col gap-6 text-gray-700 text-base font-medium  ">
+            <ul className="flex flex-col gap-6  text-base font-medium  ">
               {options.map((option) => (
                 <li key={option.title}>
                   <a href={option.url} onClick={() => setIsOpen(false)}>

@@ -90,7 +90,7 @@ export default function Home() {
           )}
         />
       </main>
-      <div className="flex flex-col  relative w-full bg-[url('/greenLight.svg')] bg-no-repeat bg-contain  max-md:bg-[center_top_10rem]">
+      <div className="flex flex-col  relative w-full bg-[url('/greenLight.svg')] bg-no-repeat bg-[length:100%]  max-md:bg-[center_top_10rem]">
         <section className="flex flex-col p-20 pt-40 gap-11 justify-center items-center min-h-screen max-md:p-5 ">
           <Image
             src={detailFlag}

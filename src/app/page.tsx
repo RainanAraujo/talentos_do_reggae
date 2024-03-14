@@ -93,7 +93,29 @@ export default function Home() {
           )}
         />
       </main>
-      <section>
+      <section className="h-screen relative w-full bg-[url('/greenLight.svg')] bg-no-repeat bg-cover">
+        <Image
+          src={detailFlagAlt}
+          alt="Detail Left"
+          width={250}
+          height={250}
+          className={clsx(
+            "w-[50%] absolute left-0 -top-[0.3px]",
+            "max-md:w-[50%] transform rotate-180 "
+          )}
+        />
+        <Image
+          src={detailFlag}
+          alt="Detail Right"
+          width={250}
+          height={250}
+          className={clsx(
+            "w-[50%] right-0 absolute -top-[0.3px]",
+            "max-md:w-[50%] transform rotate-180"
+          )}
+        />
+      </section>
+      {/* <section>
         <Image
           src={side}
           alt="Detail Left"
@@ -114,7 +136,7 @@ export default function Home() {
             "max-md:w-[50%] max-md:transform max-md:-rotate-90 max-md:-mb-36"
           )}
         />
-      </section>
+      </section> */}
     </div>
   );
 }

@@ -20,6 +20,7 @@ const config: Config = {
         red: "#C52C2B",
         yellow: "#FCFC08",
       },
+
       animation: {
         pulse: "pulse 5s ease-in 0s infinite ",
         fadeIn: "fadeIn 1s ease-in 0s normal forwards",

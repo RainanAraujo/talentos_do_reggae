@@ -24,8 +24,10 @@ export default function Navbar() {
     <>
       <nav
         className={clsx(
-          scrollPosition > 0 ? "bg-zinc-900" : "",
-          "flex justify-center items-center sticky top-0 h-20 max-xl:h-20 bg-black transition-all duration-300 z-10"
+          "flex justify-center items-center sticky top-0 h-20 max-xl:h-20 bg-black transition-all duration-300 z-10",
+          scrollPosition > 0
+            ? "backdrop-filter backdrop-blur-lg bg-opacity-90 bg-zinc-900 "
+            : ""
         )}
       >
         <div

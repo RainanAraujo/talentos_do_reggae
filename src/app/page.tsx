@@ -2,7 +2,6 @@ import Image from "next/image";
 import logo from "@/../public/logo.svg";
 import side from "@/../public/sideDetail.svg";
 import detailFlag from "@/../public/detailFlag.svg";
-import detailFlagAlt from "@/../public/detailFlag2.svg";
 import logoKERA from "@/../public/logoKERA.svg";
 import logoMaranhao from "@/../public/logoMaranhao.svg";
 import logoDeputado from "@/../public/logoDeputado.svg";
@@ -83,37 +82,47 @@ export default function Home() {
           )}
         />
         <Image
-          src={detailFlagAlt}
+          src={detailFlag}
           alt="Detail Right"
           width={250}
           height={250}
           className={clsx(
             "w-[50%] bottom-0 absolute right-0",
-            "max-md:w-[50%]"
+            "max-md:w-[50%] -scale-x-[1]"
           )}
         />
       </main>
-      <section className="h-screen relative w-full bg-[url('/greenLight.svg')] bg-no-repeat bg-cover">
-        <Image
-          src={detailFlagAlt}
-          alt="Detail Left"
-          width={250}
-          height={250}
-          className={clsx(
-            "w-[50%] absolute left-0 -top-0",
-            "max-md:w-[50%] transform rotate-180 "
-          )}
-        />
+      <section className="flex flex-col p-20 gap-11 justify-center items-center h-screen relative w-full bg-[url('/greenLight.svg')] bg-no-repeat bg-cover">
         <Image
           src={detailFlag}
           alt="Detail Right"
           width={250}
           height={250}
           className={clsx(
-            "w-[50%] right-0 absolute -top-0",
-            "max-md:w-[50%] transform rotate-180"
+            "w-[50%] left-0 absolute -top-[0.5px] ",
+            "max-md:w-[50%] transform -scale-x-[1] rotate-180"
           )}
         />
+        <Image
+          src={detailFlag}
+          alt="Detail Left"
+          width={250}
+          height={250}
+          className={clsx(
+            "w-[50%] absolute right-0 -top-[0.5px]",
+            "max-md:w-[50%] transform rotate-180 "
+          )}
+        />
+        <h1 className="font-anton text-7xl">ASSISTA AO VIVO</h1>
+        <iframe
+          width="860"
+          height="415"
+          className="rounded-md"
+          src="https://www.youtube.com/embed/1PJVQ_mOV00?si=sSfMNT9EsaXfRqNt&amp;controls=0"
+          title="YouTube Talentos do Reggae"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+        ></iframe>
       </section>
       {/* <section>
         <Image

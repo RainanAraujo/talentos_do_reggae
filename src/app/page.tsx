@@ -100,7 +100,7 @@ export default function Home() {
           width={250}
           height={250}
           className={clsx(
-            "w-[50%] absolute left-0 -top-[0.3px]",
+            "w-[50%] absolute left-0 -top-0",
             "max-md:w-[50%] transform rotate-180 "
           )}
         />
@@ -110,7 +110,7 @@ export default function Home() {
           width={250}
           height={250}
           className={clsx(
-            "w-[50%] right-0 absolute -top-[0.3px]",
+            "w-[50%] right-0 absolute -top-0",
             "max-md:w-[50%] transform rotate-180"
           )}
         />

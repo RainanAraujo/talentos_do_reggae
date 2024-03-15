@@ -141,7 +141,7 @@ export default function Home() {
         >
           <div className="flex flex-col gap-2 items-center w-full">
             <h5 className=" ">Sobre o evento</h5>
-            <h1 className="font-anton text-8xl text-center mb-3 max-md:text-6xl max-md:leading-[1.1]">
+            <h1 className="font-anton text-8xl text-center mb-3 max-md:text-[3.4rem] max-md:leading-[1.1]">
               O <span className="text-green leading-[1.2]">MAIOR EVENTO</span>{" "}
               DEDICADO AO REGGAE NO MARANHÃO
             </h1>
@@ -187,7 +187,7 @@ export default function Home() {
         className="flex flex-col  gap-8 justify-center items-center  min-h-screen  w-full pt-20"
       >
         <h4>Fique por dentro</h4>
-        <h1 className="font-anton text-8xl text-center mb-3 max-md:text-7xl">
+        <h1 className="font-anton text-8xl text-center mb-3 max-md:text-6xl">
           NÃO PERCA AS <span className="text-yellow">NOVIDADES</span>
         </h1>
         <HorizontalAnimWrapper
@@ -200,7 +200,7 @@ export default function Home() {
 
       <section className="flex flex-col gap-8 justify-center items-center min-h-screen  bg-orange w-full max-md:p-5 px-20">
         <ScaleAnimWrapper finalValue={1}>
-          <h1 className="font-anton text-9xl text-center leading-[1.1] text-black w-full max-md:text-[4.2rem] max-md:leading-[1.2] max-w-6xl ">
+          <h1 className="font-anton text-9xl text-center leading-[1.1] text-black w-full max-md:text-[4.1rem] max-md:leading-[1.2] max-w-6xl ">
             O <span className="text-white">REGGAE MARANHENSE</span> É UMA
             EXPRESSÃO DE <span className="text-white">LIBERDADE</span> E{" "}
             <span className="text-white">UNIÃO</span>

@@ -10,12 +10,17 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        "inria-sans": "var(--font-inria-sans)",
+        anton: "var(--font-anton)",
+      },
       colors: {
         orange: "#F2A543",
         green: "#40AA4B",
         red: "#C52C2B",
         yellow: "#FCFC08",
       },
+
       animation: {
         pulse: "pulse 5s ease-in 0s infinite ",
         fadeIn: "fadeIn 1s ease-in 0s normal forwards",

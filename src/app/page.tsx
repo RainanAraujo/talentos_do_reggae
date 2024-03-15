@@ -9,6 +9,10 @@ import logoDeputado from "@/../public/logoDeputado.svg";
 import clsx from "clsx";
 import Navbar from "./components/Navbar";
 import InstagramViewer from "./components/InstagramViewer";
+import HorizontalAnimWrapper from "./components/HorizontalAnimWrapper";
+import ScaleAnimWrapper from "./components/ScaleAnimWrapper";
+import { motion } from "framer-motion";
+import VerticalAnimWrapper from "./components/VerticalAnimWrapper copy";
 
 export default function Home() {
   return (
@@ -33,7 +37,11 @@ export default function Home() {
             height={200}
             className={clsx("animate-pulse w-44", "max-md:w-[20%]")}
           />
-          <h1 className=" max-md:text-7xl text-9xl leading-[1.1] font-bold text-center font-anton bg-gradient-to-r from-green via-yellow to-red text-transparent bg-clip-text pt-6">
+          <h1
+            className="max-md:text-7xl text-9xl leading-[1.1] font-bold text-center 
+          font-anton bg-gradient-to-r from-green via-yellow to-red text-transparent bg-clip-text pt-6 
+          animate-fadeIn opacity-0"
+          >
             MARANHÃO,
             <br /> A JAMAICA BRASILEIRA
           </h1>
@@ -114,19 +122,21 @@ export default function Home() {
           <h1 className="font-anton text-8xl max-md:text-4xl text-center">
             ASSISTA AO VIVO
           </h1>
-          <iframe
-            width="860"
-            height="415"
-            className="rounded-md max-md:w-full max-md:h-[200px]"
-            src="https://www.youtube.com/embed/1PJVQ_mOV00?si=sSfMNT9EsaXfRqNt&amp;controls=0"
-            title="YouTube Talentos do Reggae"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-          ></iframe>
+          <ScaleAnimWrapper finalValue={1}>
+            <iframe
+              width="860"
+              height="415"
+              className="rounded-md max-md:w-full max-md:h-[200px]"
+              src="https://www.youtube.com/embed/1PJVQ_mOV00?si=sSfMNT9EsaXfRqNt&amp;controls=0"
+              title="YouTube Talentos do Reggae"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            ></iframe>
+          </ScaleAnimWrapper>
         </section>
         <section
           id="about"
-          className="flex flex-col  gap-8 justify-center items-center min-h-screen relative w-full pt-20 max-md:pt-0 max-md:p-5 max-w-6xl m-auto"
+          className="flex flex-col  gap-8 justify-center items-center min-h-screen relative w-full pt-20 max-md:pt-0 max-md:p-5  max-md:gap-0 max-w-6xl  m-auto"
         >
           <div className="flex flex-col gap-2 items-center w-full">
             <h5 className=" ">Sobre o evento</h5>
@@ -140,49 +150,62 @@ export default function Home() {
               celebração e valorização da cultura reggae.
             </p>
           </div>
-          <div className="flex gap-5 flex-wrap justify-center items-center w-full">
-            <div className="p-5 bg-green flex flex-col gap-4 w-80 h-60">
-              <h5 className=" font-anton text-2xl">DESCOBERTA DE TALENTOS</h5>
-              <p className="">
-                Evento promove oportunidade para artistas mostrarem suas
-                habilidades musicais e de dança.
-              </p>
-            </div>
+          <VerticalAnimWrapper direction={200}>
+            <div className="flex gap-5 flex-wrap justify-center items-center w-full">
+              <div className="p-5 bg-green flex flex-col gap-4 w-80 h-60">
+                <h5 className=" font-anton text-2xl">DESCOBERTA DE TALENTOS</h5>
+                <p className="">
+                  Evento promove oportunidade para artistas mostrarem suas
+                  habilidades musicais e de dança.
+                </p>
+              </div>
 
-            <div className="p-5 bg-yellow text-black flex flex-col gap-4 w-80 h-60">
-              <h5 className=" font-anton text-2xl">DESCOBERTA DE TALENTOS</h5>
-              <p className="">
-                Evento promove oportunidade para artistas mostrarem suas
-                habilidades musicais e de dança.
-              </p>
+              <div className="p-5 bg-yellow text-black flex flex-col gap-4 w-80 h-60">
+                <h5 className=" font-anton text-2xl">CELEBRAÇÃO DA ARTE</h5>
+                <p className="">
+                  Estrutura preparada para proporcionar um espetáculo visual e
+                  emocionante.
+                </p>
+              </div>
+              <div className="p-5 bg-red flex flex-col gap-4 w-80 h-60">
+                <h5 className=" font-anton text-2xl">
+                  VALORIZAÇÃO DE ARTISTAS
+                </h5>
+                <p>
+                  Iniciativa para reconhecer e apoiar talentos locais,
+                  incentivando-os a alcançar novos patamares em suas carreiras.
+                </p>
+              </div>
             </div>
-            <div className="p-5 bg-red flex flex-col gap-4 w-80 h-60">
-              <h5 className=" font-anton text-2xl">DESCOBERTA DE TALENTOS</h5>
-              <p>
-                Evento promove oportunidade para artistas mostrarem suas
-                habilidades musicais e de dança.
-              </p>
-            </div>
-          </div>
+          </VerticalAnimWrapper>
         </section>
       </div>
       <section
         id="news"
-        className="flex flex-col  gap-8 justify-center items-center min-h-screen  w-full pt-20"
+        className="flex flex-col  gap-8 justify-center items-center  min-h-screen  w-full pt-20"
       >
         <h4>Fique por dentro</h4>
         <h1 className="font-anton text-8xl text-center mb-3 max-md:text-7xl">
           NÃO PERCA AS <span className="text-yellow">NOVIDADES</span>
         </h1>
-        <InstagramViewer />
+        <HorizontalAnimWrapper
+          className="w-full overflow-x-auto flex"
+          direction={100}
+        >
+          <InstagramViewer />
+        </HorizontalAnimWrapper>
       </section>
+
       <section className="flex flex-col gap-8 justify-center items-center min-h-screen  bg-orange w-full max-md:p-5 px-20">
-        <h1 className="font-anton text-9xl text-center leading-[1.1] text-black w-full max-md:text-[4.2rem] max-md:leading-[1.2] max-w-6xl ">
-          O <span className="text-white">REGGAE MARANHENSE</span> É UMA
-          EXPRESSÃO DE <span className="text-white">LIBERDADE</span> E{" "}
-          <span className="text-white">UNIÃO</span>
-        </h1>
+        <ScaleAnimWrapper finalValue={1}>
+          <h1 className="font-anton text-9xl text-center leading-[1.1] text-black w-full max-md:text-[4.2rem] max-md:leading-[1.2] max-w-6xl ">
+            O <span className="text-white">REGGAE MARANHENSE</span> É UMA
+            EXPRESSÃO DE <span className="text-white">LIBERDADE</span> E{" "}
+            <span className="text-white">UNIÃO</span>
+          </h1>
+        </ScaleAnimWrapper>
       </section>
+
       <section
         id="schedule"
         className="flex justify-between gap-8 items-center min-h-screen relative w-full pt-20 max-md:flex-col max-md:pt-0"
@@ -212,7 +235,7 @@ export default function Home() {
             </h1>
           </div>
           <div className="flex gap-4">
-            <div className="h-[400px] flex flex-col justify-between items-center relative">
+            <div className="h-[500px] flex flex-col justify-between items-center relative">
               <div className="absolute w-full flex items-center justify-center h-full -z-10">
                 <div className="w-1 bg-gradient-to-b from-green via-yellow to-red h-full"></div>
               </div>
@@ -221,16 +244,24 @@ export default function Home() {
                 <h1>MAR</h1>
               </div>
               <div className="rounded-full h-20 w-20 bg-yellow text-black flex flex-col items-center justify-center font-anton leading-[1.1]">
-                <h5 className="text-2xl">30</h5>
-                <h1>MAR</h1>
+                <h5 className="text-2xl">12</h5>
+                <h1>ABR</h1>
+              </div>
+              <div className="rounded-full h-20 w-20 bg-yellow text-black flex flex-col items-center justify-center font-anton leading-[1.1]">
+                <h5 className="text-2xl">19</h5>
+                <h1>ABR</h1>
+              </div>
+              <div className="rounded-full h-20 w-20 bg-yellow text-black flex flex-col items-center justify-center font-anton leading-[1.1]">
+                <h5 className="text-2xl">27</h5>
+                <h1>MAI</h1>
               </div>
               <div className="rounded-full h-20 w-20 bg-red flex flex-col items-center justify-center font-anton leading-[1.1]">
-                <h5 className="text-2xl">30</h5>
-                <h1>MAR</h1>
+                <h5 className="text-2xl">01</h5>
+                <h1>JUN</h1>
               </div>
             </div>
             <div>
-              <div className="h-[400px] flex flex-col justify-between items-start">
+              <div className="h-[500px] flex flex-col justify-between items-start">
                 <div>
                   <h1 className="font-anton  pt-3">
                     EVENTO DE LANÇAMENTO | INÍCIO DAS INSCRIÇÕES
@@ -246,7 +277,17 @@ export default function Home() {
                   </h1>
                 </div>
                 <div>
-                  <h1 className="font-anton  pb-7">O GRANDE DIA</h1>
+                  <h1 className="font-anton pb-4">
+                    ENCERRAMENTO DAS INSCRIÇÕES
+                  </h1>
+                </div>
+                <div>
+                  <h1 className="font-anton  pb-4">
+                    DIVULGAÇÃO DOS 6 SELECIONADOS
+                  </h1>
+                </div>
+                <div>
+                  <h1 className="font-anton pb-7">O GRANDE DIA</h1>
                 </div>
               </div>
             </div>

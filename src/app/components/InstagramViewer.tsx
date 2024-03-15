@@ -2,7 +2,7 @@ export default async function InstagramViewer() {
   const { data } = await getData();
 
   return (
-    <div className="w-full overflow-x-auto flex ">
+    <div className="flex ">
       {data &&
         data.map((post: any) => {
           return (

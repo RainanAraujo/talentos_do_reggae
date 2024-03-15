@@ -229,10 +229,10 @@ export default function Home() {
             "max-md:w-[70%] max-md:transform max-md:block "
           )}
         />
-        <div className="flex flex-col items-center justify-center gap-7">
+        <div className="flex flex-col items-center justify-center gap-7  max-md:px-5">
           <div className="flex flex-col gap-7 items-center">
             <h4>Programação</h4>
-            <h1 className="font-anton text-8xl text-center mb-3">
+            <h1 className="font-anton text-8xl text-center mb-3  max-md:text-7xl">
               ANOTA AÍ <span className="text-yellow">REGUEIRO</span>!
             </h1>
           </div>

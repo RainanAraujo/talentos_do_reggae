@@ -38,10 +38,11 @@ export default function Navbar() {
         >
           <div className="flex-1">
             <Image
-              className="w-max h-max"
+              className="w-max h-max cursor-pointer"
               src={logo}
               width={120}
               height={123}
+              onClick={() => window.scrollTo(0, 0)}
               alt=""
             />
           </div>

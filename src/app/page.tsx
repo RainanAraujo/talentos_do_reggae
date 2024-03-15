@@ -19,6 +19,7 @@ export default function Home() {
     <div>
       <Navbar />
       <main
+        id="home"
         className={clsx(
           "min-h-[100vh] flex justify-center items-center",
           "max-md:flex-col relative -mt-20 "
@@ -83,7 +84,7 @@ export default function Home() {
           height={250}
           className={clsx(
             "w-[50%] absolute left-0 bottom-0",
-            "max-md:w-[50%] "
+            "max-md:w-[50%] -z-10"
           )}
         />
         <Image
@@ -93,7 +94,7 @@ export default function Home() {
           height={250}
           className={clsx(
             "w-[50%] bottom-0 absolute right-0",
-            "max-md:w-[50%] -scale-x-[1]"
+            "max-md:w-[50%] -scale-x-[1] -z-10"
           )}
         />
       </main>
@@ -106,7 +107,7 @@ export default function Home() {
             height={250}
             className={clsx(
               "w-[50%] left-0 absolute -top-[0.8px] ",
-              "max-md:w-[50%] transform -scale-x-[1] rotate-180"
+              "max-md:w-[50%] transform -scale-x-[1] rotate-180 -z-10"
             )}
           />
           <Image
@@ -116,7 +117,7 @@ export default function Home() {
             height={250}
             className={clsx(
               "w-[50%] absolute right-0 -top-[0.8px]",
-              "max-md:w-[50%] transform rotate-180 "
+              "max-md:w-[50%] transform rotate-180 -z-10"
             )}
           />
           <h1 className="font-anton text-8xl max-md:text-4xl text-center">
@@ -145,35 +146,36 @@ export default function Home() {
               DEDICADO AO REGGAE NO MARANHÃO
             </h1>
             <p className="text-center w-[700px] max-md:w-full">
-              O Talentos do Reggae é um evento vibrante que destaca talentos
-              musicais e de dança, proporcionando uma noite inesquecível de
-              celebração e valorização da cultura reggae.
+              Uma celebração da cultura do reggae no Maranhão, conhecido como a
+              Jamaica Brasileira, que visa dar visibilidade ao reggae maranhense
+              e mostrar sua riqueza para o Brasil. Este evento é uma iniciativa
+              importante para ampliar a cultura do reggae no Maranhão.
             </p>
           </div>
           <VerticalAnimWrapper direction={200}>
             <div className="flex gap-5 flex-wrap justify-center items-center w-full">
               <div className="p-5 bg-green flex flex-col gap-4 w-80 h-60">
-                <h5 className=" font-anton text-2xl">DESCOBERTA DE TALENTOS</h5>
+                <h5 className=" font-anton text-2xl">PROMOVER O REGGAE</h5>
                 <p className="">
-                  Evento promove oportunidade para artistas mostrarem suas
-                  habilidades musicais e de dança.
+                  Impulsionar o reggae maranhense, proporcionando maior
+                  visibilidade à cultura reggae do Maranhão.
                 </p>
               </div>
 
               <div className="p-5 bg-yellow text-black flex flex-col gap-4 w-80 h-60">
-                <h5 className=" font-anton text-2xl">CELEBRAÇÃO DA ARTE</h5>
+                <h5 className=" font-anton text-2xl">EXPOR TALENTOS</h5>
                 <p className="">
-                  Estrutura preparada para proporcionar um espetáculo visual e
-                  emocionante.
+                  Dar oportunidade aos talentos locais do reggae maranhense
+                  através de meios inovadores e eventos que os levem ao
+                  reconhecimento nacional e internacional.
                 </p>
               </div>
               <div className="p-5 bg-red flex flex-col gap-4 w-80 h-60">
-                <h5 className=" font-anton text-2xl">
-                  VALORIZAÇÃO DE ARTISTAS
-                </h5>
+                <h5 className=" font-anton text-2xl">FOMENTAR O TURISMO</h5>
                 <p>
-                  Iniciativa para reconhecer e apoiar talentos locais,
-                  incentivando-os a alcançar novos patamares em suas carreiras.
+                  Estimular a diversificação da oferta cultural no Maranhão,
+                  promovendo o turismo através de experiências que incluem
+                  visitas a locais, produtos, danças e história.
                 </p>
               </div>
             </div>

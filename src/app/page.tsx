@@ -275,17 +275,17 @@ export default function Home() {
                 </div>
                 <div>
                   <h1 className="font-anton  pb-4">
-                    ABERTURA DA VOTAÇÃO POPULAR
+                        ENCERRAMENTO DAS INSCRIÇÕES
                   </h1>
                 </div>
                 <div>
                   <h1 className="font-anton pb-4">
-                    ENCERRAMENTO DAS INSCRIÇÕES
+                DIVULGAÇÃO DOS 6 SELECIONADOS
                   </h1>
                 </div>
                 <div>
                   <h1 className="font-anton  pb-4">
-                    DIVULGAÇÃO DOS 6 SELECIONADOS
+                     ABERTURA DA VOTAÇÃO POPULAR
                   </h1>
                 </div>
                 <div>

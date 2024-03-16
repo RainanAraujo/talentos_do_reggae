@@ -3,7 +3,6 @@ import HorizontalAnimWrapper from "./HorizontalAnimWrapper";
 
 export default async function InstagramViewer() {
   const { data } = await getData();
-
   return (
     <div className="gap-4 w-full flex flex-col">
       <HorizontalAnimWrapper
@@ -11,9 +10,11 @@ export default async function InstagramViewer() {
         direction={200}
       >
         <ImagesViewer
-          images_url={data
-            .filter((item: any) => item.media_type === "IMAGE")
-            .map((item: any) => item.media_url)}
+          images={data.filter(
+            (item: any) =>
+              item.media_type === "IMAGE" ||
+              item.media_type === "CAROUSEL_ALBUM"
+          )}
         />
       </HorizontalAnimWrapper>
       <HorizontalAnimWrapper
@@ -21,9 +22,7 @@ export default async function InstagramViewer() {
         className="w-full overflow-x-auto flex no-scrollbar max-md:px-5 px-20"
       >
         <VideoViewer
-          videos_url={data
-            .filter((item: any) => item.media_type === "VIDEO")
-            .map((item: any) => item.media_url)}
+          videos={data.filter((item: any) => item.media_type === "VIDEO")}
         />
       </HorizontalAnimWrapper>
     </div>
@@ -37,15 +36,15 @@ async function getData() {
   return data;
 }
 
-function ImagesViewer({ images_url }: { images_url: string[] }) {
+function ImagesViewer({ images }: { images: object[] }) {
   return (
     <div className="flex gap-4">
-      {images_url.map((image: string, index: number) => (
+      {images.map((image: any, index: number) => (
         <div key={index} className="w-80 h-80 ">
           <img
             width={200}
             height={200}
-            src={image}
+            src={image.media_url}
             alt=""
             className="w-full h-full object-cover"
           />
@@ -55,13 +54,13 @@ function ImagesViewer({ images_url }: { images_url: string[] }) {
   );
 }
 
-function VideoViewer({ videos_url }: { videos_url: string[] }) {
+function VideoViewer({ videos }: { videos: object[] }) {
   return (
     <div className="flex gap-4">
-      {videos_url.map((video: any, index: any) => (
+      {videos.map((video: any, index: any) => (
         <div key={index} className="w-80 h-[580px]">
           <video
-            src={video + "#t=0.001"}
+            src={video.media_url + "#t=0.001"}
             loop
             muted
             controls

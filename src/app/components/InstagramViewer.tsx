@@ -56,13 +56,12 @@ function ImagesViewer({ images_url }: { images_url: string[] }) {
 }
 
 function VideoViewer({ videos_url }: { videos_url: string[] }) {
-  console.log(videos_url);
   return (
     <div className="flex gap-4">
       {videos_url.map((video: any, index: any) => (
         <div key={index} className="w-80 h-[580px]">
           <video
-            src={video}
+            src={video + "#t=0.001"}
             loop
             muted
             controls

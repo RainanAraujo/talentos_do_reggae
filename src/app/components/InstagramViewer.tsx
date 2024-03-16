@@ -56,6 +56,7 @@ function ImagesViewer({ images_url }: { images_url: string[] }) {
 }
 
 function VideoViewer({ videos_url }: { videos_url: string[] }) {
+  console.log(videos_url);
   return (
     <div className="flex gap-4">
       {videos_url.map((video: any, index: any) => (
@@ -65,7 +66,7 @@ function VideoViewer({ videos_url }: { videos_url: string[] }) {
             loop
             muted
             controls
-            preload="auto"
+            preload="metadata"
             className="w-full h-full object-cover"
           />
         </div>

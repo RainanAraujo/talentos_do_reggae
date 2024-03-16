@@ -41,7 +41,7 @@ function ImagesViewer({ images_url }: { images_url: string[] }) {
   return (
     <div className="flex gap-4">
       {images_url.map((image: string, index: number) => (
-        <div key={index} className="w-96 h-96 ">
+        <div key={index} className="w-80 h-80 ">
           <img
             width={200}
             height={200}
@@ -59,12 +59,13 @@ function VideoViewer({ videos_url }: { videos_url: string[] }) {
   return (
     <div className="flex gap-4">
       {videos_url.map((video: any, index: any) => (
-        <div key={index} className="w-96 h-[580px]">
+        <div key={index} className="w-80 h-[580px]">
           <video
             src={video}
             loop
             muted
             controls
+            preload="auto"
             className="w-full h-full object-cover"
           />
         </div>

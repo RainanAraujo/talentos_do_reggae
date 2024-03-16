@@ -61,11 +61,11 @@ function VideoViewer({ videos_url }: { videos_url: string[] }) {
       {videos_url.map((video: any, index: any) => (
         <div key={index} className="w-80 h-[580px]">
           <video
-            src={video}
+            src={video + "#t=0.001"}
             loop
             muted
             controls
-            preload="auto"
+            preload="metadata"
             className="w-full h-full object-cover"
           />
         </div>

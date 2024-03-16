@@ -1,5 +1,6 @@
 import HorizontalAnimWrapper from "./HorizontalAnimWrapper";
 import { Cards } from "@phosphor-icons/react/dist/ssr/Cards";
+import PostWrapper from "./PostWrapper";
 
 export default async function InstagramViewer() {
   const { data } = await getData();
@@ -40,10 +41,7 @@ function ImagesViewer({ images }: { images: object[] }) {
   return (
     <div className="flex gap-4">
       {images.map((image: any, index: number) => (
-        <div
-          key={index}
-          className="w-80 h-80 relative overflow-clip cursor-pointer "
-        >
+        <PostWrapper key={index} permalink={image.permalink}>
           <img
             width={200}
             height={200}
@@ -58,7 +56,7 @@ function ImagesViewer({ images }: { images: object[] }) {
               weight="fill"
             />
           )}
-        </div>
+        </PostWrapper>
       ))}
     </div>
   );
@@ -68,10 +66,7 @@ function VideoViewer({ videos }: { videos: object[] }) {
   return (
     <div className="flex gap-4">
       {videos.map((video: any, index: any) => (
-        <div
-          key={index}
-          className="w-80 h-[580px] overflow-clip  cursor-pointer "
-        >
+        <PostWrapper key={index} permalink={video.permalink}>
           <video
             src={video.media_url + "#t=0.001"}
             loop
@@ -80,7 +75,7 @@ function VideoViewer({ videos }: { videos: object[] }) {
             preload="metadata"
             className="w-full h-full object-cover hover:scale-105 hover:transform duration-300 ease-in-out"
           />
-        </div>
+        </PostWrapper>
       ))}
     </div>
   );

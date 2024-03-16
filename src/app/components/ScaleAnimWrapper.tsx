@@ -14,7 +14,7 @@ export default function ScaleAnimWrapper({ children, finalValue }: Props) {
     offset: ["start end", "end end"],
   });
 
-  const xScale = useTransform(scrollYProgress, [0, 1], [0.8, finalValue]);
+  const xScale = useTransform(scrollYProgress, [0, 1], [0.6, finalValue]);
 
   return (
     <div ref={ref}>

@@ -152,7 +152,7 @@ export default function Home() {
               importante para ampliar a cultura do reggae no Maranhão.
             </p>
           </div>
-          <VerticalAnimWrapper direction={200}>
+          <VerticalAnimWrapper direction={300}>
             <div className="flex gap-5 flex-wrap justify-center items-center w-full">
               <div className="p-5 bg-green flex flex-col gap-4 w-80 h-60">
                 <h5 className=" font-anton text-2xl">PROMOVER O REGGAE</h5>
@@ -184,18 +184,14 @@ export default function Home() {
       </div>
       <section
         id="news"
-        className="flex flex-col  gap-8 justify-center items-center  min-h-screen  w-full pt-20"
+        className="flex flex-col  gap-8 justify-center items-center  min-h-screen  w-full py-20  m-auto"
       >
         <h4>Fique por dentro</h4>
         <h1 className="font-anton text-8xl text-center mb-3 max-md:text-6xl">
           NÃO PERCA AS <span className="text-yellow">NOVIDADES</span>
         </h1>
-        <HorizontalAnimWrapper
-          className="w-full overflow-x-auto flex"
-          direction={100}
-        >
-          <InstagramViewer />
-        </HorizontalAnimWrapper>
+
+        <InstagramViewer />
       </section>
 
       <section className="flex flex-col gap-8 justify-center items-center min-h-screen  bg-orange w-full max-md:p-5 px-20">
@@ -275,17 +271,17 @@ export default function Home() {
                 </div>
                 <div>
                   <h1 className="font-anton  pb-4">
-                        ENCERRAMENTO DAS INSCRIÇÕES
+                    ENCERRAMENTO DAS INSCRIÇÕES
                   </h1>
                 </div>
                 <div>
                   <h1 className="font-anton pb-4">
-                DIVULGAÇÃO DOS 6 SELECIONADOS
+                    DIVULGAÇÃO DOS 6 SELECIONADOS
                   </h1>
                 </div>
                 <div>
                   <h1 className="font-anton  pb-4">
-                     ABERTURA DA VOTAÇÃO POPULAR
+                    ABERTURA DA VOTAÇÃO POPULAR
                   </h1>
                 </div>
                 <div>

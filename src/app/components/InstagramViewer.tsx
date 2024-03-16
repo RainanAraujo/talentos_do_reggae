@@ -42,14 +42,14 @@ function ImagesViewer({ images }: { images: object[] }) {
       {images.map((image: any, index: number) => (
         <div
           key={index}
-          className="w-80 h-80 relative cursor-pointer hover:scale-105 hover:transform duration-300 ease-in-out"
+          className="w-80 h-80 relative overflow-clip cursor-pointer "
         >
           <img
             width={200}
             height={200}
             src={image.media_url}
             alt=""
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover hover:scale-105 duration-300 ease-in-out"
           />
 
           {image.media_type === "CAROUSEL_ALBUM" && (
@@ -70,7 +70,7 @@ function VideoViewer({ videos }: { videos: object[] }) {
       {videos.map((video: any, index: any) => (
         <div
           key={index}
-          className="w-80 h-[580px] hover:scale-105 cursor-pointer hover:transform duration-300 ease-in-out"
+          className="w-80 h-[580px] overflow-clip  cursor-pointer "
         >
           <video
             src={video.media_url + "#t=0.001"}
@@ -78,7 +78,7 @@ function VideoViewer({ videos }: { videos: object[] }) {
             muted
             controls
             preload="metadata"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover hover:scale-105 hover:transform duration-300 ease-in-out"
           />
         </div>
       ))}

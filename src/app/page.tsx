@@ -310,7 +310,7 @@ export default function Home() {
       </section>
       <footer className="w-full px-20 py-5 bg-zinc-800 flex justify-between mt-20 max-md:mt-0 max-md:flex-col text-center gap-4">
         <span>
-          Copyright 2024 Talentos da Terra. Todos os direitos reservados
+          Copyright 2024 Talentos do Reggae. Todos os direitos reservados
         </span>
         <span>Desenvolvido por KERA Produções</span>
       </footer>

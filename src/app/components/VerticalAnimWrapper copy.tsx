@@ -11,7 +11,7 @@ export default function VerticalAnimWrapper({ children, direction }: Props) {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end center"],
+    offset: ["start end", "end 80vh"],
   });
 
   const xTransform = useTransform(scrollYProgress, [0, 1], [direction, 0]);

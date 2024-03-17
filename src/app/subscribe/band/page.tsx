@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import { useForm } from "react-hook-form";
 import {
   Form,
@@ -10,55 +9,16 @@ import {
   FormLabel,
   FormMessage,
 } from "../../components/Form";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "../../components/Select";
 
-import { z } from "zod";
+import { Input } from "@/app/components/Input";
+import { Band, bandSchema } from "@/models/band.model";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Button from "../../components/Button";
-import { Input } from "@/app/components/Input";
-import { INSTRUMENTOS } from "@/configs/instrumentos";
 import { Checkbox } from "@/app/components/Checkbox";
 
-const formSchemaBand = z.object({
-  nome: z.string().min(1, { message: "Campo obrigatório" }),
-  ig: z.string().min(1, { message: "Campo obrigatório" }),
-  email: z.string().email({ message: "Email inválido" }),
-  tel: z.string().min(1, { message: "Campo obrigatório" }),
-  cantores: z
-    .array(
-      z.object({
-        nome: z.string().min(1, { message: "Campo obrigatório" }),
-        nascimento: z.string().min(1, { message: "Campo obrigatório" }),
-        cpf: z.string().min(1, { message: "Campo obrigatório" }),
-      })
-    )
-    .min(1, { message: "É necessário inserir pelo menos um cantor" }),
-  instrumentistas: z
-    .array(
-      z.object({
-        nome: z.string().min(1, { message: "Campo obrigatório" }),
-        nascimento: z.string().min(1, { message: "Campo obrigatório" }),
-        cpf: z.string().min(1, { message: "Campo obrigatório" }),
-        instrumento: z.enum(INSTRUMENTOS, {
-          required_error: "Seleção obrigatória",
-        }),
-      })
-    )
-    .min(1, { message: "É necessário inserir pelo menos um músico" }),
-  videoLinkURL: z.string().url({ message: "URL inválida" }),
-});
-
-type FormBand = z.infer<typeof formSchemaBand>;
-
 export default function FormBand() {
-  const formBand = useForm<z.infer<typeof formSchemaBand>>({
-    resolver: zodResolver(formSchemaBand),
+  const formBand = useForm<Band>({
+    resolver: zodResolver(bandSchema),
     defaultValues: {
       nome: "",
       ig: "",
@@ -72,7 +32,7 @@ export default function FormBand() {
     },
   });
 
-  function onSubmitBand(values: z.infer<typeof formSchemaBand>) {}
+  function onSubmitBand(values: Band) {}
 
   return (
     <div className="animate-slideToRightFade ">

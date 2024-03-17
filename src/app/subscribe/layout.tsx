@@ -9,7 +9,7 @@ export default function layoutSubscribe({
   return (
     <div className="flex items-center justify-center h-screen w-full m-auto  px-20  max-w-7xl">
       <div className="bg-neutral-900 rounded-lg h-[80vh] w-full flex">
-        <div className="flex-1 p-20 gap-y-5 flex flex-col">
+        <div className="flex-1 px-20 overflow-y-auto py-20 gap-y-5 flex flex-col">
           <div className="space-y-2">
             <Image alt="" src={logo} width={100} height={100} />
             <h3 className="text-2xl font-bold text-white">

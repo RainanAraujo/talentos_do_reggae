@@ -135,7 +135,7 @@ const FormDescription = React.forwardRef<
     <p
       ref={ref}
       id={formDescriptionId}
-      className={twMerge("text-sm text-muted-foreground", className)}
+      className={twMerge("text-xs text-zinc-200 font-thin", className)}
       {...props}
     />
   );

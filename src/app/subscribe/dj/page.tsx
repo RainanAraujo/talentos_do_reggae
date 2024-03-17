@@ -68,7 +68,10 @@ export default function FormDJ() {
             )}
           />
 
-          <Button type="submit" className="bg-green text-white">
+          <Button
+            type="submit"
+            className="bg-green text-white hover:bg-green-600"
+          >
             Realizar inscrição
           </Button>
         </form>

@@ -75,7 +75,10 @@ export default function FormCategory() {
           categorias poderão se inscrever para apresentações no evento e receber
           apoio financeiro.
         </p>
-        <Button type="submit" className="bg-green text-black">
+        <Button
+          type="submit"
+          className="bg-green text-white hover:bg-green-600"
+        >
           Próximo
         </Button>
       </form>

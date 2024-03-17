@@ -1,9 +1,11 @@
+"use server";
 import HorizontalAnimWrapper from "./HorizontalAnimWrapper";
 import { Cards } from "@phosphor-icons/react/dist/ssr/Cards";
 import PostWrapper from "./PostWrapper";
 
 export default async function InstagramViewer() {
   const { data } = await getData();
+
   return (
     <div className="gap-4 w-full flex flex-col">
       <HorizontalAnimWrapper
@@ -32,7 +34,9 @@ export default async function InstagramViewer() {
 
 async function getData() {
   const url = `https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,permalink,thumbnail_url,timestamp,username&access_token=${process.env.INSTAGRAM_ACCESS_TOKEN}`;
-  const res = await fetch(url);
+  const res = await fetch(url, {
+    cache: "no-cache",
+  });
   const data = await res.json();
   return data;
 }

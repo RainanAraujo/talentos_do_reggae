@@ -24,6 +24,7 @@ export default function ScaleAnimWrapper({
   return (
     <div ref={ref} className={className}>
       <motion.div
+        className={className}
         style={{
           scale: xScale,
         }}

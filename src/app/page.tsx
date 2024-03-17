@@ -62,7 +62,7 @@ export default function Home() {
               </span>
             </div>
           </div>
-          <div className={clsx("flex gap-8 pt-4 items-baseline")}>
+          <div className={clsx("flex gap-8 pt-4 items-baseline flex-wrap")}>
             <div
               className={clsx(
                 "gap-2 flex flex-col opacity-0 h-full justify-around animate-fadeIn animation-delay-500",
@@ -127,17 +127,17 @@ export default function Home() {
               "max-md:w-[50%] transform rotate-180 -z-10"
             )}
           />
-          <h1 className="font-anton text-8xl max-md:text-4xl text-center">
+          <h1 className="font-anton text-8xl max-md:text-6xl text-center">
             ASSISTA AO VIVO
           </h1>
           <ScaleAnimWrapper
             finalValue={1}
-            className="w-full flex justify-center "
+            className="w-full flex justify-center  "
           >
             <iframe
               width="860"
               height="415"
-              className="rounded-md max-xl:w-full max-md:h-[270px] aspect-video"
+              className="rounded-md max-xl:w-[100%] max-md:h-auto aspect-video relative"
               src="https://www.youtube.com/embed/1PJVQ_mOV00?si=sSfMNT9EsaXfRqNt&amp;controls=0"
               title="YouTube Talentos do Reggae"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -177,7 +177,7 @@ export default function Home() {
               <AccordionContent>
                 Os interessados podem se inscrever no site
                 talentosdoreggae.com.br, preenchendo um formulário com
-                informações sobre a banda ou o cantor. <br /> Serão selecionados
+                informações sobre a banda e cantor. <br /> Serão selecionados
                 seis concorrentes, compostos por seis bandas com seus
                 respectivos cantores. <br /> As bandas concorrerão à premiação
                 na categoria "Bandas", enquanto os cantores competirão nas

@@ -66,7 +66,7 @@ function VideoViewer({ videos }: { videos: object[] }) {
   return (
     <div className="flex gap-4">
       {videos.map((video: any, index: any) => (
-        <PostWrapper key={index} permalink={video.permalink}>
+        <PostWrapper key={index}>
           <video
             src={video.media_url + "#t=0.001"}
             loop

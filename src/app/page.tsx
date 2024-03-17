@@ -132,12 +132,12 @@ export default function Home() {
           </h1>
           <ScaleAnimWrapper
             finalValue={1}
-            className="w-full flex justify-center  "
+            className="w-full flex justify-center md:px-20  "
           >
             <iframe
               width="860"
               height="415"
-              className="rounded-md max-xl:w-[100%] max-md:h-auto aspect-video relative"
+              className="rounded-md w-[100%] h-auto aspect-video relative "
               src="https://www.youtube.com/embed/1PJVQ_mOV00?si=sSfMNT9EsaXfRqNt&amp;controls=0"
               title="YouTube Talentos do Reggae"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

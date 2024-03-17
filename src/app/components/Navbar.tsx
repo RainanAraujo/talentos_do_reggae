@@ -6,7 +6,8 @@ import logo from "@/../public/simbol.svg";
 import clsx from "clsx";
 import { List, X } from "@phosphor-icons/react";
 import { useScrollPosition } from "../utils/useScrollPosition";
-import CustomButton from "./CustomButton";
+import CustomButton from "./Button";
+import Link from "next/link";
 
 interface Options {
   title: string;
@@ -37,14 +38,15 @@ export default function Navbar() {
           )}
         >
           <div className="flex-1">
-            <Image
-              className="w-max h-max cursor-pointer"
-              src={logo}
-              width={120}
-              height={123}
-              onClick={() => window.scrollTo(0, 0)}
-              alt=""
-            />
+            <Link href="/">
+              <Image
+                className="w-max h-max cursor-pointer"
+                src={logo}
+                width={120}
+                height={123}
+                alt="home"
+              />
+            </Link>
           </div>
 
           <ul

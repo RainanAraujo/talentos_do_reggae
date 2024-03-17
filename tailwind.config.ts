@@ -18,6 +18,7 @@ const config: Config = {
         orange: "#F2A543",
         green: "#40AA4B",
         red: "#C52C2B",
+        "red-300": "#FD7675",
         yellow: "#FCFC08",
       },
 
@@ -26,6 +27,7 @@ const config: Config = {
         fadeIn: "fadeIn 1s ease-in 0s normal forwards",
         slideToLeft: "slideToLeft 0.3s ease-in 0s normal",
         slideToRight: "slideToRight 0.3s ease-in 0s normal",
+        slideToRightFade: "slideToRightFade 0.3s ease-in-out 0s normal",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
@@ -56,9 +58,23 @@ const config: Config = {
           "0%": { transform: "translateX(-100%)" },
           "100%": { transform: "translateX(0)" },
         },
+        slideToRightFade: {
+          "0%": {
+            transform: "translateX(100%)",
+            opacity: "0",
+          },
+          "70%": {
+            transform: "translateX(90)",
+            opacity: "0.1",
+          },
+          "100%": { transform: "translateX(0)", opacity: "1" },
+        },
       },
     },
   },
-  plugins: [require("tailwindcss-animation-delay")],
+  plugins: [
+    require("tailwindcss-animation-delay"),
+    require("tailwindcss-animate"),
+  ],
 };
 export default config;

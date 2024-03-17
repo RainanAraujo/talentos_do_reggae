@@ -11,8 +11,13 @@ import Navbar from "./components/Navbar";
 import InstagramViewer from "./components/InstagramViewer";
 import HorizontalAnimWrapper from "./components/HorizontalAnimWrapper";
 import ScaleAnimWrapper from "./components/ScaleAnimWrapper";
-import { motion } from "framer-motion";
 import VerticalAnimWrapper from "./components/VerticalAnimWrapper copy";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "./components/Accordion";
 
 export default function Home() {
   return (
@@ -52,10 +57,12 @@ export default function Home() {
                 30 DE MARÇO
               </h4>
 
-              <span className="text-sm font-thin">LANÇAMENTO DO EVENTO</span>
+              <span className="text-sm font-thin">
+                LANÇAMENTO DO EVENTO E ABERTURA DAS INSCRIÇÕES
+              </span>
             </div>
           </div>
-          <div className={clsx("flex gap-8 pt-4 items-baseline")}>
+          <div className={clsx("flex gap-8 pt-4 items-baseline flex-wrap")}>
             <div
               className={clsx(
                 "gap-2 flex flex-col opacity-0 h-full justify-around animate-fadeIn animation-delay-500",
@@ -120,26 +127,29 @@ export default function Home() {
               "max-md:w-[50%] transform rotate-180 -z-10"
             )}
           />
-          <h1 className="font-anton text-8xl max-md:text-4xl text-center">
+          <h1 className="font-anton text-8xl max-md:text-6xl text-center">
             ASSISTA AO VIVO
           </h1>
-          <ScaleAnimWrapper finalValue={1}>
+          <ScaleAnimWrapper
+            finalValue={1}
+            className="w-full flex justify-center md:px-20  "
+          >
             <iframe
               width="860"
               height="415"
-              className="rounded-md max-md:w-full max-md:h-[200px]"
+              className="rounded-md w-[100%] h-auto aspect-video relative "
               src="https://www.youtube.com/embed/1PJVQ_mOV00?si=sSfMNT9EsaXfRqNt&amp;controls=0"
               title="YouTube Talentos do Reggae"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
-            ></iframe>
+            />
           </ScaleAnimWrapper>
         </section>
         <section
           id="about"
-          className="flex flex-col  gap-8 justify-center items-center min-h-screen relative w-full pt-20 max-md:pt-0 max-md:p-5  max-md:gap-0 max-w-6xl  m-auto"
+          className="flex flex-col gap-8 justify-center items-center min-h-screen relative w-full pt-20 max-md:pt-0 max-md:p-5  p-20 max-md:gap-0 max-w-7xl  m-auto"
         >
-          <div className="flex flex-col gap-2 items-center w-full">
+          <div className="flex flex-col gap-2 items-center w-full mb-6">
             <h5 className=" ">Sobre o evento</h5>
             <h1 className="font-anton text-8xl text-center mb-3 max-md:text-[3.4rem] max-md:leading-[1.1]">
               O <span className="text-green leading-[1.2]">MAIOR EVENTO</span>{" "}
@@ -152,6 +162,42 @@ export default function Home() {
               importante para ampliar a cultura do reggae no Maranhão.
             </p>
           </div>
+          <Accordion type="single" collapsible className="w-full">
+            <AccordionItem value="item-2">
+              <AccordionTrigger>QUEM PODE SE INSCREVER?</AccordionTrigger>
+              <AccordionContent>
+                Bandas de reggae compostas por músicos e cantores. Pessoas
+                maiores de 18 anos ou menores com permissão dos pais ou
+                responsável legal, residentes no estado do Maranhão e que se
+                identifiquem como artistas do reggae.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-3">
+              <AccordionTrigger>COMO FUNCIONA?</AccordionTrigger>
+              <AccordionContent>
+                Os interessados podem se inscrever no site
+                talentosdoreggae.com.br, preenchendo um formulário com
+                informações sobre a banda e cantor. <br /> Serão selecionados
+                seis concorrentes, compostos por seis bandas com seus
+                respectivos cantores. <br /> As bandas concorrerão à premiação
+                na categoria "Bandas", enquanto os cantores competirão nas
+                categorias "Cantores". <br />O evento será transmitido ao vivo
+                pelo site talentosdoreggae.com.br.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-4">
+              <AccordionTrigger>QUAIS AS PREMIAÇÕES?</AccordionTrigger>
+              <AccordionContent>
+                Total de R$ 50.000,00 em prêmios distribuídos da seguinte forma:{" "}
+                <ul className="list-disc list-inside">
+                  <li>Bandas: 1º lugar, 2º lugar, 3º lugar. </li>
+                  <li> Cantores: 1º lugar, 2º lugar, 3º lugar.</li>
+                  <li>Apresentações convidadas (DJs e Dança)</li>
+                </ul>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
           <VerticalAnimWrapper direction={300}>
             <div className="flex gap-5 flex-wrap justify-center items-center w-full">
               <div className="p-5 bg-green flex flex-col gap-4 w-80 h-60">

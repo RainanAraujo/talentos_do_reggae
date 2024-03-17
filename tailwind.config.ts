@@ -26,8 +26,19 @@ const config: Config = {
         fadeIn: "fadeIn 1s ease-in 0s normal forwards",
         slideToLeft: "slideToLeft 0.3s ease-in 0s normal",
         slideToRight: "slideToRight 0.3s ease-in 0s normal",
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
       },
       keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+
         pulse: {
           "0%": { transform: "scale(1)" },
           "50%": { transform: "scale(1.05)", opacity: "1" },

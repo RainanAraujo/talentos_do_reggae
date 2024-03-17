@@ -130,16 +130,19 @@ export default function Home() {
           <h1 className="font-anton text-8xl max-md:text-4xl text-center">
             ASSISTA AO VIVO
           </h1>
-          <ScaleAnimWrapper finalValue={1}>
+          <ScaleAnimWrapper
+            finalValue={1}
+            className="w-full flex justify-center "
+          >
             <iframe
               width="860"
               height="415"
-              className="rounded-md max-md:w-full max-md:h-[200px]"
+              className="rounded-md max-xl:w-full max-md:h-[270px] aspect-video"
               src="https://www.youtube.com/embed/1PJVQ_mOV00?si=sSfMNT9EsaXfRqNt&amp;controls=0"
               title="YouTube Talentos do Reggae"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
-            ></iframe>
+            />
           </ScaleAnimWrapper>
         </section>
         <section

@@ -62,8 +62,8 @@ export default function FormCategory() {
                 </FormControl>
                 <SelectContent>
                   <SelectItem value="band">Banda</SelectItem>
-                  <SelectItem value="dj">Dj</SelectItem>
-                  <SelectItem value="dancers">Dançarino(a)</SelectItem>
+                  <SelectItem value="dj">DJ</SelectItem>
+                  <SelectItem value="dancers">Dançarinos (as)</SelectItem>
                 </SelectContent>
               </Select>
               <FormMessage />

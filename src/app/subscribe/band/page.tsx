@@ -168,14 +168,14 @@ export default function FormBand() {
             )}
           />
           <div className="flex flex-col gap-8 pb-4 pt-6">
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col">
               <div className="flex justify-between  ">
                 <h4 className="font-bold text-lg">Cantor/a/es/as</h4>
               </div>
               <div className="pl-4 space-y-2">
                 {cantores.map((_, index) => (
                   <div
-                    className="flex flex-col animate-fadeInFast gap-y-4 mt-3"
+                    className="flex flex-col animate-fadeInFast gap-y-2 mt-3"
                     key={index}
                   >
                     <div className="flex justify-between text-base font-bold">
@@ -239,7 +239,7 @@ export default function FormBand() {
                         </FormItem>
                       )}
                     />
-                    <div className="w-full h-[1px] bg-zinc-600 " />
+                    <div className="w-full h-[1px] bg-zinc-600 my-2" />
                   </div>
                 ))}
                 <div
@@ -259,14 +259,14 @@ export default function FormBand() {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col ">
               <div className="flex justify-between">
                 <h4 className="font-bold text-lg">Instrumentista(s)</h4>
               </div>
               <div className="pl-4 space-y-2">
                 {instrumentistas.map((_, index) => (
                   <div
-                    className="flex flex-col animate-fadeInFast gap-y-4 mt-3"
+                    className="flex flex-col animate-fadeInFast gap-y-2 mt-3"
                     key={index}
                   >
                     <div className="flex justify-between  text-base font-bold">
@@ -357,7 +357,7 @@ export default function FormBand() {
                         </FormItem>
                       )}
                     />
-                    <div className="w-full h-[1px] bg-zinc-600" />
+                    <div className="w-full h-[1px] bg-zinc-600 my-2" />
                   </div>
                 ))}
                 <div

@@ -10,14 +10,8 @@ import {
   FormMessage,
 } from "../../components/Form";
 
-import { Input } from "@/app/components/Input";
-import { Band, bandSchema } from "@/models/band.model";
-import { zodResolver } from "@hookform/resolvers/zod";
-import Button from "../../components/Button";
 import { Checkbox } from "@/app/components/Checkbox";
-import { z } from "zod";
-import { Minus, Plus } from "lucide-react";
-import React from "react";
+import { Input } from "@/app/components/Input";
 import {
   Select,
   SelectContent,
@@ -26,7 +20,15 @@ import {
   SelectValue,
 } from "@/app/components/Select";
 import { INSTRUMENTOS } from "@/configs/instrumentos";
+import { RegistrationController } from "@/controllers/registration.controller";
+import { bandSchema } from "@/models/band.model";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Minus } from "lucide-react";
+import React from "react";
 import { toast } from "sonner";
+import { useHookFormMask } from "use-mask-input";
+import { z } from "zod";
+import Button from "../../components/Button";
 
 const bandAuthorizedSchema = bandSchema.extend({
   terms: z.boolean().refine((value) => value, {
@@ -54,7 +56,7 @@ export default function FormBand() {
       ig: "",
       email: "",
       tel: "",
-      cantores: [{ nome: "", nascimento: "", cpf: "" }],
+      cantores: [{ nome: "", nascimento: undefined, cpf: "" }],
       instrumentistas: [
         { nome: "", nascimento: "", cpf: "", instrumento: null },
       ],
@@ -64,14 +66,23 @@ export default function FormBand() {
     },
   });
 
-  function onSubmitBand(values: Band) {}
+  const registerWithMask = useHookFormMask(formBand.register);
+
+  async function onSubmitBand(values: z.infer<typeof bandAuthorizedSchema>) {
+    const band = bandSchema.parse(values);
+    const controller = await RegistrationController.getInstance();
+    await controller.register({
+      ...band,
+      type: "band",
+    });
+  }
 
   return (
     <div className="animate-slideToRightFade ">
       <Form {...formBand}>
         <form
           onSubmit={formBand.handleSubmit(onSubmitBand)}
-          className="space-y-4  "
+          className="space-y-4"
         >
           <FormField
             control={formBand.control}
@@ -116,8 +127,11 @@ export default function FormBand() {
                 <FormControl>
                   <Input
                     placeholder="
-                          Insira o telefone para contato"
+                    Insira o telefone para contato"
                     {...field}
+                    {...registerWithMask("tel", ["(99) 99999-9999"], {
+                      required: true,
+                    })}
                   />
                 </FormControl>
                 <FormMessage />
@@ -169,7 +183,7 @@ export default function FormBand() {
           />
           <div className="flex flex-col gap-8 pb-4 pt-6">
             <div className="flex flex-col">
-              <div className="flex justify-between  ">
+              <div className="flex justify-between">
                 <h4 className="font-bold text-lg">Cantor/a/es/as</h4>
               </div>
               <div className="pl-4 space-y-2">
@@ -233,7 +247,17 @@ export default function FormBand() {
                         <FormItem>
                           <FormLabel>CPF *</FormLabel>
                           <FormControl>
-                            <Input placeholder="Insira o CPF" {...field} />
+                            <Input
+                              placeholder="Insira o CPF"
+                              {...field}
+                              {...registerWithMask(
+                                `cantores.${index}.cpf`,
+                                ["999.999.999-99"],
+                                {
+                                  required: true,
+                                }
+                              )}
+                            />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -314,7 +338,11 @@ export default function FormBand() {
                         <FormItem>
                           <FormLabel>Data de nascimento *</FormLabel>
                           <FormControl>
-                            <Input type="date" {...field} />
+                            <Input
+                              type="date"
+                              data-date-format="DD MMMM YYYY"
+                              {...field}
+                            />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -327,7 +355,17 @@ export default function FormBand() {
                         <FormItem>
                           <FormLabel>CPF *</FormLabel>
                           <FormControl>
-                            <Input placeholder="Insira o CPF" {...field} />
+                            <Input
+                              placeholder="Insira o CPF"
+                              {...field}
+                              {...registerWithMask(
+                                `instrumentistas.${index}.cpf`,
+                                ["999.999.999-99"],
+                                {
+                                  required: true,
+                                }
+                              )}
+                            />
                           </FormControl>
                           <FormMessage />
                         </FormItem>

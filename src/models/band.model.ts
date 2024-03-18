@@ -1,5 +1,5 @@
 import { INSTRUMENTOS } from "@/configs/instrumentos";
-import { cpfRegex, dateRegex, igRegex, telRegex } from "@/utils/regex";
+import { ISO8601DateRegex, cpfRegex, telRegex } from "@/utils/regex";
 import { z } from "zod";
 
 export const bandSchema = z.object({
@@ -16,8 +16,8 @@ export const bandSchema = z.object({
         nome: z.string().min(1, { message: "Campo obrigatório" }),
         nascimento: z
           .string()
-          .regex(dateRegex, "Data inválida")
-          .min(1, { message: "Campo obrigatório" }),
+          .min(1, { message: "Campo obrigatório" })
+          .regex(ISO8601DateRegex, "Data inválida"),         
         cpf: z
           .string()
           .regex(cpfRegex, "CPF inválido")
@@ -31,8 +31,8 @@ export const bandSchema = z.object({
         nome: z.string().min(1, { message: "Campo obrigatório" }),
         nascimento: z
           .string()
-          .regex(dateRegex, "Data inválida")
-          .min(1, { message: "Campo obrigatório" }),
+          .min(1, { message: "Campo obrigatório" })
+          .regex(ISO8601DateRegex, "Data inválida"),
         cpf: z
           .string()
           .regex(cpfRegex, "CPF inválido")

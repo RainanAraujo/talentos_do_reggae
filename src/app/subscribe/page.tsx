@@ -1,10 +1,8 @@
 "use client";
-import React from "react";
 import { useForm } from "react-hook-form";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -18,28 +16,30 @@ import {
   SelectValue,
 } from "../components/Select";
 
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Button from "../components/Button";
 import { useRouter } from "next/navigation";
+import { z } from "zod";
+import Button from "../components/Button";
 
 const formSchemaCategory = z.object({
-  categoria: z.enum(["band", "dj", "dancer"], {
+  categoria: z.enum(["band", "dj", "dancers"], {
     required_error: "Seleção obrigatória",
   }),
 });
 
+type FormCategoryValues = z.infer<typeof formSchemaCategory>;
+
 export default function FormCategory() {
   const router = useRouter();
-  const formCategory = useForm<z.infer<typeof formSchemaCategory>>({
+  const formCategory = useForm<FormCategoryValues>({
     resolver: zodResolver(formSchemaCategory),
     defaultValues: {
       categoria: undefined,
     },
   });
 
-  function onSubmitCategory(values: z.infer<typeof formSchemaCategory>) {
-    values.categoria === "band" && router.push("/subscribe/band");
+  function onSubmitCategory(values: FormCategoryValues) {
+    router.push("/subscribe/" + values.categoria);
   }
 
   return (
@@ -63,7 +63,7 @@ export default function FormCategory() {
                 <SelectContent>
                   <SelectItem value="band">Banda</SelectItem>
                   <SelectItem value="dj">Dj</SelectItem>
-                  <SelectItem value="dancer">Dançarino(a)</SelectItem>
+                  <SelectItem value="dancers">Dançarino(a)</SelectItem>
                 </SelectContent>
               </Select>
               <FormMessage />

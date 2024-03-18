@@ -4,10 +4,7 @@ import { z } from "zod";
 
 export const bandSchema = z.object({
   nome: z.string().min(1, { message: "Campo obrigatório" }),
-  ig: z
-    .string()
-    .regex(igRegex, "Nome de usuário inválido")
-    .min(1, { message: "Campo obrigatório" }),
+  ig: z.string().url({ message: "URL inválida" }),
   email: z.string().email({ message: "Email inválido" }),
   tel: z
     .string()
@@ -40,7 +37,7 @@ export const bandSchema = z.object({
           .string()
           .regex(cpfRegex, "CPF inválido")
           .min(1, { message: "Campo obrigatório" }),
-        instrumento: z.enum(INSTRUMENTOS),
+        instrumento: z.enum(INSTRUMENTOS).nullable(),
       })
     )
     .min(1, { message: "É necessário inserir pelo menos um músico" }),

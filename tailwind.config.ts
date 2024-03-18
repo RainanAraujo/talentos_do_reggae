@@ -29,6 +29,7 @@ const config: Config = {
         slideToLeft: "slideToLeft 0.3s ease-in 0s normal",
         slideToRight: "slideToRight 0.3s ease-in 0s normal",
         slideToRightFade: "slideToRightFade 0.3s ease-in-out 0s normal",
+        fadeInFast: "fadeIn 0.3s ease-in 0s normal",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },

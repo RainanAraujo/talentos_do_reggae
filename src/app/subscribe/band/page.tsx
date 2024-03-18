@@ -27,6 +27,7 @@ import {
 } from "@/app/components/Select";
 import { INSTRUMENTOS } from "@/configs/instrumentos";
 import { toast } from "sonner";
+import Link from "next/link";
 
 const bandAuthorizedSchema = bandSchema.extend({
   terms: z.boolean().refine((value) => value, {
@@ -402,7 +403,13 @@ export default function FormBand() {
                 </FormControl>
                 <FormLabel className="font-normal ml-2">
                   Aceito os{" "}
-                  <a className="cursor-pointer underline">termos e condições</a>
+                  <Link
+                    className="cursor-pointer underline"
+                    target="_blank"
+                    href={"/terms-and-conditions"}
+                  >
+                    Termos e Condições
+                  </Link>
                   . *
                 </FormLabel>
                 <FormMessage />
@@ -423,9 +430,13 @@ export default function FormBand() {
                 </FormControl>
                 <FormLabel className="font-normal  ml-2">
                   Li e concordo com a{" "}
-                  <a className="cursor-pointer underline">
+                  <Link
+                    className="cursor-pointer underline"
+                    target="_blank"
+                    href={"/privacy-policy"}
+                  >
                     Política de Privacidade
-                  </a>
+                  </Link>
                   . *
                 </FormLabel>
                 <FormMessage />

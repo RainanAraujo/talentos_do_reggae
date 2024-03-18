@@ -16,6 +16,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Button from "../../components/Button";
 import { z } from "zod";
 import { Checkbox } from "@/app/components/Checkbox";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const djAuthorizedSchema = djSchema.extend({
   terms: z.boolean().refine((value) => value, {
@@ -42,6 +44,7 @@ export default function FormDJ() {
       privacy: false,
     },
   });
+  const router = useRouter();
 
   function onSubmitDJ(values: DJ) {}
 
@@ -157,7 +160,13 @@ export default function FormDJ() {
                 </FormControl>
                 <FormLabel className="font-normal ml-2">
                   Aceito os{" "}
-                  <a className="cursor-pointer underline">termos e condições</a>
+                  <Link
+                    className="cursor-pointer underline"
+                    target="_blank"
+                    href={"/terms-and-conditions"}
+                  >
+                    Termos e Condições
+                  </Link>
                   . *
                 </FormLabel>
                 <FormMessage />
@@ -178,9 +187,13 @@ export default function FormDJ() {
                 </FormControl>
                 <FormLabel className="font-normal  ml-2">
                   Li e concordo com a{" "}
-                  <a className="cursor-pointer underline">
+                  <Link
+                    className="cursor-pointer underline"
+                    target="_blank"
+                    href={"/privacy-policy"}
+                  >
                     Política de Privacidade
-                  </a>
+                  </Link>
                   . *
                 </FormLabel>
                 <FormMessage />

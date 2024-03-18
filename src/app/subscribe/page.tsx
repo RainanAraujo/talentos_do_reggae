@@ -24,7 +24,7 @@ import Button from "../components/Button";
 import { useRouter } from "next/navigation";
 
 const formSchemaCategory = z.object({
-  categoria: z.enum(["band", "dj", "dancer"], {
+  categoria: z.enum(["band", "dj", "dancers"], {
     required_error: "Seleção obrigatória",
   }),
 });
@@ -40,6 +40,8 @@ export default function FormCategory() {
 
   function onSubmitCategory(values: z.infer<typeof formSchemaCategory>) {
     values.categoria === "band" && router.push("/subscribe/band");
+    values.categoria === "dj" && router.push("/subscribe/dj");
+    values.categoria === "dancers" && router.push("/subscribe/dancers");
   }
 
   return (
@@ -62,8 +64,8 @@ export default function FormCategory() {
                 </FormControl>
                 <SelectContent>
                   <SelectItem value="band">Banda</SelectItem>
-                  <SelectItem value="dj">Dj</SelectItem>
-                  <SelectItem value="dancer">Dançarino(a)</SelectItem>
+                  <SelectItem value="dj">DJ</SelectItem>
+                  <SelectItem value="dancers">Dançarinos (as)</SelectItem>
                 </SelectContent>
               </Select>
               <FormMessage />

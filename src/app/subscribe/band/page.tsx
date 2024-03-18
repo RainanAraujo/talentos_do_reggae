@@ -167,18 +167,18 @@ export default function FormBand() {
               </FormItem>
             )}
           />
-          <div className="flex flex-col gap-8 pb-4">
+          <div className="flex flex-col gap-8 pb-4 pt-6">
             <div className="flex flex-col gap-4">
               <div className="flex justify-between  ">
-                <h4>Cantor/a/es/as</h4>
+                <h4 className="font-bold text-lg">Cantor/a/es/as</h4>
               </div>
               <div className="pl-4 space-y-2">
                 {cantores.map((_, index) => (
                   <div
-                    className="flex flex-col animate-fadeInFast gap-y-4"
+                    className="flex flex-col animate-fadeInFast gap-y-4 mt-3"
                     key={index}
                   >
-                    <div className="flex justify-between">
+                    <div className="flex justify-between text-base font-bold">
                       Cantor(a) {index + 1} *
                       {index != 0 && (
                         <Minus
@@ -259,17 +259,17 @@ export default function FormBand() {
                 </div>
               </div>
             </div>
-            <div>
-              <div className="flex justify-between mb-4">
-                <h4>Instrumentista(s)</h4>
+            <div className="flex flex-col gap-4">
+              <div className="flex justify-between">
+                <h4 className="font-bold text-lg">Instrumentista(s)</h4>
               </div>
               <div className="pl-4 space-y-2">
                 {instrumentistas.map((_, index) => (
                   <div
-                    className="flex flex-col animate-fadeInFast  gap-y-4"
+                    className="flex flex-col animate-fadeInFast gap-y-4 mt-3"
                     key={index}
                   >
-                    <div className="flex justify-between">
+                    <div className="flex justify-between  text-base font-bold">
                       Instrumentista {index + 1} *
                       {index != 0 && (
                         <Minus

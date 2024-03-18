@@ -16,7 +16,7 @@ const anton = Anton({
 export const metadata: Metadata = {
   title: "Talentos do Reggae",
   description:
-    "50 mil em prêmios. Lançamento em 30 de março. Maranhão, a Jamaica brasileira!",
+    "50 mil em prêmios. Inscrições abertas!. Maranhão, a Jamaica brasileira!",
 };
 
 export default function RootLayout({

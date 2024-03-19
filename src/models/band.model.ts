@@ -1,5 +1,6 @@
 import { INSTRUMENTOS } from "@/configs/instrumentos";
-import { ISO8601DateRegex, cpfRegex, telRegex } from "@/utils/regex";
+import { ISO8601DateRegex, telRegex } from "@/utils/regex";
+import { isValidCPF } from "@/utils/validation";
 import { z } from "zod";
 
 export const bandSchema = z.object({
@@ -20,8 +21,10 @@ export const bandSchema = z.object({
           .regex(ISO8601DateRegex, "Data inválida"),         
         cpf: z
           .string()
-          .regex(cpfRegex, "CPF inválido")
-          .min(1, { message: "Campo obrigatório" }),
+          .min(1, { message: "Campo obrigatório" })
+          .refine((cpf) => isValidCPF(cpf), {
+            message: "CPF inválido",
+          }),
       })
     )
     .min(1, { message: "É necessário inserir pelo menos um cantor" }),
@@ -35,8 +38,10 @@ export const bandSchema = z.object({
           .regex(ISO8601DateRegex, "Data inválida"),
         cpf: z
           .string()
-          .regex(cpfRegex, "CPF inválido")
-          .min(1, { message: "Campo obrigatório" }),
+          .min(1, { message: "Campo obrigatório" })
+          .refine((cpf) => isValidCPF(cpf), {
+            message: "CPF inválido",
+          }),
         instrumento: z.enum(INSTRUMENTOS).nullable(),
       })
     )

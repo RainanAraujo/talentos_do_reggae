@@ -3,22 +3,27 @@ import { auth } from "@/services/auth.service";
 import { firestore } from "@/services/firestore.service";
 import dayjs from 'dayjs';
 import { signInAnonymously } from "firebase/auth";
-import { collection, doc, setDoc } from "firebase/firestore/lite";
-import { set } from "lodash";
+import { collection, doc, getDocs, query, setDoc, where } from "firebase/firestore/lite";
+import { map, set, uniq } from "lodash";
 
 export class RegistrationController {
     static instance: RegistrationController | null = null;
 
     static async getInstance() {
-        await signInAnonymously(auth)
-        if (!this.instance) {
-            this.instance = new RegistrationController();
+        try {
+            await signInAnonymously(auth)
+            if (!this.instance) {
+                this.instance = new RegistrationController();
+            }
+            return this.instance;
+        } catch {
+            throw new Error('Erro ao cadastrar');
         }
-        return this.instance;
     }
 
     async register(registered: Registered) {
         const id = Date.now().toString();
+        const cpfList = [];
         let changes = {};
 
         if (registered.type === 'band') {
@@ -28,21 +33,38 @@ export class RegistrationController {
             set(changes,
                 'instrumentistas', registered.instrumentistas
                     .map((instrumentista) => ({...instrumentista, nascimento: dayjs(instrumentista.nascimento).toDate()})));
+            cpfList.push(...map(registered.cantores, 'cpf'), ...map(registered.instrumentistas, 'cpf'));
         }
         if (registered.type === 'dancers') {
             set(changes,
                 'dancarinos', registered.dancarinos
                     .map((dancarino) => ({...dancarino, nascimento: dayjs(dancarino.nascimento).toDate()})));
+            cpfList.push(...map(registered.dancarinos, 'cpf'));
         }
         if (registered.type === 'dj') {
             set(changes,'nascimento', dayjs(registered.nascimento).toDate());
+            cpfList.push(registered.cpf);
         }
         
-        await setDoc(
-            doc(
-                collection(firestore, 'registrations'), id),
-                { ...registered, ...changes}
+        if (uniq(cpfList).length !== cpfList.length) {
+            throw new Error('CPF duplicado no registro.');
+        }
+
+        const sameCpf = query(collection(firestore, 'registrations'), where('cpfList', 'array-contains-any', cpfList));
+        const querySnapshot = await getDocs(sameCpf);
+        if (!querySnapshot.empty) {
+            throw new Error('CPF já cadastrado em outra inscrição.');
+        }
+
+
+        try {
+            await setDoc(
+                doc(collection(firestore, 'registrations'), id),
+                { ...registered, ...changes, cpfList}
             );
+        } catch {
+            throw new Error('Erro ao cadastrar');
+        }
     }
 
 }

@@ -10,12 +10,17 @@ import {
   FormMessage,
 } from "../../components/Form";
 
-import { Input } from "@/app/components/Input";
-import { Dancers, dancersSchema } from "@/models/dancers.model";
-import { zodResolver } from "@hookform/resolvers/zod";
-import Button from "../../components/Button";
-import { z } from "zod";
 import { Checkbox } from "@/app/components/Checkbox";
+import { Input } from "@/app/components/Input";
+import { RegistrationController } from "@/controllers/registration.controller";
+import { dancersSchema } from "@/models/dancers.model";
+import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+import { useHookFormMask } from "use-mask-input";
+import { z } from "zod";
+import Button from "../../components/Button";
 
 const dancersAuthorizedSchema = dancersSchema.extend({
   terms: z.boolean().refine((value) => value, {
@@ -29,6 +34,7 @@ const dancersAuthorizedSchema = dancersSchema.extend({
 });
 
 export default function FormDancers() {
+  const router = useRouter();
   const formDancers = useForm<z.infer<typeof dancersAuthorizedSchema>>({
     resolver: zodResolver(dancersAuthorizedSchema),
     defaultValues: {
@@ -46,7 +52,28 @@ export default function FormDancers() {
     },
   });
 
-  function onSubmitDancers(values: Dancers) {}
+  const registerWithMask = useHookFormMask(formDancers.register);
+
+  async function onSubmitDancers(
+    values: z.infer<typeof dancersAuthorizedSchema>
+  ) {
+    try {
+      const dancers = dancersSchema.parse(values);
+      const controller = await RegistrationController.getInstance();
+      await controller.register({
+        ...dancers,
+        type: "dancers",
+      });
+      toast.success("Inscrição realizada com sucesso!");
+      router.push("/successfull");
+    } catch (error) {
+      let message = "Erro ao realizar inscrição, tente novamente.";
+      if (error instanceof Error) {
+        message = error.message;
+      }
+      toast.error(message);
+    }
+  }
 
   return (
     <div className="animate-slideToRightFade">
@@ -114,7 +141,13 @@ export default function FormDancers() {
               <FormItem>
                 <FormLabel>Telefone</FormLabel>
                 <FormControl>
-                  <Input placeholder="Insira o telefone" {...field} />
+                  <Input
+                    placeholder="Insira o telefone"
+                    {...field}
+                    {...registerWithMask("tel", ["(99) 99999-9999"], {
+                      required: true,
+                    })}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -187,7 +220,17 @@ export default function FormDancers() {
                       <FormItem>
                         <FormLabel>CPF</FormLabel>
                         <FormControl>
-                          <Input placeholder="Insira o CPF" {...field} />
+                          <Input
+                            placeholder="Insira o CPF"
+                            {...field}
+                            {...registerWithMask(
+                              `dancarinos.0.cpf`,
+                              ["999.999.999-99"],
+                              {
+                                required: true,
+                              }
+                            )}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -201,7 +244,7 @@ export default function FormDancers() {
                   </div>
                   <FormField
                     control={formDancers.control}
-                    name="dancarinos.0.nome"
+                    name="dancarinos.1.nome"
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Nome</FormLabel>
@@ -214,7 +257,7 @@ export default function FormDancers() {
                   />
                   <FormField
                     control={formDancers.control}
-                    name="dancarinos.0.nascimento"
+                    name="dancarinos.1.nascimento"
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Data de nascimento</FormLabel>
@@ -231,12 +274,22 @@ export default function FormDancers() {
                   />
                   <FormField
                     control={formDancers.control}
-                    name="dancarinos.0.cpf"
+                    name="dancarinos.1.cpf"
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>CPF</FormLabel>
                         <FormControl>
-                          <Input placeholder="Insira o CPF" {...field} />
+                          <Input
+                            placeholder="Insira o CPF"
+                            {...field}
+                            {...registerWithMask(
+                              `dancarinos.1.cpf`,
+                              ["999.999.999-99"],
+                              {
+                                required: true,
+                              }
+                            )}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -260,7 +313,13 @@ export default function FormDancers() {
                 </FormControl>
                 <FormLabel className="font-normal ml-2">
                   Aceito os{" "}
-                  <a className="cursor-pointer underline">termos e condições</a>
+                  <Link
+                    className="cursor-pointer underline"
+                    target="_blank"
+                    href={"/terms-and-conditions"}
+                  >
+                    Termos e Condições
+                  </Link>
                   . *
                 </FormLabel>
                 <FormMessage />
@@ -281,9 +340,13 @@ export default function FormDancers() {
                 </FormControl>
                 <FormLabel className="font-normal  ml-2">
                   Li e concordo com a{" "}
-                  <a className="cursor-pointer underline">
+                  <Link
+                    className="cursor-pointer underline"
+                    target="_blank"
+                    href={"/privacy-policy"}
+                  >
                     Política de Privacidade
-                  </a>
+                  </Link>
                   . *
                 </FormLabel>
                 <FormMessage />

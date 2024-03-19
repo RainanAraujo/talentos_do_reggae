@@ -1,4 +1,5 @@
-import { cpfRegex, dateRegex, igRegex, telRegex } from "@/utils/regex";
+import { ISO8601DateRegex, telRegex } from "@/utils/regex";
+import { isValidCPF } from "@/utils/validation";
 import { z } from "zod";
 
 export const djSchema = z.object({
@@ -11,12 +12,14 @@ export const djSchema = z.object({
     .min(1, { message: "Campo obrigatório" }),
   nascimento: z
     .string()
-    .regex(dateRegex, "Data inválida")
-    .min(1, { message: "Campo obrigatório" }),
+    .min(1, { message: "Campo obrigatório" })
+    .regex(ISO8601DateRegex, "Data inválida"),
   cpf: z
     .string()
-    .regex(cpfRegex, "CPF inválido")
-    .min(1, { message: "Campo obrigatório" }),
+    .min(1, { message: "Campo obrigatório" })
+    .refine((cpf) => isValidCPF(cpf), {
+      message: "CPF inválido",
+    }),
   videoLinkURL: z.string().url({ message: "URL inválida" }),
 });
 

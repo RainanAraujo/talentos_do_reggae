@@ -22,8 +22,11 @@ import {
 import { INSTRUMENTOS } from "@/configs/instrumentos";
 import { RegistrationController } from "@/controllers/registration.controller";
 import { bandSchema } from "@/models/band.model";
+import { isValidCPF } from "@/utils/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Minus } from "lucide-react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { toast } from "sonner";
 import { useHookFormMask } from "use-mask-input";
@@ -42,6 +45,8 @@ const bandAuthorizedSchema = bandSchema.extend({
 });
 
 export default function FormBand() {
+  const router = useRouter();
+
   const [cantores, setCantores] = React.useState([
     { nome: "", nascimento: "", cpf: "" },
   ]);
@@ -69,12 +74,22 @@ export default function FormBand() {
   const registerWithMask = useHookFormMask(formBand.register);
 
   async function onSubmitBand(values: z.infer<typeof bandAuthorizedSchema>) {
-    const band = bandSchema.parse(values);
-    const controller = await RegistrationController.getInstance();
-    await controller.register({
-      ...band,
-      type: "band",
-    });
+    try {
+      const band = bandSchema.parse(values);
+      const controller = await RegistrationController.getInstance();
+      await controller.register({
+        ...band,
+        type: "band",
+      });
+      toast.success("Inscrição realizada com sucesso!");
+      router.push("/successfull");
+    } catch (error) {
+      let message = "Erro ao realizar inscrição, tente novamente.";
+      if (error instanceof Error) {
+        message = error.message;
+      }
+      toast.error(message);
+    }
   }
 
   return (
@@ -338,11 +353,7 @@ export default function FormBand() {
                         <FormItem>
                           <FormLabel>Data de nascimento *</FormLabel>
                           <FormControl>
-                            <Input
-                              type="date"
-                              data-date-format="DD MMMM YYYY"
-                              {...field}
-                            />
+                            <Input type="date" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -362,6 +373,7 @@ export default function FormBand() {
                                 `instrumentistas.${index}.cpf`,
                                 ["999.999.999-99"],
                                 {
+                                  validate: isValidCPF,
                                   required: true,
                                 }
                               )}
@@ -440,7 +452,13 @@ export default function FormBand() {
                 </FormControl>
                 <FormLabel className="font-normal ml-2">
                   Aceito os{" "}
-                  <a className="cursor-pointer underline">termos e condições</a>
+                  <Link
+                    className="cursor-pointer underline"
+                    target="_blank"
+                    href={"/terms-and-conditions"}
+                  >
+                    Termos e Condições
+                  </Link>
                   . *
                 </FormLabel>
                 <FormMessage />
@@ -461,9 +479,13 @@ export default function FormBand() {
                 </FormControl>
                 <FormLabel className="font-normal  ml-2">
                   Li e concordo com a{" "}
-                  <a className="cursor-pointer underline">
+                  <Link
+                    className="cursor-pointer underline"
+                    target="_blank"
+                    href={"/privacy-policy"}
+                  >
                     Política de Privacidade
-                  </a>
+                  </Link>
                   . *
                 </FormLabel>
                 <FormMessage />
@@ -474,7 +496,6 @@ export default function FormBand() {
           <Button
             type="submit"
             className="bg-green text-white hover:bg-green-600"
-            onClick={() => toast.error("Possui CPF já inscrito")}
           >
             Realizar inscrição
           </Button>

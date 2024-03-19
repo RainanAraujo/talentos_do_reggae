@@ -10,12 +10,17 @@ import {
   FormMessage,
 } from "../../components/Form";
 
-import { Input } from "@/app/components/Input";
-import { DJ, djSchema } from "@/models/dj.model";
-import { zodResolver } from "@hookform/resolvers/zod";
-import Button from "../../components/Button";
-import { z } from "zod";
 import { Checkbox } from "@/app/components/Checkbox";
+import { Input } from "@/app/components/Input";
+import { RegistrationController } from "@/controllers/registration.controller";
+import { djSchema } from "@/models/dj.model";
+import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+import { useHookFormMask } from "use-mask-input";
+import { z } from "zod";
+import Button from "../../components/Button";
 
 const djAuthorizedSchema = djSchema.extend({
   terms: z.boolean().refine((value) => value, {
@@ -29,10 +34,13 @@ const djAuthorizedSchema = djSchema.extend({
 });
 
 export default function FormDJ() {
+  const router = useRouter();
+
   const formDJ = useForm<z.infer<typeof djAuthorizedSchema>>({
     resolver: zodResolver(djAuthorizedSchema),
     defaultValues: {
       nome: "",
+      cpf: "",
       email: "",
       tel: "",
       nascimento: "",
@@ -43,7 +51,26 @@ export default function FormDJ() {
     },
   });
 
-  function onSubmitDJ(values: DJ) {}
+  const registerWithMask = useHookFormMask(formDJ.register);
+
+  async function onSubmitDJ(values: z.infer<typeof djAuthorizedSchema>) {
+    try {
+      const dj = djSchema.parse(values);
+      const controller = await RegistrationController.getInstance();
+      await controller.register({
+        ...dj,
+        type: "dj",
+      });
+      toast.success("Inscrição realizada com sucesso.");
+      router.push("/successfull");
+    } catch (error) {
+      let message = "Erro ao realizar inscrição, tente novamente.";
+      if (error instanceof Error) {
+        message = error.message;
+      }
+      toast.error(message);
+    }
+  }
 
   return (
     <div className="animate-slideToRightFade">
@@ -60,6 +87,25 @@ export default function FormDJ() {
                     placeholder="
                           Insira o nome"
                     {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={formDJ.control}
+            name={"cpf"}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>CPF *</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="Insira o CPF"
+                    {...field}
+                    {...registerWithMask("cpf", ["999.999.999-99"], {
+                      required: true,
+                    })}
                   />
                 </FormControl>
                 <FormMessage />
@@ -90,6 +136,9 @@ export default function FormDJ() {
                     type="tel"
                     placeholder="Insira o telefone"
                     {...field}
+                    {...registerWithMask("tel", ["(99) 99999-9999"], {
+                      required: true,
+                    })}
                   />
                 </FormControl>
                 <FormMessage />
@@ -157,7 +206,13 @@ export default function FormDJ() {
                 </FormControl>
                 <FormLabel className="font-normal ml-2">
                   Aceito os{" "}
-                  <a className="cursor-pointer underline">termos e condições</a>
+                  <Link
+                    className="cursor-pointer underline"
+                    target="_blank"
+                    href={"/terms-and-conditions"}
+                  >
+                    Termos e Condições
+                  </Link>
                   . *
                 </FormLabel>
                 <FormMessage />
@@ -178,9 +233,13 @@ export default function FormDJ() {
                 </FormControl>
                 <FormLabel className="font-normal  ml-2">
                   Li e concordo com a{" "}
-                  <a className="cursor-pointer underline">
+                  <Link
+                    className="cursor-pointer underline"
+                    target="_blank"
+                    href={"/privacy-policy"}
+                  >
                     Política de Privacidade
-                  </a>
+                  </Link>
                   . *
                 </FormLabel>
                 <FormMessage />

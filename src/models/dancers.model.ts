@@ -1,4 +1,5 @@
-import { cpfRegex, dateRegex, igRegex, telRegex } from "@/utils/regex";
+import { ISO8601DateRegex, telRegex } from "@/utils/regex";
+import { isValidCPF } from "@/utils/validation";
 import { z } from "zod";
 
 export const dancersSchema = z.object({
@@ -15,12 +16,14 @@ export const dancersSchema = z.object({
         nome: z.string().min(1, { message: "Campo obrigatório" }),
         nascimento: z
           .string()
-          .regex(dateRegex, "Data inválida")
-          .min(1, { message: "Campo obrigatório" }),
+          .min(1, { message: "Campo obrigatório" })
+          .regex(ISO8601DateRegex, "Data inválida"),
         cpf: z
           .string()
-          .regex(cpfRegex, "CPF inválido")
-          .min(1, { message: "Campo obrigatório" }),
+          .min(1, { message: "Campo obrigatório" })
+          .refine((cpf) => isValidCPF(cpf), {
+            message: "CPF inválido",
+          }),
       })
     )
     .length(2, { message: "É necessário um par de dançarinos" }),

@@ -76,7 +76,7 @@ export default function Home() {
             <div
               className={clsx(
                 "gap-2 flex flex-col opacity-0 animate-fadeIn  animation-delay-900",
-                " max-md:justify-center max-md:items-center"
+                " max-md:justify-center max-md:items-center hidden"
               )}
             >
               <span className="font-light text-xs">APOIO CULTURAL</span>

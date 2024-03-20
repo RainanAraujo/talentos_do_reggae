@@ -66,7 +66,7 @@ export default function Home() {
             <div
               className={clsx(
                 "gap-2 flex flex-col opacity-0 h-full justify-around animate-fadeIn animation-delay-500",
-                "max-md:justify-center max-md:items-center max-md:h-auto"
+                "max-md:justify-center max-md:items-center max-md:h-auto hidden"
               )}
             >
               <span className="font-light text-xs">REALIZAÇÃO</span>
@@ -166,10 +166,11 @@ export default function Home() {
             <AccordionItem value="item-2">
               <AccordionTrigger>QUEM PODE SE INSCREVER?</AccordionTrigger>
               <AccordionContent>
-                Bandas de reggae compostas por músicos e cantores, DJs e dupla de Dançarinos. Essas pessoas
-                devem ser maiores de 18 anos ou menores com permissão dos pais ou
-                responsável legal, residentes no estado do Maranhão e que se
-                identifiquem como artistas do reggae.
+                Bandas de reggae compostas por músicos e cantores, DJs e dupla
+                de Dançarinos. Essas pessoas devem ser maiores de 18 anos ou
+                menores com permissão dos pais ou responsável legal, residentes
+                no estado do Maranhão e que se identifiquem como artistas do
+                reggae.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-3">

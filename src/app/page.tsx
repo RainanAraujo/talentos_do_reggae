@@ -178,12 +178,14 @@ export default function Home() {
               <AccordionContent>
                 Os interessados podem se inscrever no site
                 talentosdoreggae.com.br, preenchendo um formulário com
-                informações sobre a banda e cantor. <br /> Serão selecionados
-                seis concorrentes, compostos por seis bandas com seus
-                respectivos cantores. <br /> As bandas concorrerão à premiação
-                na categoria "Bandas", enquanto os cantores competirão nas
-                categorias "Cantores". <br />O evento será transmitido ao vivo
-                pelo site talentosdoreggae.com.br.
+                informações sobre a banda e cantor. <br /> Para o concurso,
+                serão selecionados seis concorrentes, compostos por seis bandas
+                com seus respectivos cantores. No evento também terá
+                apresentações de DJs e duplas de dançarinos dos quais serão
+                selecionados dentre os inscritos no evento <br /> As bandas
+                concorrerão à premiação na categoria "Bandas", enquanto os
+                cantores competirão nas categorias "Cantores". <br />O evento
+                será transmitido ao vivo pelo site talentosdoreggae.com.br.
               </AccordionContent>
             </AccordionItem>
 
@@ -194,7 +196,7 @@ export default function Home() {
                 <ul className="list-disc list-inside">
                   <li>Bandas: 1º lugar, 2º lugar, 3º lugar. </li>
                   <li> Cantores: 1º lugar, 2º lugar, 3º lugar.</li>
-                  <li>Apresentações convidadas (DJs e Dança)</li>
+                  <li>Apresentações selecionadas (DJs e Dança)</li>
                 </ul>
               </AccordionContent>
             </AccordionItem>

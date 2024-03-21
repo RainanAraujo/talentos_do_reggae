@@ -12,9 +12,10 @@ import {
 
 import { Checkbox } from "@/app/components/Checkbox";
 import { Input } from "@/app/components/Input";
-import { RegistrationController } from "@/controllers/registration.controller";
+import { APIController } from "@/controllers/api.controller";
 import { dancersSchema } from "@/models/dancers.model";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useReCaptcha } from "next-recaptcha-v3";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
@@ -35,6 +36,7 @@ const dancersAuthorizedSchema = dancersSchema.extend({
 
 export default function FormDancers() {
   const router = useRouter();
+  const { executeRecaptcha } = useReCaptcha();
   const formDancers = useForm<z.infer<typeof dancersAuthorizedSchema>>({
     resolver: zodResolver(dancersAuthorizedSchema),
     defaultValues: {
@@ -58,11 +60,16 @@ export default function FormDancers() {
     values: z.infer<typeof dancersAuthorizedSchema>
   ) {
     try {
+      const token = await executeRecaptcha("subscribe");
+      if (!token) {
+        throw new Error("Erro ao validar o reCAPTCHA.");
+      }
       const dancers = dancersSchema.parse(values);
-      const controller = await RegistrationController.getInstance();
+      const controller = await APIController.getInstance();
       await controller.register({
         ...dancers,
         type: "dancers",
+        recaptchaToken: token,
       });
       toast.success("Inscrição realizada com sucesso!");
       router.push("/successfull");

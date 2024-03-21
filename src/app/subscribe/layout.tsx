@@ -1,7 +1,7 @@
-import React from "react";
 import logo from "@/../public/logo.svg";
-
+import { ReCaptchaProvider } from "next-recaptcha-v3";
 import Image from "next/image";
+import React from "react";
 
 export default function layoutSubscribe({
   children,
@@ -17,7 +17,9 @@ export default function layoutSubscribe({
                 Inscrição no evento
               </h3>
             </div>
-            {children}
+            <ReCaptchaProvider reCaptchaKey="6Lfwq58pAAAAAEpYxmspcwk2nfUudcMHofBboMdj">
+              {children}
+            </ReCaptchaProvider>
           </div>
         </div>
         <div className="flex-1 h-full bg-zinc-800 rounded-r-lg max-md:hidden">

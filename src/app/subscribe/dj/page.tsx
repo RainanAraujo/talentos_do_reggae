@@ -12,9 +12,10 @@ import {
 
 import { Checkbox } from "@/app/components/Checkbox";
 import { Input } from "@/app/components/Input";
-import { RegistrationController } from "@/controllers/registration.controller";
+import { APIController } from "@/controllers/api.controller";
 import { djSchema } from "@/models/dj.model";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useReCaptcha } from "next-recaptcha-v3";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
@@ -35,6 +36,7 @@ const djAuthorizedSchema = djSchema.extend({
 
 export default function FormDJ() {
   const router = useRouter();
+  const { executeRecaptcha } = useReCaptcha();
 
   const formDJ = useForm<z.infer<typeof djAuthorizedSchema>>({
     resolver: zodResolver(djAuthorizedSchema),
@@ -55,11 +57,16 @@ export default function FormDJ() {
 
   async function onSubmitDJ(values: z.infer<typeof djAuthorizedSchema>) {
     try {
+      const token = await executeRecaptcha("subscribe");
+      if (!token) {
+        throw new Error("Erro ao validar o reCAPTCHA.");
+      }
       const dj = djSchema.parse(values);
-      const controller = await RegistrationController.getInstance();
+      const controller = await APIController.getInstance();
       await controller.register({
         ...dj,
         type: "dj",
+        recaptchaToken: token,
       });
       toast.success("Inscrição realizada com sucesso.");
       router.push("/successfull");

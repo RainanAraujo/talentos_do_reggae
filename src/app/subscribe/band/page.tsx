@@ -20,11 +20,12 @@ import {
   SelectValue,
 } from "@/app/components/Select";
 import { INSTRUMENTOS } from "@/configs/instrumentos";
-import { RegistrationController } from "@/controllers/registration.controller";
+import { APIController } from "@/controllers/api.controller";
 import { bandSchema } from "@/models/band.model";
 import { isValidCPF } from "@/utils/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Minus } from "lucide-react";
+import { useReCaptcha } from "next-recaptcha-v3";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
@@ -46,6 +47,7 @@ const bandAuthorizedSchema = bandSchema.extend({
 
 export default function FormBand() {
   const router = useRouter();
+  const { executeRecaptcha } = useReCaptcha();
 
   const [cantores, setCantores] = React.useState([
     { nome: "", nascimento: "", cpf: "" },
@@ -75,11 +77,16 @@ export default function FormBand() {
 
   async function onSubmitBand(values: z.infer<typeof bandAuthorizedSchema>) {
     try {
+      const token = await executeRecaptcha("subscribe");
+      if (!token) {
+        throw new Error("Erro ao validar o reCAPTCHA.");
+      }
       const band = bandSchema.parse(values);
-      const controller = await RegistrationController.getInstance();
+      const controller = await APIController.getInstance();
       await controller.register({
         ...band,
         type: "band",
+        recaptchaToken: token,
       });
       toast.success("Inscrição realizada com sucesso!");
       router.push("/successfull");

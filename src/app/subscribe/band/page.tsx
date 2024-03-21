@@ -9,7 +9,16 @@ import {
   FormLabel,
   FormMessage,
 } from "../../components/Form";
-
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/app/components/Dialog";
 import { Checkbox } from "@/app/components/Checkbox";
 import { Input } from "@/app/components/Input";
 import {
@@ -22,7 +31,7 @@ import {
 import { INSTRUMENTOS } from "@/configs/instrumentos";
 import { APIController } from "@/controllers/api.controller";
 import { bandSchema } from "@/models/band.model";
-import { isValidCPF } from "@/utils/validation";
+import { isValidBirthData, isValidCPF } from "@/utils/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Minus } from "lucide-react";
 import { useReCaptcha } from "next-recaptcha-v3";
@@ -33,6 +42,7 @@ import { toast } from "sonner";
 import { useHookFormMask } from "use-mask-input";
 import { z } from "zod";
 import Button from "../../components/Button";
+import { Label } from "@/app/components/Label";
 
 const bandAuthorizedSchema = bandSchema.extend({
   terms: z.boolean().refine((value) => value, {
@@ -55,7 +65,8 @@ export default function FormBand() {
   const [instrumentistas, setInstrumentistas] = React.useState([
     { nome: "", nascimento: "", cpf: "", instrumento: null },
   ]);
-
+  const [confirmDialog, setConfirmDialog] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
   const formBand = useForm<z.infer<typeof bandAuthorizedSchema>>({
     resolver: zodResolver(bandAuthorizedSchema),
     defaultValues: {
@@ -76,6 +87,7 @@ export default function FormBand() {
   const registerWithMask = useHookFormMask(formBand.register);
 
   async function onSubmitBand(values: z.infer<typeof bandAuthorizedSchema>) {
+    setIsLoading(true);
     try {
       const token = await executeRecaptcha("subscribe");
       if (!token) {
@@ -88,9 +100,13 @@ export default function FormBand() {
         type: "band",
         recaptchaToken: token,
       });
+      setIsLoading(false);
+      setConfirmDialog(false);
       toast.success("Inscrição realizada com sucesso!");
-      router.push("/successfull");
+      router.push("/successful");
     } catch (error) {
+      setIsLoading(false);
+      setConfirmDialog(false);
       let message = "Erro ao realizar inscrição, tente novamente.";
       if (error instanceof Error) {
         message = error.message;
@@ -103,6 +119,7 @@ export default function FormBand() {
     <div className="animate-slideToRightFade ">
       <Form {...formBand}>
         <form
+          id="form"
           onSubmit={formBand.handleSubmit(onSubmitBand)}
           className="space-y-4"
         >
@@ -276,6 +293,7 @@ export default function FormBand() {
                                 `cantores.${index}.cpf`,
                                 ["999.999.999-99"],
                                 {
+                                  validate: isValidCPF,
                                   required: true,
                                 }
                               )}
@@ -499,13 +517,100 @@ export default function FormBand() {
               </FormItem>
             )}
           />
-
-          <Button
-            type="submit"
-            className="bg-green text-white hover:bg-green-600"
-          >
-            Realizar inscrição
-          </Button>
+          <Dialog open={confirmDialog} onOpenChange={setConfirmDialog}>
+            <Button
+              type="button"
+              onClick={() =>
+                formBand.trigger().then((isValid) => {
+                  if (isValid) {
+                    return setConfirmDialog(true);
+                  }
+                })
+              }
+              className="bg-green text-white hover:bg-green-600"
+            >
+              Realizar inscrição
+            </Button>
+            <DialogContent className="sm:max-w-md">
+              <DialogHeader>
+                <DialogTitle>Verifique seus dados</DialogTitle>
+                <DialogDescription>
+                  Verifique se todos os dados estão corretos antes de realizar a
+                  inscrição.
+                </DialogDescription>
+              </DialogHeader>
+              <div className="space-y-4 [&_p]:truncate [&_p]:w-full truncate ">
+                <div>
+                  <h4 className="font-bold text-base ">Banda</h4>
+                  <div className="font-light text-sm ">
+                    <p>Nome: {formBand.getValues().nome}</p>
+                    <p>Email: {formBand.getValues().email}</p>
+                    <p>Telefone: {formBand.getValues().tel}</p>
+                    <p>
+                      Link Instagram:{" "}
+                      <a
+                        href={formBand.getValues().ig}
+                        target="_blank"
+                        className="text-blue-500"
+                      >
+                        {formBand.getValues().ig}
+                      </a>
+                    </p>
+                    <p>
+                      Link do vídeo:{" "}
+                      <a
+                        href={formBand.getValues().videoLinkURL}
+                        target="_blank"
+                        className="text-blue-500"
+                      >
+                        {formBand.getValues().videoLinkURL}
+                      </a>
+                    </p>
+                  </div>
+                </div>
+                <div>
+                  <h4 className="font-bold text-base ">Cantores</h4>
+                  {formBand.getValues().cantores.map((cantor, index) => (
+                    <div key={index} className="font-light text-sm  pl-2 pb-2">
+                      <p>Nome: {cantor.nome}</p>
+                      <p>Data de nascimento: {cantor.nascimento}</p>
+                      <p>CPF: {cantor.cpf}</p>
+                    </div>
+                  ))}
+                </div>
+                <div>
+                  <h4 className="font-bold text-base">Instrumentistas</h4>
+                  {formBand
+                    .getValues()
+                    .instrumentistas.map((instrumentista, index) => (
+                      <div key={index} className="font-light text-sm pl-2 pb-2">
+                        <p>Nome: {instrumentista.nome}</p>
+                        <p>Data de nascimento: {instrumentista.nascimento}</p>
+                        <p>CPF: {instrumentista.cpf}</p>
+                        <p>Instrumento: {instrumentista.instrumento}</p>
+                      </div>
+                    ))}
+                </div>
+              </div>
+              <DialogFooter className="sm:justify-start">
+                <DialogClose asChild>
+                  <Button className="border-zinc-600 border text-white">
+                    Voltar e corrigir dados
+                  </Button>
+                </DialogClose>
+                <Button
+                  form="form"
+                  type="submit"
+                  className="bg-green text-white hover:bg-green-600 disabled:bg-gray-600 w-full"
+                  disabled={isLoading}
+                >
+                  {isLoading
+                    ? "Realizando inscrição..."
+                    : "Confirmar e Realizar inscrição"}
+                </Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
         </form>
       </Form>
     </div>

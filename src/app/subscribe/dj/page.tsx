@@ -69,7 +69,7 @@ export default function FormDJ() {
         recaptchaToken: token,
       });
       toast.success("Inscrição realizada com sucesso.");
-      router.push("/successfull");
+      router.push("/successful");
     } catch (error) {
       let message = "Erro ao realizar inscrição, tente novamente.";
       if (error instanceof Error) {

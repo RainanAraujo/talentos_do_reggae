@@ -1,5 +1,5 @@
 import { ISO8601DateRegex, telRegex } from "@/utils/regex";
-import { isValidCPF } from "@/utils/validation";
+import { isValidBirthData, isValidCPF } from "@/utils/validation";
 import { z } from "zod";
 
 export const djSchema = z.object({
@@ -13,7 +13,10 @@ export const djSchema = z.object({
   nascimento: z
     .string()
     .min(1, { message: "Campo obrigatório" })
-    .regex(ISO8601DateRegex, "Data inválida"),
+    .regex(ISO8601DateRegex, "Data inválida")
+    .refine((data) => isValidBirthData(data), {
+      message: "Data inválida",
+    }),
   cpf: z
     .string()
     .min(1, { message: "Campo obrigatório" })

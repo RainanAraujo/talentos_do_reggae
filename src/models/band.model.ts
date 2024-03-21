@@ -1,6 +1,6 @@
 import { INSTRUMENTOS } from "@/configs/instrumentos";
 import { ISO8601DateRegex, telRegex } from "@/utils/regex";
-import { isValidCPF } from "@/utils/validation";
+import { isValidBirthData, isValidCPF } from "@/utils/validation";
 import { z } from "zod";
 
 export const bandSchema = z.object({
@@ -18,7 +18,10 @@ export const bandSchema = z.object({
         nascimento: z
           .string()
           .min(1, { message: "Campo obrigatório" })
-          .regex(ISO8601DateRegex, "Data inválida"),         
+          .regex(ISO8601DateRegex, "Data inválida")
+          .refine((data) => isValidBirthData(data), {
+            message: "Data inválida",
+          }),
         cpf: z
           .string()
           .min(1, { message: "Campo obrigatório" })
@@ -35,7 +38,10 @@ export const bandSchema = z.object({
         nascimento: z
           .string()
           .min(1, { message: "Campo obrigatório" })
-          .regex(ISO8601DateRegex, "Data inválida"),
+          .regex(ISO8601DateRegex, "Data inválida")
+          .refine((data) => isValidBirthData(data), {
+            message: "Data inválida",
+          }),
         cpf: z
           .string()
           .min(1, { message: "Campo obrigatório" })

@@ -180,9 +180,7 @@ export default function Home() {
                 talentosdoreggae.com.br, preenchendo um formulário com
                 informações sobre a banda e cantor. <br /> Para o concurso,
                 serão selecionados seis concorrentes, compostos por seis bandas
-                com seus respectivos cantores. No evento também terá
-                apresentações de DJs e duplas de dançarinos dos quais serão
-                selecionados dentre os inscritos no evento <br /> As bandas
+                com seus respectivos cantores. No evento também haverá apresentações de 7 DJs e 10 duplas de dançarinos, dos quais serão selecionados dentre os inscritos no evento. <br /> As bandas
                 concorrerão à premiação na categoria "Bandas", enquanto os
                 cantores competirão nas categorias "Cantores". <br />O evento
                 será transmitido ao vivo pelo site talentosdoreggae.com.br.

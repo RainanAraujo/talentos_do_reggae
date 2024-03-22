@@ -85,7 +85,8 @@ export default function TermsAndCondition() {
           Se você tiver alguma dúvida sobre estes termos e condições, entre em
           contato conosco em{" "}
           <span className="text-blue-500">
-            keracomunicacao@gmail.com ou telefone (WhatsApp): +55 99 98476-3371.
+            support@talentosdoreggae.com.br ou telefone (WhatsApp): +55 99
+            98476-3371.
           </span>
           .
         </p>

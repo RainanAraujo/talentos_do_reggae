@@ -166,8 +166,8 @@ export default function Home() {
             <AccordionItem value="item-2">
               <AccordionTrigger>QUEM PODE SE INSCREVER?</AccordionTrigger>
               <AccordionContent>
-                Bandas de reggae compostas por músicos e cantores, DJs e dupla
-                de Dançarinos. Essas pessoas devem ser maiores de 18 anos ou
+                Bandas de reggae compostas por músicos e cantores, DJs e casal
+                de dançarinos. Essas pessoas devem ser maiores de 18 anos ou
                 menores com permissão dos pais ou responsável legal, residentes
                 no estado do Maranhão e que se identifiquem como artistas do
                 reggae.
@@ -180,9 +180,7 @@ export default function Home() {
                 talentosdoreggae.com.br, preenchendo um formulário com
                 informações sobre a banda e cantor. <br /> Para o concurso,
                 serão selecionados seis concorrentes, compostos por seis bandas
-                com seus respectivos cantores. No evento também terá
-                apresentações de DJs e duplas de dançarinos dos quais serão
-                selecionados dentre os inscritos no evento <br /> As bandas
+                com seus respectivos cantores. No evento também haverá apresentações de 7 DJs e 10 duplas de dançarinos, dos quais serão selecionados dentre os inscritos no evento. <br /> As bandas
                 concorrerão à premiação na categoria "Bandas", enquanto os
                 cantores competirão nas categorias "Cantores". <br />O evento
                 será transmitido ao vivo pelo site talentosdoreggae.com.br.

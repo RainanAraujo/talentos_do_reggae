@@ -17,9 +17,10 @@ interface Options {
 export default function Navbar() {
   const scrollPosition = useScrollPosition();
   const options: Options[] = [
-    { title: "FIQUE POR DENTRO", url: "#news" },
     { title: "SOBRE O EVENTO", url: "#about" },
+    { title: "FIQUE POR DENTRO", url: "#news" },
     { title: "PROGRAMAÇÃO", url: "#schedule" },
+    { title: "CONTATO", url: "#contact" },
   ];
   return (
     <>

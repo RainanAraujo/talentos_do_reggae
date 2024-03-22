@@ -166,8 +166,8 @@ export default function Home() {
             <AccordionItem value="item-2">
               <AccordionTrigger>QUEM PODE SE INSCREVER?</AccordionTrigger>
               <AccordionContent>
-                Bandas de reggae compostas por músicos e cantores, DJs e dupla
-                de Dançarinos. Essas pessoas devem ser maiores de 18 anos ou
+                Bandas de reggae compostas por músicos e cantores, DJs e casal
+                de dançarinos. Essas pessoas devem ser maiores de 18 anos ou
                 menores com permissão dos pais ou responsável legal, residentes
                 no estado do Maranhão e que se identifiquem como artistas do
                 reggae.

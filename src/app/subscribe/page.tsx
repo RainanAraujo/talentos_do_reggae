@@ -61,9 +61,11 @@ export default function FormCategory() {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="band">Banda</SelectItem>
-                  <SelectItem value="dj">DJ</SelectItem>
-                  <SelectItem value="dancers">Dançarinos (as)</SelectItem>
+                  <SelectItem value="band">Banda | Concurso</SelectItem>
+                  <SelectItem value="dj">DJ | Apresentação</SelectItem>
+                  <SelectItem value="dancers">
+                    Dançarinos (as) | Apresentação
+                  </SelectItem>
                 </SelectContent>
               </Select>
               <FormMessage />
@@ -71,9 +73,9 @@ export default function FormCategory() {
           )}
         />
         <p className="text-sm">
-          OBS: Apenas bandas poderão participar do concurso. As demais
-          categorias poderão se inscrever para apresentações no evento e receber
-          apoio financeiro.
+          OBS: Cada pessoa só pode ser inscrita uma vez, independentemente da
+          categoria escolhida. Isso significa que não é permitido múltiplos
+          registros com a mesma pessoa, mesmo em categorias diferentes.
         </p>
         <Button
           type="submit"

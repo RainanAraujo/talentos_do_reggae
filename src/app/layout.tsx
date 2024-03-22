@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Anton, Inria_Sans, Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "./components/Toaster";
+import NextTopLoader from "nextjs-toploader";
 
 const inriaSans = Inria_Sans({
   subsets: ["latin"],
@@ -30,6 +31,7 @@ export default function RootLayout({
         className={`${anton.variable} ${inriaSans.variable} font-inria-sans`}
       >
         <Toaster richColors position="bottom-center" duration={4000} />
+        <NextTopLoader />
         {children}
       </body>
     </html>

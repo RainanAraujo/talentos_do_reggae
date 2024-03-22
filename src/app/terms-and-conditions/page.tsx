@@ -67,6 +67,12 @@ export default function TermsAndCondition() {
             inadequado ou ilegal compartilhado pelos participantes.
           </li>
           <li>
+            <strong>Inconformidades nos Dados da Inscrição:</strong> Qualquer
+            discrepância ou inconformidade nos dados fornecidos durante o
+            processo de inscrição resultará na desqualificação automática do
+            candidato.
+          </li>
+          <li>
             <strong>Restrições de Uso do Serviço:</strong> Você concorda em usar
             o serviço apenas para fins legais e de acordo com estes termos e
             condições. Você concorda em não compartilhar conteúdo ilegal, violar

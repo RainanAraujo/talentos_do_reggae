@@ -53,6 +53,9 @@ const bandAuthorizedSchema = bandSchema.extend({
     message:
       "Para prosseguir é preciso estar de acordo com a Política de Privacidade.",
   }),
+  maranhense: z.boolean().refine((value) => value, {
+    message: "Para realizar a inscrição é preciso ser maranhense.",
+  }),
 });
 
 export default function FormBand() {
@@ -117,6 +120,7 @@ export default function FormBand() {
 
   return (
     <div className="animate-slideToRightFade ">
+      <h1 className="text-xl font-bold text-white mb-3">Categoria Banda</h1>
       <Form {...formBand}>
         <form
           id="form"
@@ -203,7 +207,7 @@ export default function FormBand() {
             name="videoLinkURL"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Link do video *</FormLabel>
+                <FormLabel>Link do video para avaliação*</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="
@@ -512,6 +516,24 @@ export default function FormBand() {
                     Política de Privacidade
                   </Link>
                   . *
+                </FormLabel>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={formBand.control}
+            name="maranhense"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Checkbox
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
+                </FormControl>
+                <FormLabel className="font-normal  ml-2">
+                  Declaro ser maranhense. *
                 </FormLabel>
                 <FormMessage />
               </FormItem>

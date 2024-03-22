@@ -16,21 +16,22 @@ export default function Successful() {
                   Inscrição realizada com sucesso!
                 </h1>
                 <p className="text-white font-light">
-                  Agora é candidato a participar do evento! Fique atento ao seu
-                  e-mail para mais informações. Qualquer dúvida, alteração de
-                  cadastro ou desistência entre em contato:{" "}
+                  Cadastro realizado para candidatar a participação do evento!
+                  Fique atento ao seu e-mail para mais informações. Qualquer
+                  dúvida, alteração de cadastro ou desistência, entre em
+                  contato:{" "}
                   <a
                     href="mailto:keracomunicacao@gmail.com"
-                    className="cursor-pointer text-blue-500"
+                    className="cursor-pointer text-blue-500 underline"
                   >
-                    Email KERA Comunicação
+                    Email
                   </a>{" "}
-                  ou pelo WhatsApp{" "}
+                  ou pelo{" "}
                   <a
-                    className="cursor-pointer text-blue-500"
+                    className="cursor-pointer text-blue-500 underline"
                     href="https://api.whatsapp.com/send?phone=5585999999999"
                   >
-                    (85) 99999-9999
+                    WhatsApp
                   </a>
                 </p>
               </div>

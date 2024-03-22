@@ -310,7 +310,7 @@ export default function FormDJ() {
             >
               Realizar inscrição
             </Button>
-            <DialogContent className="sm:max-w-md">
+            <DialogContent className="sm:max-w-md max-h-[90%] overflow-y-scroll ">
               <DialogHeader>
                 <DialogTitle>Verifique seus dados</DialogTitle>
                 <DialogDescription>
@@ -326,6 +326,7 @@ export default function FormDJ() {
                     <p>Email: {formDJ.getValues().email}</p>
                     <p>Telefone: {formDJ.getValues().tel}</p>
                     <p>CPF: {formDJ.getValues().cpf}</p>
+                    <p>Data de nascimento: {formDJ.getValues().nascimento}</p>
                     <p>
                       Link Instagram:{" "}
                       <a

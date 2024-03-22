@@ -68,16 +68,11 @@ export default function Navbar() {
             ))}
           </ul>
           <div className="flex-1 flex items-center justify-end">
-            <CustomButton
-              className="bg-gray-500 text-white"
-              onClick={() =>
-                window.alert(
-                  "Abertas somente a partir do evento de lançamento no dia 30 de março"
-                )
-              }
-            >
-              INSCREVA-SE
-            </CustomButton>
+            <a href="/subscribe">
+              <CustomButton className="bg-orange text-white">
+                INSCREVA-SE
+              </CustomButton>
+            </a>
           </div>
           <MenuHamburger options={options} />
         </div>

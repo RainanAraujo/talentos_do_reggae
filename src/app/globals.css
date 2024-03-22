@@ -11,6 +11,9 @@ html {
 }
 
 @layer utilities {
+  input {
+    color-scheme: dark;
+  }
   .text-balance {
     text-wrap: balance;
   }

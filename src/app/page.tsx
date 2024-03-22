@@ -21,6 +21,7 @@ import {
 import { Phone } from "@phosphor-icons/react/dist/ssr/Phone";
 import { WhatsappLogo } from "@phosphor-icons/react/dist/ssr/WhatsappLogo";
 import { Envelope } from "@phosphor-icons/react/dist/ssr/Envelope";
+import CustomButton from "./components/Button";
 
 export default function Home() {
   return (
@@ -56,13 +57,11 @@ export default function Home() {
           </h1>
           <div className="flex items-center flex-col gap-2">
             <div className=" flex items-center flex-col gap-1 text-orange animate-fadeIn animation-delay-75  opacity-0">
-              <h4 className="text-lg font-normal text-center text-white px-6 py-1 border-orange rounded-md border-[1px]">
-                30 DE MARÇO
-              </h4>
-
-              <span className="text-sm font-thin">
-                LANÇAMENTO DO EVENTO E ABERTURA DAS INSCRIÇÕES
-              </span>
+              <a href="/subscribe">
+                <CustomButton className="bg-orange text-white">
+                  FAÇA SUA INSCRIÇÃO AGORA MESMO
+                </CustomButton>
+              </a>
             </div>
           </div>
           <div className={clsx("flex gap-8 pt-4 items-baseline flex-wrap")}>

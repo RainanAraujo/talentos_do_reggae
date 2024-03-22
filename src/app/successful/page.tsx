@@ -21,7 +21,8 @@ export default function Successful() {
                   dúvida, alteração de cadastro ou desistência, entre em
                   contato:{" "}
                   <a
-                    href="mailto:keracomunicacao@gmail.com"
+                    href="mailto:support@talentosdoreggae.com.br"
+                    target="_blank"
                     className="cursor-pointer text-blue-500 underline"
                   >
                     Email
@@ -29,7 +30,8 @@ export default function Successful() {
                   ou pelo{" "}
                   <a
                     className="cursor-pointer text-blue-500 underline"
-                    href="https://api.whatsapp.com/send?phone=5585999999999"
+                    target="_blank"
+                    href="https://wa.me/message/FY426JEYIV4OK1"
                   >
                     WhatsApp
                   </a>

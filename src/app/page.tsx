@@ -18,6 +18,9 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "./components/Accordion";
+import { Phone } from "@phosphor-icons/react/dist/ssr/Phone";
+import { WhatsappLogo } from "@phosphor-icons/react/dist/ssr/WhatsappLogo";
+import { Envelope } from "@phosphor-icons/react/dist/ssr/Envelope";
 
 export default function Home() {
   return (
@@ -180,9 +183,11 @@ export default function Home() {
                 talentosdoreggae.com.br, preenchendo um formulário com
                 informações sobre a banda e cantor. <br /> Para o concurso,
                 serão selecionados seis concorrentes, compostos por seis bandas
-                com seus respectivos cantores. No evento também haverá apresentações de 7 DJs e 10 duplas de dançarinos, dos quais serão selecionados dentre os inscritos no evento. <br /> As bandas
-                concorrerão à premiação na categoria "Bandas", enquanto os
-                cantores competirão nas categorias "Cantores". <br />O evento
+                com seus respectivos cantores. No evento também haverá
+                apresentações de 7 DJs e 10 duplas de dançarinos, dos quais
+                serão selecionados dentre os inscritos no evento. <br /> As
+                bandas concorrerão à premiação na categoria "Bandas", enquanto
+                os cantores competirão nas categorias "Cantores". <br />O evento
                 será transmitido ao vivo pelo site talentosdoreggae.com.br.
               </AccordionContent>
             </AccordionItem>
@@ -350,16 +355,76 @@ export default function Home() {
           alt="Detail Right"
           width={250}
           height={250}
-          className={clsx(
-            "hidden max-md:block max-md:w-[70%] max-md:transform max-md:rotate-180 "
-          )}
+          className={clsx("hidden max-md:hidden ")}
         />
       </section>
-      <footer className="w-full px-20 py-5 bg-zinc-800 flex justify-between mt-20 max-md:mt-0 max-md:flex-col text-center gap-4">
+      <section
+        id="contact"
+        className="flex justify-center gap-8 items-center min-h-screen  w-full pt-20 max-md:flex-col "
+      >
+        <div className="flex flex-col items-center justify-center gap-7  h-full w-full max-md:px-5">
+          <div className="flex flex-col gap-7 w-full items-center">
+            <h4>Contato</h4>
+            <h1 className="font-anton text-8xl text-center mb-3  max-md:text-7xl">
+              FALE CONOSCO
+            </h1>
+          </div>
+          <div className="flex gap-6  flex-col">
+            <div className="flex gap-4">
+              <div className="bg-red rounded-full p-2 w-20 h-20">
+                <Phone weight="light" />
+              </div>
+              <div>
+                <p className="text-gray-400">Telefone</p>{" "}
+                <a
+                  className="underline"
+                  target="_blank"
+                  href="tel:+559984763371"
+                >
+                  +55 99 9 8476-3371
+                </a>
+              </div>
+            </div>
+            <div className="flex gap-4">
+              <div className="bg-red rounded-full p-2 w-20 h-20">
+                <WhatsappLogo weight="light" />
+              </div>
+              <div>
+                <p className="text-gray-400">Whatsapp</p>{" "}
+                <a
+                  className="underline"
+                  target="_blank"
+                  href="https://wa.me/message/FY426JEYIV4OK1"
+                >
+                  +55 99 9 8476-3371
+                </a>
+              </div>
+            </div>
+            <div className="flex gap-4">
+              <div className="bg-red rounded-full p-2 w-20 h-20">
+                <Envelope weight="light" />
+              </div>
+              <div>
+                <p className="text-gray-400">Email</p>{" "}
+                <a
+                  className="underline"
+                  target="_blank"
+                  href="mailto:support@talentosdoreggae.com.br"
+                >
+                  support@talentosdoreggae.com.br
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <footer className="w-full px-20 py-5 bg-zinc-800 flex justify-between  max-md:mt-0 max-md:flex-col text-center gap-4 font-light">
         <span>
           Copyright 2024 Talentos do Reggae. Todos os direitos reservados
         </span>
-        <span>Desenvolvido por KERA Produções</span>
+        <span>
+          Desenvolvido por <strong>KERA Produções</strong>
+        </span>
       </footer>
     </div>
   );

@@ -44,15 +44,15 @@ export default function Home() {
             alt="Talentos do Reggae"
             width={200}
             height={200}
-            className={clsx("animate-pulse w-44", "max-md:w-[20%]")}
+            className={clsx("animate-pulse w-44", "max-md:w-[50%]")}
           />
           <h1
-            className="max-md:text-6xl text-8xl leading-[1] max-md:leading-[1.1] font-bold text-center 
+            className="max-md:text-6xl text-8xl leading-[1] font-bold text-center 
           font-anton bg-gradient-to-r from-green via-yellow to-red text-transparent bg-clip-text pt-6 
           animate-fadeIn opacity-0 "
           >
             LANÇAMENTO DO EVENTO: <br />{" "}
-            <div className=" leading-[1.5] max-md:leading-[1.1]">
+            <div className=" leading-[1.5] max-md:leading-[1]">
               30 DE MARÇO ÀS 21H
             </div>
           </h1>

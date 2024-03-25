@@ -30,13 +30,13 @@ export default function Home() {
         id="home"
         className={clsx(
           "min-h-[100vh] flex justify-center items-center",
-          "max-md:flex-col relative -mt-20 "
+          "max-md:flex-col relative -mt-14 "
         )}
       >
         <div
           className={clsx(
             "flex flex-col items-center justify-center gap-4",
-            "max-md:h-auto"
+            "max-md:h-auto max-md:px-5"
           )}
         >
           <Image
@@ -47,20 +47,22 @@ export default function Home() {
             className={clsx("animate-pulse w-44", "max-md:w-[20%]")}
           />
           <h1
-            className="max-md:text-7xl text-9xl leading-[1.1] font-bold text-center 
+            className="max-md:text-6xl text-8xl leading-[1] max-md:leading-[1.1] font-bold text-center 
           font-anton bg-gradient-to-r from-green via-yellow to-red text-transparent bg-clip-text pt-6 
-          animate-fadeIn opacity-0"
+          animate-fadeIn opacity-0 "
           >
-            MARANHÃO,
-            <br /> A JAMAICA BRASILEIRA
+            LANÇAMENTO DO EVENTO: <br />{" "}
+            <div className=" leading-[1.5] max-md:leading-[1.1]">
+              30 DE MARÇO ÀS 21H
+            </div>
           </h1>
           <div className="flex items-center flex-col gap-2">
             <div className=" flex items-center flex-col gap-1 text-orange animate-fadeIn animation-delay-75  opacity-0">
-              <h4 className="text-lg font-normal text-center text-white px-6 py-1 border-orange rounded-md border-[1px]">
-                30 DE MARÇO
+              <h4 className="text-3xl max-md:text-xl font-normal text-center text-white px-6 py-1 border-orange rounded-md border-[1px]">
+                ASSISTA AQUI AO VIVO
               </h4>
 
-              <span className="text-sm font-thin">
+              <span className="text-sm font-thin text-center">
                 LANÇAMENTO DO EVENTO E ABERTURA DAS INSCRIÇÕES
               </span>
             </div>

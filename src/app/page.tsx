@@ -58,9 +58,12 @@ export default function Home() {
           </h1>
           <div className="flex items-center flex-col gap-2">
             <div className=" flex items-center flex-col gap-1 text-orange animate-fadeIn animation-delay-75  opacity-0">
-              <h4 className="text-3xl max-md:text-xl font-normal text-center text-white px-6 py-1 border-orange rounded-md border-[1px]">
+              <a
+                href="#watch"
+                className="text-3xl max-md:text-xl font-normal text-center text-white px-6 py-1 border-orange rounded-md border-[1px]"
+              >
                 ASSISTA AQUI AO VIVO
-              </h4>
+              </a>
 
               <span className="text-sm font-thin text-center">
                 LANÇAMENTO DO EVENTO E ABERTURA DAS INSCRIÇÕES
@@ -111,7 +114,10 @@ export default function Home() {
         />
       </main>
       <div className="flex flex-col  relative w-full bg-[url('/greenLight.svg')] bg-no-repeat bg-[length:100%]  max-md:bg-[center_top_10rem]">
-        <section className="flex flex-col p-20 pt-40 gap-11 justify-center items-center min-h-screen max-md:p-5 ">
+        <section
+          id="watch"
+          className="flex flex-col p-20 pt-40 gap-11 justify-center items-center min-h-screen max-md:p-5 "
+        >
           <Image
             src={detailFlag}
             alt="Detail Right"

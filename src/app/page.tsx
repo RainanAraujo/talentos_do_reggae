@@ -31,13 +31,13 @@ export default function Home() {
         id="home"
         className={clsx(
           "min-h-[100vh] flex justify-center items-center",
-          "max-md:flex-col relative -mt-20 "
+          "max-md:flex-col relative -mt-14 "
         )}
       >
         <div
           className={clsx(
             "flex flex-col items-center justify-center gap-4",
-            "max-md:h-auto"
+            "max-md:h-auto max-md:px-5"
           )}
         >
           <Image
@@ -45,15 +45,17 @@ export default function Home() {
             alt="Talentos do Reggae"
             width={200}
             height={200}
-            className={clsx("animate-pulse w-44", "max-md:w-[20%]")}
+            className={clsx("animate-pulse w-44", "max-md:w-[50%]")}
           />
           <h1
-            className="max-md:text-7xl text-9xl leading-[1.1] font-bold text-center 
+            className="max-md:text-6xl text-8xl leading-[1] font-bold text-center 
           font-anton bg-gradient-to-r from-green via-yellow to-red text-transparent bg-clip-text pt-6 
-          animate-fadeIn opacity-0"
+          animate-fadeIn opacity-0 "
           >
-            MARANHÃO,
-            <br /> A JAMAICA BRASILEIRA
+            LANÇAMENTO DO EVENTO: <br />{" "}
+            <div className=" leading-[1.5] max-md:leading-[1]">
+              30 DE MARÇO ÀS 21H
+            </div>
           </h1>
           <div className="flex items-center flex-col gap-2">
             <div className=" flex items-center flex-col gap-1 text-orange animate-fadeIn animation-delay-75  opacity-0">
@@ -68,7 +70,7 @@ export default function Home() {
             <div
               className={clsx(
                 "gap-2 flex flex-col opacity-0 h-full justify-around animate-fadeIn animation-delay-500",
-                "max-md:justify-center max-md:items-center max-md:h-auto hidden"
+                "max-md:justify-center max-md:items-center max-md:h-auto"
               )}
             >
               <span className="font-light text-xs">REALIZAÇÃO</span>
@@ -108,7 +110,10 @@ export default function Home() {
         />
       </main>
       <div className="flex flex-col  relative w-full bg-[url('/greenLight.svg')] bg-no-repeat bg-[length:100%]  max-md:bg-[center_top_10rem]">
-        <section className="flex flex-col p-20 pt-40 gap-11 justify-center items-center min-h-screen max-md:p-5 ">
+        <section
+          id="watch"
+          className="flex flex-col p-20 pt-40 gap-11 justify-center items-center min-h-screen max-md:p-5 "
+        >
           <Image
             src={detailFlag}
             alt="Detail Right"

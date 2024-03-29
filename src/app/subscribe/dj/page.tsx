@@ -290,7 +290,7 @@ export default function FormDJ() {
                   />
                 </FormControl>
                 <FormLabel className="font-normal  ml-2">
-                  Declaro ser maranhense. *
+                  Declaro viver no maranhão. *
                 </FormLabel>
                 <FormMessage />
               </FormItem>

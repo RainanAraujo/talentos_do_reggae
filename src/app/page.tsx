@@ -65,7 +65,7 @@ export default async function Home() {
           <iframe
             width="860"
             height="415"
-            className="rounded-md w-[53%] max-md:w-[100%] h-auto aspect-video relative "
+            className="rounded-md w-[55%] max-md:w-[100%] h-auto aspect-video relative "
             src="https://www.youtube.com/embed/1PJVQ_mOV00?si=sSfMNT9EsaXfRqNt"
             title="YouTube Talentos do Reggae"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

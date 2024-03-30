@@ -335,6 +335,7 @@ export default function FormDJ() {
                   <h4 className="font-bold text-base ">DJ</h4>
                   <div className="font-light text-sm ">
                     <p>Nome: {formDJ.getValues().nome}</p>
+                    <p>Cidade: {formDJ.getValues().cidade}</p>
                     <p>Email: {formDJ.getValues().email}</p>
                     <p>Telefone: {formDJ.getValues().tel}</p>
                     <p>CPF: {formDJ.getValues().cpf}</p>

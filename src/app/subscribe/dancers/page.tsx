@@ -442,6 +442,7 @@ export default function FormDancers() {
                   <h4 className="font-bold text-base ">Dança</h4>
                   <div className="font-light text-sm ">
                     <p>Nome: {formDancers.getValues().nome}</p>
+                    <p>Cidade: {formDancers.getValues().cidade}</p>
                     <p>Email: {formDancers.getValues().email}</p>
                     <p>Telefone: {formDancers.getValues().tel}</p>
                     <p>

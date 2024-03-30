@@ -22,6 +22,7 @@ export default function Navbar() {
     { title: "PROGRAMAÇÃO", url: "#schedule" },
     { title: "CONTATO", url: "#contact" },
   ];
+  const [subscriptionIsAvailable, setSubscriptionIsAvailable] = useState(false);
   return (
     <>
       <nav
@@ -68,8 +69,19 @@ export default function Navbar() {
             ))}
           </ul>
           <div className="flex-1 flex items-center justify-end">
-            <a href="/subscribe">
-              <CustomButton className="bg-orange text-white">
+            <a
+              href={
+                subscriptionIsAvailable ? "/subscribe" : "javascript:void(0)"
+              }
+            >
+              <CustomButton
+                className={clsx(
+                  "text-white",
+                  subscriptionIsAvailable
+                    ? "bg-orange"
+                    : " bg-gray-400 cursor-not-allowed"
+                )}
+              >
                 INSCREVA-SE
               </CustomButton>
             </a>

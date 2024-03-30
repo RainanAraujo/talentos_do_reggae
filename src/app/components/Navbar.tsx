@@ -1,19 +1,26 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
 import logo from "@/../public/simbol.svg";
-import clsx from "clsx";
+import { database } from "@/services/database.service";
 import { List, X } from "@phosphor-icons/react";
+import clsx from "clsx";
+import { onValue, ref } from "firebase/database";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import { useScrollPosition } from "../utils/useScrollPosition";
-import CustomButton from "./CustomButton";
+import CustomButton from "./Button";
 
 interface Options {
   title: string;
   url: string;
 }
 
-export default function Navbar() {
+interface NavbarProps {
+  subscriptionIsAvailable: boolean;
+}
+
+export default function Navbar(props: NavbarProps) {
   const scrollPosition = useScrollPosition();
   const options: Options[] = [
     { title: "SOBRE O EVENTO", url: "#about" },
@@ -21,6 +28,20 @@ export default function Navbar() {
     { title: "PROGRAMAÇÃO", url: "#schedule" },
     { title: "CONTATO", url: "#contact" },
   ];
+  const [subscriptionIsAvailable, setSubscriptionIsAvailable] = useState(
+    props.subscriptionIsAvailable
+  );
+
+  useEffect(() => {
+    const unsub = onValue(
+      ref(database, "subscriptionIsAvailable"),
+      (snapshot) => {
+        setSubscriptionIsAvailable(snapshot.val());
+      }
+    );
+    return () => unsub();
+  }, [props]);
+
   return (
     <>
       <nav
@@ -38,14 +59,15 @@ export default function Navbar() {
           )}
         >
           <div className="flex-1">
-            <Image
-              className="w-max h-max cursor-pointer"
-              src={logo}
-              width={120}
-              height={123}
-              onClick={() => window.scrollTo(0, 0)}
-              alt=""
-            />
+            <Link href="/">
+              <Image
+                className="w-max h-max cursor-pointer"
+                src={logo}
+                width={120}
+                height={123}
+                alt="home"
+              />
+            </Link>
           </div>
 
           <ul
@@ -66,16 +88,26 @@ export default function Navbar() {
             ))}
           </ul>
           <div className="flex-1 flex items-center justify-end">
-            <CustomButton
-              className="bg-gray-500 text-white"
+            <a
               onClick={() =>
+                !subscriptionIsAvailable &&
                 window.alert(
                   "Abertas somente a partir do evento de lançamento no dia 30 de março"
                 )
               }
+              href={
+                subscriptionIsAvailable ? "/subscribe" : "javascript:void(0)"
+              }
             >
-              INSCREVA-SE
-            </CustomButton>
+              <CustomButton
+                className={clsx(
+                  "text-white",
+                  subscriptionIsAvailable ? "bg-orange" : " bg-gray-400"
+                )}
+              >
+                INSCREVA-SE
+              </CustomButton>
+            </a>
           </div>
           <MenuHamburger options={options} />
         </div>

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Anton, Inria_Sans, Inter } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "./components/Toaster";
+import NextTopLoader from "nextjs-toploader";
 
 const inriaSans = Inria_Sans({
   subsets: ["latin"],
@@ -15,7 +17,7 @@ const anton = Anton({
 export const metadata: Metadata = {
   title: "Talentos do Reggae",
   description:
-    "50 mil em prêmios. Lançamento em 30 de março. Maranhão, a Jamaica brasileira!",
+    "50 mil em prêmios. Inscrições abertas!. Maranhão, a Jamaica brasileira!",
 };
 
 export default function RootLayout({
@@ -28,6 +30,8 @@ export default function RootLayout({
       <body
         className={`${anton.variable} ${inriaSans.variable} font-inria-sans`}
       >
+        <Toaster richColors position="bottom-center" duration={4000} />
+        <NextTopLoader />
         {children}
       </body>
     </html>

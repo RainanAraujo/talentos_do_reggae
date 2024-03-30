@@ -1,31 +1,43 @@
-import Image from "next/image";
-import logo from "@/../public/logo.svg";
+import detailFlag from "@/../public/detailFlag.svg";
+import logoDeputado from "@/../public/logoDeputado.svg";
+import logoMaranhao from "@/../public/logoMaranhao.svg";
 import side from "@/../public/sideDetail.svg";
 import sideY from "@/../public/sideDetailY.svg";
-import detailFlag from "@/../public/detailFlag.svg";
-import logoKERA from "@/../public/logoKERA.svg";
-import logoMaranhao from "@/../public/logoMaranhao.svg";
-import logoDeputado from "@/../public/logoDeputado.svg";
+import { database } from "@/services/database.service";
+import { Envelope } from "@phosphor-icons/react/dist/ssr/Envelope";
+import { Phone } from "@phosphor-icons/react/dist/ssr/Phone";
+import { WhatsappLogo } from "@phosphor-icons/react/dist/ssr/WhatsappLogo";
 import clsx from "clsx";
-import Navbar from "./components/Navbar";
-import InstagramViewer from "./components/InstagramViewer";
-import HorizontalAnimWrapper from "./components/HorizontalAnimWrapper";
-import ScaleAnimWrapper from "./components/ScaleAnimWrapper";
-import VerticalAnimWrapper from "./components/VerticalAnimWrapper copy";
+import { get, ref } from "firebase/database";
+import { unstable_cache } from "next/cache";
+import Image from "next/image";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "./components/Accordion";
-import { Phone } from "@phosphor-icons/react/dist/ssr/Phone";
-import { WhatsappLogo } from "@phosphor-icons/react/dist/ssr/WhatsappLogo";
-import { Envelope } from "@phosphor-icons/react/dist/ssr/Envelope";
+import InstagramViewer from "./components/InstagramViewer";
+import Navbar from "./components/Navbar";
+import ScaleAnimWrapper from "./components/ScaleAnimWrapper";
+import VerticalAnimWrapper from "./components/VerticalAnimWrapper";
 
-export default function Home() {
+const getSubscriptionIsAvailable = unstable_cache(
+  async () => {
+    const snapshot = await get(ref(database, "subscriptionIsAvailable"));
+    return snapshot.val();
+  },
+  ["subscriptionIsAvailable"],
+  {
+    revalidate: 5,
+  }
+);
+
+export default async function Home() {
+  const subscriptionIsAvailable = await getSubscriptionIsAvailable();
   return (
     <div>
-      <Navbar />
+      <Navbar subscriptionIsAvailable={subscriptionIsAvailable} />
       <main
         id="home"
         className={clsx(
@@ -35,41 +47,40 @@ export default function Home() {
       >
         <div
           className={clsx(
-            "flex flex-col items-center justify-center gap-4",
+            "flex flex-col w-full items-center justify-center gap-4",
             "max-md:h-auto max-md:px-5"
           )}
         >
-          <Image
+          {/* <Image
             src={logo}
             alt="Talentos do Reggae"
             width={200}
             height={200}
             className={clsx("animate-pulse w-44", "max-md:w-[50%]")}
-          />
-          <h1
-            className="max-md:text-6xl text-8xl leading-[1] font-bold text-center 
-          font-anton bg-gradient-to-r from-green via-yellow to-red text-transparent bg-clip-text pt-6 
-          animate-fadeIn opacity-0 "
-          >
-            LANÇAMENTO DO EVENTO: <br />{" "}
-            <div className=" leading-[1.5] max-md:leading-[1]">
-              30 DE MARÇO ÀS 21H
-            </div>
+          /> */}
+
+          <h1 className="font-anton text-6xl text-center mb-3">
+            ASSISTA AO VIVO
           </h1>
+          <iframe
+            width="860"
+            height="415"
+            className="rounded-md w-[53%] max-md:w-[100%] h-auto aspect-video relative "
+            src="https://www.youtube.com/embed/1PJVQ_mOV00?si=sSfMNT9EsaXfRqNt"
+            title="YouTube Talentos do Reggae"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          />
+          {/* 
           <div className="flex items-center flex-col gap-2">
             <div className=" flex items-center flex-col gap-1 text-orange animate-fadeIn animation-delay-75  opacity-0">
-              <a
-                href="#watch"
-                className="text-3xl max-md:text-xl font-normal text-center text-white px-6 py-1 border-orange rounded-md border-[1px]"
-              >
-                ASSISTA AQUI AO VIVO
+              <a href="/subscribe">
+                <CustomButton className="bg-orange text-white">
+                  FAÇA SUA INSCRIÇÃO AGORA MESMO
+                </CustomButton>
               </a>
-
-              <span className="text-sm font-thin text-center">
-                LANÇAMENTO DO EVENTO E ABERTURA DAS INSCRIÇÕES
-              </span>
             </div>
-          </div>
+          </div> */}
           <div className={clsx("flex gap-8 pt-4 items-baseline flex-wrap")}>
             <div
               className={clsx(
@@ -138,22 +149,18 @@ export default function Home() {
               "max-md:w-[50%] transform rotate-180 -z-10"
             )}
           />
-          <h1 className="font-anton text-8xl max-md:text-6xl text-center">
-            ASSISTA AO VIVO
-          </h1>
           <ScaleAnimWrapper
             finalValue={1}
             className="w-full flex justify-center md:px-20  "
           >
-            <iframe
-              width="860"
-              height="415"
-              className="rounded-md w-[100%] h-auto aspect-video relative "
-              src="https://www.youtube.com/embed/1PJVQ_mOV00?si=sSfMNT9EsaXfRqNt&amp;controls=0"
-              title="YouTube Talentos do Reggae"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            />
+            <h1
+              className="max-md:text-7xl text-9xl leading-[1] font-bold text-center 
+          font-anton bg-gradient-to-r from-green via-yellow to-red text-transparent bg-clip-text pt-6 
+          animate-fadeIn opacity-0 "
+            >
+              MARANHÃO,
+              <br /> A JAMAICA BRASILEIRA
+            </h1>
           </ScaleAnimWrapper>
         </section>
         <section

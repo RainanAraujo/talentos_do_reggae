@@ -1,5 +1,39 @@
 "use client";
+import { Checkbox } from "@/app/components/Checkbox";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/app/components/Dialog";
+import { Input } from "@/app/components/Input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/app/components/Select";
+import { CIDADES } from "@/configs/cidades";
+import { INSTRUMENTOS } from "@/configs/instrumentos";
+import { APIController } from "@/controllers/api.controller";
+import { bandSchema } from "@/models/band.model";
+import { isValidCPF } from "@/utils/validation";
+import { zodResolver } from "@hookform/resolvers/zod";
+import dayjs from "dayjs";
+import { Minus } from "lucide-react";
+import { useReCaptcha } from "next-recaptcha-v3";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import React from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { useHookFormMask } from "use-mask-input";
+import { z } from "zod";
+import Button from "../../components/Button";
 import {
   Form,
   FormControl,
@@ -9,40 +43,6 @@ import {
   FormLabel,
   FormMessage,
 } from "../../components/Form";
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/app/components/Dialog";
-import { Checkbox } from "@/app/components/Checkbox";
-import { Input } from "@/app/components/Input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/app/components/Select";
-import { INSTRUMENTOS } from "@/configs/instrumentos";
-import { APIController } from "@/controllers/api.controller";
-import { bandSchema } from "@/models/band.model";
-import { isValidBirthData, isValidCPF } from "@/utils/validation";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Minus } from "lucide-react";
-import { useReCaptcha } from "next-recaptcha-v3";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import React from "react";
-import { toast } from "sonner";
-import { useHookFormMask } from "use-mask-input";
-import { z } from "zod";
-import Button from "../../components/Button";
-import { Label } from "@/app/components/Label";
 
 const bandAuthorizedSchema = bandSchema.extend({
   terms: z.boolean().refine((value) => value, {
@@ -52,9 +52,6 @@ const bandAuthorizedSchema = bandSchema.extend({
   privacy: z.boolean().refine((value) => value, {
     message:
       "Para prosseguir é preciso estar de acordo com a Política de Privacidade.",
-  }),
-  maranhense: z.boolean().refine((value) => value, {
-    message: "Para realizar a inscrição é preciso ser maranhense.",
   }),
 });
 
@@ -74,6 +71,7 @@ export default function FormBand() {
     resolver: zodResolver(bandAuthorizedSchema),
     defaultValues: {
       nome: "",
+      cidade: "",
       ig: "",
       email: "",
       tel: "",
@@ -140,6 +138,30 @@ export default function FormBand() {
                     {...field}
                   />
                 </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={formBand.control}
+            name="cidade"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Cidade de Origem *</FormLabel>
+                <Select onValueChange={field.onChange}>
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Selecione uma cidade" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {CIDADES.map((item) => (
+                      <SelectItem key={item} value={item}>
+                        {item}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
                 <FormMessage />
               </FormItem>
             )}
@@ -521,24 +543,6 @@ export default function FormBand() {
               </FormItem>
             )}
           />
-          <FormField
-            control={formBand.control}
-            name="maranhense"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Checkbox
-                    checked={field.value}
-                    onCheckedChange={field.onChange}
-                  />
-                </FormControl>
-                <FormLabel className="font-normal  ml-2">
-                  Declaro viver no maranhão. *
-                </FormLabel>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
           <Dialog open={confirmDialog} onOpenChange={setConfirmDialog}>
             <Button
               type="button"
@@ -566,6 +570,7 @@ export default function FormBand() {
                   <h4 className="font-bold text-base ">Banda</h4>
                   <div className="font-light text-sm ">
                     <p>Nome: {formBand.getValues().nome}</p>
+                    <p>Cidade: {formBand.getValues().cidade}</p>
                     <p>Email: {formBand.getValues().email}</p>
                     <p>Telefone: {formBand.getValues().tel}</p>
                     <p>
@@ -595,7 +600,10 @@ export default function FormBand() {
                   {formBand.getValues().cantores.map((cantor, index) => (
                     <div key={index} className="font-light text-sm  pl-2 pb-2">
                       <p>Nome: {cantor.nome}</p>
-                      <p>Data de nascimento: {cantor.nascimento}</p>
+                      <p>
+                        Data de nascimento:{" "}
+                        {dayjs(cantor.nascimento).format("DD/MM/YYYY")}
+                      </p>
                       <p>CPF: {cantor.cpf}</p>
                     </div>
                   ))}
@@ -607,7 +615,12 @@ export default function FormBand() {
                     .instrumentistas.map((instrumentista, index) => (
                       <div key={index} className="font-light text-sm pl-2 pb-2">
                         <p>Nome: {instrumentista.nome}</p>
-                        <p>Data de nascimento: {instrumentista.nascimento}</p>
+                        <p>
+                          Data de nascimento:{" "}
+                          {dayjs(instrumentista.nascimento).format(
+                            "DD/MM/YYYY"
+                          )}
+                        </p>
                         <p>CPF: {instrumentista.cpf}</p>
                         <p>Instrumento: {instrumentista.instrumento}</p>
                       </div>

@@ -22,17 +22,26 @@ import { toast } from "sonner";
 import { useHookFormMask } from "use-mask-input";
 import { z } from "zod";
 
+import Button from "@/app/components/Button";
 import {
   Dialog,
-  DialogContent,
-  DialogTitle,
-  DialogDescription,
   DialogClose,
-  DialogHeader,
+  DialogContent,
+  DialogDescription,
   DialogFooter,
+  DialogHeader,
+  DialogTitle,
 } from "@/app/components/Dialog";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/app/components/Select";
+import { CIDADES } from "@/configs/cidades";
+import dayjs from "dayjs";
 import React from "react";
-import Button from "@/app/components/Button";
 
 const djAuthorizedSchema = djSchema.extend({
   terms: z.boolean().refine((value) => value, {
@@ -42,9 +51,6 @@ const djAuthorizedSchema = djSchema.extend({
   privacy: z.boolean().refine((value) => value, {
     message:
       "Para prosseguir é preciso estar de acordo com a Política de Privacidade.",
-  }),
-  maranhense: z.boolean().refine((value) => value, {
-    message: "Para realizar a inscrição é preciso ser maranhense.",
   }),
 });
 
@@ -121,6 +127,30 @@ export default function FormDJ() {
                     {...field}
                   />
                 </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={formDJ.control}
+            name="cidade"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Cidade de Origem *</FormLabel>
+                <Select onValueChange={field.onChange}>
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Selecione uma cidade" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {CIDADES.map((item) => (
+                      <SelectItem key={item} value={item}>
+                        {item}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
                 <FormMessage />
               </FormItem>
             )}
@@ -278,24 +308,6 @@ export default function FormDJ() {
               </FormItem>
             )}
           />
-          <FormField
-            control={formDJ.control}
-            name="maranhense"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Checkbox
-                    checked={field.value}
-                    onCheckedChange={field.onChange}
-                  />
-                </FormControl>
-                <FormLabel className="font-normal  ml-2">
-                  Declaro viver no maranhão. *
-                </FormLabel>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
           <Dialog open={confirmDialog} onOpenChange={setConfirmDialog}>
             <Button
               type="button"
@@ -310,7 +322,7 @@ export default function FormDJ() {
             >
               Realizar inscrição
             </Button>
-            <DialogContent className="sm:max-w-md max-h-[90%] overflow-y-scroll ">
+            <DialogContent className="sm:max-w-md max-h-[90%] overflow-y-auto overflow-x-hidden ">
               <DialogHeader>
                 <DialogTitle>Verifique seus dados</DialogTitle>
                 <DialogDescription>
@@ -326,7 +338,12 @@ export default function FormDJ() {
                     <p>Email: {formDJ.getValues().email}</p>
                     <p>Telefone: {formDJ.getValues().tel}</p>
                     <p>CPF: {formDJ.getValues().cpf}</p>
-                    <p>Data de nascimento: {formDJ.getValues().nascimento}</p>
+                    <p>
+                      Data de nascimento:{" "}
+                      {dayjs(formDJ.getValues().nascimento).format(
+                        "DD/MM/YYYY"
+                      )}
+                    </p>
                     <p>
                       Link Instagram:{" "}
                       <a

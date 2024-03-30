@@ -11,17 +11,6 @@ import {
 } from "../../components/Form";
 
 import { Checkbox } from "@/app/components/Checkbox";
-import { Input } from "@/app/components/Input";
-import { APIController } from "@/controllers/api.controller";
-import { dancersSchema } from "@/models/dancers.model";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useReCaptcha } from "next-recaptcha-v3";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { toast } from "sonner";
-import { useHookFormMask } from "use-mask-input";
-import { z } from "zod";
-import Button from "../../components/Button";
 import {
   Dialog,
   DialogClose,
@@ -31,7 +20,27 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/app/components/Dialog";
+import { Input } from "@/app/components/Input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/app/components/Select";
+import { CIDADES } from "@/configs/cidades";
+import { APIController } from "@/controllers/api.controller";
+import { dancersSchema } from "@/models/dancers.model";
+import { zodResolver } from "@hookform/resolvers/zod";
+import dayjs from "dayjs";
+import { useReCaptcha } from "next-recaptcha-v3";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
+import { toast } from "sonner";
+import { useHookFormMask } from "use-mask-input";
+import { z } from "zod";
+import Button from "../../components/Button";
 
 const dancersAuthorizedSchema = dancersSchema.extend({
   terms: z.boolean().refine((value) => value, {
@@ -41,9 +50,6 @@ const dancersAuthorizedSchema = dancersSchema.extend({
   privacy: z.boolean().refine((value) => value, {
     message:
       "Para prosseguir é preciso estar de acordo com a Política de Privacidade.",
-  }),
-  maranhense: z.boolean().refine((value) => value, {
-    message: "Para realizar a inscrição é preciso ser maranhense.",
   }),
 });
 
@@ -131,6 +137,30 @@ export default function FormDancers() {
                 <FormDescription>
                   Nome representativo da dupla de dança.
                 </FormDescription>
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={formDancers.control}
+            name="cidade"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Cidade de Origem *</FormLabel>
+                <Select onValueChange={field.onChange}>
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Selecione uma cidade" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {CIDADES.map((item) => (
+                      <SelectItem key={item} value={item}>
+                        {item}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -385,24 +415,6 @@ export default function FormDancers() {
               </FormItem>
             )}
           />
-          <FormField
-            control={formDancers.control}
-            name="maranhense"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Checkbox
-                    checked={field.value}
-                    onCheckedChange={field.onChange}
-                  />
-                </FormControl>
-                <FormLabel className="font-normal  ml-2">
-                  Declaro viver no maranhão. *
-                </FormLabel>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
           <Dialog open={confirmDialog} onOpenChange={setConfirmDialog}>
             <Button
               type="button"
@@ -464,7 +476,10 @@ export default function FormDancers() {
                         className="font-light text-sm  pl-2 pb-2"
                       >
                         <p>Nome: {dancarino.nome}</p>
-                        <p>Data de nascimento: {dancarino.nascimento}</p>
+                        <p>
+                          Data de nascimento:{" "}
+                          {dayjs(dancarino.nascimento).format("DD/MM/YYYY")}
+                        </p>
                         <p>CPF: {dancarino.cpf}</p>
                       </div>
                     ))}

@@ -1,7 +1,5 @@
 "use client";
-import logo from "@/../public/logo.svg";
 import { CaretCircleLeft } from "@phosphor-icons/react";
-import Image from "next/image";
 import Link from "next/link";
 
 export default function Successful() {
@@ -10,7 +8,7 @@ export default function Successful() {
       <div className="flex flex-col items-center justify-center min-h-screen  w-full m-auto  px-20  max-md:p-0 max-w-7xl max-md:max-w-full">
         <div className="bg-neutral-900 rounded-lg h-[80vh] max-md:min-h-screen w-full flex ">
           <div className="flex flex-col justify-between flex-1 ">
-            <div className="px-20 overflow-y-scroll py-20  h-full max-md:p-5  max-md:pt-20  gap-y-5 flex flex-col relative ">
+            <div className="px-20 overflow-hidden py-20  h-full max-md:p-5  max-md:pt-20  gap-y-5 flex flex-col relative ">
               <div className="flex flex-col gap-5 mb-4">
                 <h1 className="text-3xl font-bold text-white">
                   Inscrição realizada com sucesso!

@@ -63,6 +63,7 @@ export default function FormDJ() {
     resolver: zodResolver(djAuthorizedSchema),
     defaultValues: {
       nome: "",
+      cidade: "",
       cpf: "",
       email: "",
       tel: "",

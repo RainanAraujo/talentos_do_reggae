@@ -21,6 +21,7 @@ import { useRouter } from "next/navigation";
 import { z } from "zod";
 import Button from "../components/Button";
 import Link from "next/link";
+import { useState } from "react";
 
 const formSchemaCategory = z.object({
   categoria: z.enum(["band", "dj", "dancers"], {
@@ -31,7 +32,6 @@ const formSchemaCategory = z.object({
 type FormCategoryValues = z.infer<typeof formSchemaCategory>;
 
 export default function FormCategory() {
-  const router = useRouter();
   const formCategory = useForm<FormCategoryValues>({
     resolver: zodResolver(formSchemaCategory),
     defaultValues: {
@@ -39,23 +39,24 @@ export default function FormCategory() {
     },
   });
 
-  function onSubmitCategory(values: FormCategoryValues) {
-    router.push("/subscribe/" + values.categoria);
-  }
+  const [category, setCategory] = useState<string | undefined>(undefined);
 
   return (
     <Form {...formCategory}>
-      <form
-        onSubmit={formCategory.handleSubmit(onSubmitCategory)}
-        className="space-y-4"
-      >
+      <form className="space-y-4">
         <FormField
           control={formCategory.control}
           name="categoria"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Categoria</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
+              <Select
+                onValueChange={(value) => {
+                  setCategory(value);
+                  field.onChange(value);
+                }}
+                defaultValue={field.value}
+              >
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder="Selecione uma categoria" />
@@ -79,13 +80,10 @@ export default function FormCategory() {
             categoria escolhida. Isso significa que não é permitido múltiplos
             registros com a mesma pessoa, mesmo em categorias diferentes.
           </p>
+
           <Link
             onClick={() => formCategory.trigger().then(() => {})}
-            href={
-              formCategory.getValues().categoria
-                ? `/subscribe/${formCategory.getValues().categoria}`
-                : "javascript:void(0)"
-            }
+            href={category ? `/subscribe/${category}` : "javascript:void(0)"}
           >
             <Button
               type="button"

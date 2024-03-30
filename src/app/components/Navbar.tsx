@@ -4,7 +4,7 @@ import logo from "@/../public/simbol.svg";
 import { database } from "@/services/database.service";
 import { List, X } from "@phosphor-icons/react";
 import clsx from "clsx";
-import { get, onValue, ref } from "firebase/database";
+import { onValue, ref } from "firebase/database";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -16,7 +16,11 @@ interface Options {
   url: string;
 }
 
-export default function Navbar() {
+interface NavbarProps {
+  subscriptionIsAvailable: boolean;
+}
+
+export default function Navbar(props: NavbarProps) {
   const scrollPosition = useScrollPosition();
   const options: Options[] = [
     { title: "SOBRE O EVENTO", url: "#about" },
@@ -24,22 +28,19 @@ export default function Navbar() {
     { title: "PROGRAMAÇÃO", url: "#schedule" },
     { title: "CONTATO", url: "#contact" },
   ];
-  const [subscriptionIsAvailable, setSubscriptionIsAvailable] = useState(false);
+  const [subscriptionIsAvailable, setSubscriptionIsAvailable] = useState(
+    props.subscriptionIsAvailable
+  );
 
   useEffect(() => {
-    get(ref(database, "subscriptionIsAvailable")).then((snapshot) => {
-      console.log(snapshot.val());
-      setSubscriptionIsAvailable(snapshot.val());
-    });
     const unsub = onValue(
       ref(database, "subscriptionIsAvailable"),
       (snapshot) => {
-        console.log(snapshot.val());
         setSubscriptionIsAvailable(snapshot.val());
       }
     );
     return () => unsub();
-  }, []);
+  }, [props]);
 
   return (
     <>

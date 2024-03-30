@@ -3,10 +3,13 @@ import logoDeputado from "@/../public/logoDeputado.svg";
 import logoMaranhao from "@/../public/logoMaranhao.svg";
 import side from "@/../public/sideDetail.svg";
 import sideY from "@/../public/sideDetailY.svg";
+import { database } from "@/services/database.service";
 import { Envelope } from "@phosphor-icons/react/dist/ssr/Envelope";
 import { Phone } from "@phosphor-icons/react/dist/ssr/Phone";
 import { WhatsappLogo } from "@phosphor-icons/react/dist/ssr/WhatsappLogo";
 import clsx from "clsx";
+import { get, ref } from "firebase/database";
+import { unstable_cache } from "next/cache";
 import Image from "next/image";
 import {
   Accordion,
@@ -19,10 +22,22 @@ import Navbar from "./components/Navbar";
 import ScaleAnimWrapper from "./components/ScaleAnimWrapper";
 import VerticalAnimWrapper from "./components/VerticalAnimWrapper";
 
-export default function Home() {
+const getSubscriptionIsAvailable = unstable_cache(
+  async () => {
+    const snapshot = await get(ref(database, "subscriptionIsAvailable"));
+    return snapshot.val();
+  },
+  ["subscriptionIsAvailable"],
+  {
+    revalidate: 5,
+  }
+);
+
+export default async function Home() {
+  const subscriptionIsAvailable = await getSubscriptionIsAvailable();
   return (
     <div>
-      <Navbar />
+      <Navbar subscriptionIsAvailable={subscriptionIsAvailable} />
       <main
         id="home"
         className={clsx(

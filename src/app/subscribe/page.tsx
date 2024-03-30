@@ -20,6 +20,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { z } from "zod";
 import Button from "../components/Button";
+import Link from "next/link";
 
 const formSchemaCategory = z.object({
   categoria: z.enum(["band", "dj", "dancers"], {
@@ -72,17 +73,28 @@ export default function FormCategory() {
             </FormItem>
           )}
         />
-        <p className="text-sm">
-          OBS: Cada pessoa só pode ser inscrita uma vez, independentemente da
-          categoria escolhida. Isso significa que não é permitido múltiplos
-          registros com a mesma pessoa, mesmo em categorias diferentes.
-        </p>
-        <Button
-          type="submit"
-          className="bg-green text-white hover:bg-green-600"
-        >
-          Próximo
-        </Button>
+        <div className="flex flex-col gap-2">
+          <p className="text-sm">
+            OBS: Cada pessoa só pode ser inscrita uma vez, independentemente da
+            categoria escolhida. Isso significa que não é permitido múltiplos
+            registros com a mesma pessoa, mesmo em categorias diferentes.
+          </p>
+          <Link
+            onClick={() => formCategory.trigger().then(() => {})}
+            href={
+              formCategory.getValues().categoria
+                ? `/subscribe/${formCategory.getValues().categoria}`
+                : "javascript:void(0)"
+            }
+          >
+            <Button
+              type="button"
+              className="bg-green text-white hover:bg-green-600"
+            >
+              Próximo
+            </Button>
+          </Link>
+        </div>
       </form>
     </Form>
   );

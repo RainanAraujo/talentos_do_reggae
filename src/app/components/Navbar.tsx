@@ -70,6 +70,12 @@ export default function Navbar() {
           </ul>
           <div className="flex-1 flex items-center justify-end">
             <a
+              onClick={() =>
+                !subscriptionIsAvailable &&
+                window.alert(
+                  "Abertas somente a partir do evento de lançamento no dia 30 de março"
+                )
+              }
               href={
                 subscriptionIsAvailable ? "/subscribe" : "javascript:void(0)"
               }
@@ -77,9 +83,7 @@ export default function Navbar() {
               <CustomButton
                 className={clsx(
                   "text-white",
-                  subscriptionIsAvailable
-                    ? "bg-orange"
-                    : " bg-gray-400 cursor-not-allowed"
+                  subscriptionIsAvailable ? "bg-orange" : " bg-gray-400"
                 )}
               >
                 INSCREVA-SE

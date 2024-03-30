@@ -1,13 +1,15 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
 import logo from "@/../public/simbol.svg";
-import clsx from "clsx";
+import { database } from "@/services/database.service";
 import { List, X } from "@phosphor-icons/react";
+import clsx from "clsx";
+import { get, onValue, ref } from "firebase/database";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import { useScrollPosition } from "../utils/useScrollPosition";
 import CustomButton from "./Button";
-import Link from "next/link";
 
 interface Options {
   title: string;
@@ -23,6 +25,22 @@ export default function Navbar() {
     { title: "CONTATO", url: "#contact" },
   ];
   const [subscriptionIsAvailable, setSubscriptionIsAvailable] = useState(false);
+
+  useEffect(() => {
+    get(ref(database, "subscriptionIsAvailable")).then((snapshot) => {
+      console.log(snapshot.val());
+      setSubscriptionIsAvailable(snapshot.val());
+    });
+    const unsub = onValue(
+      ref(database, "subscriptionIsAvailable"),
+      (snapshot) => {
+        console.log(snapshot.val());
+        setSubscriptionIsAvailable(snapshot.val());
+      }
+    );
+    return () => unsub();
+  }, []);
+
   return (
     <>
       <nav

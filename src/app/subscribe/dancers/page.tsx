@@ -62,6 +62,7 @@ export default function FormDancers() {
     resolver: zodResolver(dancersAuthorizedSchema),
     defaultValues: {
       nome: "",
+      cidade: "",
       email: "",
       ig: "",
       tel: "",

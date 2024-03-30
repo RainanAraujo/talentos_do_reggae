@@ -1,27 +1,25 @@
-import Image from "next/image";
+import detailFlag from "@/../public/detailFlag.svg";
 import logo from "@/../public/logo.svg";
+import logoDeputado from "@/../public/logoDeputado.svg";
+import logoMaranhao from "@/../public/logoMaranhao.svg";
 import side from "@/../public/sideDetail.svg";
 import sideY from "@/../public/sideDetailY.svg";
-import detailFlag from "@/../public/detailFlag.svg";
-import logoKERA from "@/../public/logoKERA.svg";
-import logoMaranhao from "@/../public/logoMaranhao.svg";
-import logoDeputado from "@/../public/logoDeputado.svg";
+import { Envelope } from "@phosphor-icons/react/dist/ssr/Envelope";
+import { Phone } from "@phosphor-icons/react/dist/ssr/Phone";
+import { WhatsappLogo } from "@phosphor-icons/react/dist/ssr/WhatsappLogo";
 import clsx from "clsx";
-import Navbar from "./components/Navbar";
-import InstagramViewer from "./components/InstagramViewer";
-import HorizontalAnimWrapper from "./components/HorizontalAnimWrapper";
-import ScaleAnimWrapper from "./components/ScaleAnimWrapper";
-import VerticalAnimWrapper from "./components/VerticalAnimWrapper copy";
+import Image from "next/image";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "./components/Accordion";
-import { Phone } from "@phosphor-icons/react/dist/ssr/Phone";
-import { WhatsappLogo } from "@phosphor-icons/react/dist/ssr/WhatsappLogo";
-import { Envelope } from "@phosphor-icons/react/dist/ssr/Envelope";
 import CustomButton from "./components/Button";
+import InstagramViewer from "./components/InstagramViewer";
+import Navbar from "./components/Navbar";
+import ScaleAnimWrapper from "./components/ScaleAnimWrapper";
+import VerticalAnimWrapper from "./components/VerticalAnimWrapper copy";
 
 export default function Home() {
   return (

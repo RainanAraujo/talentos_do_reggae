@@ -4,6 +4,7 @@ import { z } from "zod";
 
 export const djSchema = z.object({
   nome: z.string().min(1, { message: "Campo obrigatório" }),
+  cidade: z.string().min(1, { message: "Campo obrigatório" }),
   ig: z.string().url({ message: "Link inválido" }),
   email: z.string().email({ message: "Email inválido" }),
   tel: z

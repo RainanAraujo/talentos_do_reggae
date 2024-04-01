@@ -118,7 +118,15 @@ export default function FormBand() {
 
   return (
     <div className="animate-slideToRightFade ">
-      <h1 className="text-xl font-bold text-white mb-3">Categoria Banda</h1>
+      <h1 className="text-xl font-bold text-white mb-3">
+        Categoria Banda (com cantor)
+      </h1>
+      <div className="text-sm bg-yellow bg-opacity-15 border-opacity-45 p-4 rounded-lg border-2 border-yellow mb-4 text-white font-light">
+        Obs: Toda banda deve possuir um cantor. Da mesma forma, todo cantor deve
+        ter uma banda. No dia do evento, caso sua inscrição seja selecionada,
+        sua inscrição concorrerá a duas premiações: Melhor Cantor(a) e Melhor
+        Banda como um todo.
+      </div>
       <Form {...formBand}>
         <form
           id="form"

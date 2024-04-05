@@ -2,7 +2,7 @@ import { ISO8601DateRegex, telRegex } from "@/utils/regex";
 import { isValidBirthData, isValidCPF } from "@/utils/validation";
 import { z } from "zod";
 
-export const cantorSchema = z.object({
+export const singerSchema = z.object({
   nome: z.string().min(1, { message: "Campo obrigatório" }),
   cidade: z.string().min(1, { message: "Campo obrigatório" }),
   ig: z.string().url({ message: "Link inválido" }),
@@ -27,4 +27,4 @@ export const cantorSchema = z.object({
   videoLinkURL: z.string().url({ message: "URL inválida" }),
 });
 
-export type DJ = z.infer<typeof cantorSchema>;
+export type Singer = z.infer<typeof singerSchema>;

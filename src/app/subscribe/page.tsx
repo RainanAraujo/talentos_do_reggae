@@ -17,14 +17,13 @@ import {
 } from "../components/Select";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
-import { z } from "zod";
-import Button from "../components/Button";
 import Link from "next/link";
 import { useState } from "react";
+import { z } from "zod";
+import Button from "../components/Button";
 
 const formSchemaCategory = z.object({
-  categoria: z.enum(["band", "dj", "dancers", "cantor"], {
+  categoria: z.enum(["band", "dj", "dancers", "singer"], {
     required_error: "Seleção obrigatória",
   }),
 });
@@ -64,7 +63,7 @@ export default function FormCategory() {
                 </FormControl>
                 <SelectContent>
                   <SelectItem value="band">Banda | Concurso</SelectItem>
-                  <SelectItem value="cantor">Cantor (a) | Concurso</SelectItem>
+                  <SelectItem value="singer">Cantor (a) | Concurso</SelectItem>
                   <SelectItem value="dj">DJ | Apresentação</SelectItem>
                   <SelectItem value="dancers">
                     Dançarinos (as) | Apresentação

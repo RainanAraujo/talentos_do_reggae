@@ -84,7 +84,7 @@ export default function FormCategory() {
 
           <Link
             onClick={() => formCategory.trigger().then(() => {})}
-            href={category ? `/subscribe/${category}` : "javascript:void(0)"}
+            href={category ? `/subscribe/${category}` : "#!"}
           >
             <Button
               type="button"

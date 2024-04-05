@@ -22,22 +22,10 @@ import Navbar from "./components/Navbar";
 import ScaleAnimWrapper from "./components/ScaleAnimWrapper";
 import VerticalAnimWrapper from "./components/VerticalAnimWrapper";
 
-const getSubscriptionIsAvailable = unstable_cache(
-  async () => {
-    const snapshot = await get(ref(database, "subscriptionIsAvailable"));
-    return snapshot.val();
-  },
-  ["subscriptionIsAvailable"],
-  {
-    revalidate: 5,
-  }
-);
-
 export default async function Home() {
-  const subscriptionIsAvailable = await getSubscriptionIsAvailable();
   return (
     <div>
-      <Navbar subscriptionIsAvailable={subscriptionIsAvailable} />
+      <Navbar />
       <main
         id="home"
         className={clsx(

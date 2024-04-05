@@ -110,7 +110,9 @@ export default function FormSinger() {
 
   return (
     <div className="animate-slideToRightFade">
-      <h1 className="text-xl font-bold text-white mb-3">Categoria Cantor</h1>
+      <h1 className="text-xl font-bold text-white mb-3">
+        Categoria Cantor solo
+      </h1>
       <div className="text-sm bg-yellow bg-opacity-15 border-opacity-45 p-4 rounded-lg border-2 border-yellow mb-4 text-white font-light">
         Obs.: O cantor terá uma banda de apoio para a apresentação no evento.
       </div>
@@ -338,7 +340,7 @@ export default function FormSinger() {
               </DialogHeader>
               <div className="space-y-4 [&_p]:truncate [&_p]:w-full truncate ">
                 <div>
-                  <h4 className="font-bold text-base ">Cantor</h4>
+                  <h4 className="font-bold text-base ">Cantor solo</h4>
                   <div className="font-light text-sm ">
                     <p>Nome: {formSinger.getValues().nome}</p>
                     <p>Cidade: {formSinger.getValues().cidade}</p>

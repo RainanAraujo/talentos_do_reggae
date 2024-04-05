@@ -3,13 +3,12 @@ import logoDeputado from "@/../public/logoDeputado.svg";
 import logoMaranhao from "@/../public/logoMaranhao.svg";
 import side from "@/../public/sideDetail.svg";
 import sideY from "@/../public/sideDetailY.svg";
-import { database } from "@/services/database.service";
+import logo from "@/../public/logo.svg";
 import { Envelope } from "@phosphor-icons/react/dist/ssr/Envelope";
 import { Phone } from "@phosphor-icons/react/dist/ssr/Phone";
 import { WhatsappLogo } from "@phosphor-icons/react/dist/ssr/WhatsappLogo";
 import clsx from "clsx";
-import { get, ref } from "firebase/database";
-import { unstable_cache } from "next/cache";
+
 import Image from "next/image";
 import {
   Accordion,
@@ -21,6 +20,8 @@ import InstagramViewer from "./components/InstagramViewer";
 import Navbar from "./components/Navbar";
 import ScaleAnimWrapper from "./components/ScaleAnimWrapper";
 import VerticalAnimWrapper from "./components/VerticalAnimWrapper";
+import { FileText } from "@phosphor-icons/react/dist/ssr/FileText";
+import CustomButton from "./components/Button";
 
 export default async function Home() {
   return (
@@ -35,31 +36,27 @@ export default async function Home() {
       >
         <div
           className={clsx(
-            "flex flex-col w-full items-center justify-center gap-4",
+            "flex flex-col w-full items-center justify-center gap-5",
             "max-md:h-auto max-md:px-5"
           )}
         >
-          {/* <Image
+          <Image
             src={logo}
             alt="Talentos do Reggae"
             width={200}
             height={200}
             className={clsx("animate-pulse w-44", "max-md:w-[50%]")}
-          /> */}
-
-          <h1 className="font-anton text-6xl text-center mb-3">
-            ASSISTA AO VIVO
-          </h1>
-          <iframe
-            width="860"
-            height="415"
-            className="rounded-md w-[55%] max-md:w-[100%] h-auto aspect-video relative "
-            src="https://www.youtube.com/embed/1PJVQ_mOV00?si=sSfMNT9EsaXfRqNt"
-            title="YouTube Talentos do Reggae"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
           />
-          {/* 
+
+          <h1 className="font-anton text-6xl text-center mb-5">PARTICIPE!</h1>
+
+          <h1 className="text-6xl max-md:text-4xl text-center font-anton bg-gradient-to-r from-green via-yellow to-red text-transparent bg-clip-text">
+            BANDAS | CANTORES SOLOS | DJS | DANÇARINOS
+          </h1>
+          <h1 className="text-5xl font-anton text-center max-md:text-4xl ">
+            50 MIL REAIS EM PRÊMIOS
+          </h1>
+
           <div className="flex items-center flex-col gap-2">
             <div className=" flex items-center flex-col gap-1 text-orange animate-fadeIn animation-delay-75  opacity-0">
               <a href="/subscribe">
@@ -68,7 +65,7 @@ export default async function Home() {
                 </CustomButton>
               </a>
             </div>
-          </div> */}
+          </div>
           <div className={clsx("flex gap-8 pt-4 items-baseline flex-wrap")}>
             <div
               className={clsx(
@@ -114,7 +111,7 @@ export default async function Home() {
       </main>
       <div className="flex flex-col  relative w-full bg-[url('/greenLight.svg')] bg-no-repeat bg-[length:100%]  max-md:bg-[center_top_10rem]">
         <section
-          id="watch"
+          id="documents"
           className="flex flex-col p-20 pt-40 gap-11 justify-center items-center min-h-screen max-md:p-5 "
         >
           <Image
@@ -139,16 +136,22 @@ export default async function Home() {
           />
           <ScaleAnimWrapper
             finalValue={1}
-            className="w-full flex justify-center md:px-20  "
+            className="w-full flex justify-center md:px-20 flex-col  gap-10"
           >
-            <h1
-              className="max-md:text-7xl text-9xl leading-[1] font-bold text-center 
-          font-anton bg-gradient-to-r from-green via-yellow to-red text-transparent bg-clip-text pt-6 
-          animate-fadeIn opacity-0 "
+            <h1 className="font-anton text-6xl text-center mb-3">DOCUMENTOS</h1>
+            <a
+              href="/edital.pdf"
+              target="_blank"
+              className="border-2 border-white rounded-lg p-5 flex gap-2 cursor-pointer hover:bg-green bg-zinc-950  transition-all duration-300"
             >
-              MARANHÃO,
-              <br /> A JAMAICA BRASILEIRA
-            </h1>
+              <FileText className="h-20 max-md:h-14" weight={"light"} />
+              <div className="">
+                <h2 className="font-anton text-3xl max-md:text-2xl">Edital</h2>
+                <p className="text-lg max-md:text-sm">
+                  Acesse o edital do evento
+                </p>
+              </div>
+            </a>
           </ScaleAnimWrapper>
         </section>
         <section
@@ -172,11 +175,11 @@ export default async function Home() {
             <AccordionItem value="item-2">
               <AccordionTrigger>QUEM PODE SE INSCREVER?</AccordionTrigger>
               <AccordionContent>
-                Bandas de reggae compostas por músicos e cantores, DJs e casal
-                de dançarinos. Essas pessoas devem ser maiores de 18 anos ou
-                menores com permissão dos pais ou responsável legal, residentes
-                no estado do Maranhão e que se identifiquem como artistas do
-                reggae.
+                Bandas de reggae compostas por instrumentistas e cantores,
+                cantores solos, DJs e casal de dançarinos. Essas pessoas devem
+                ser maiores de 18 anos ou menores com permissão dos pais ou
+                responsável legal, residentes no estado do Maranhão e que se
+                identifiquem como artistas do reggae.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-3">
@@ -184,14 +187,12 @@ export default async function Home() {
               <AccordionContent>
                 Os interessados podem se inscrever no site
                 talentosdoreggae.com.br, preenchendo um formulário com
-                informações sobre a banda e cantor. <br /> Para o concurso,
+                informações a respeito de sua categoria. <br /> Para o concurso,
                 serão selecionados seis concorrentes, compostos por seis bandas
-                com seus respectivos cantores. No evento também haverá
-                apresentações de 7 DJs e 10 duplas de dançarinos, dos quais
-                serão selecionados dentre os inscritos no evento. <br /> As
-                bandas concorrerão à premiação na categoria "Bandas", enquanto
-                os cantores competirão nas categorias "Cantores". <br />O evento
-                será transmitido ao vivo pelo site talentosdoreggae.com.br.
+                e 6 cantores solos. No evento também haverá apresentações de 7
+                DJs e 10 casais de dançarinos, dos quais serão selecionados
+                dentre os inscritos no evento. <br />O evento será transmitido
+                ao vivo pelo site talentosdoreggae.com.br.
               </AccordionContent>
             </AccordionItem>
 
@@ -373,21 +374,6 @@ export default async function Home() {
             </h1>
           </div>
           <div className="flex gap-6  flex-col">
-            <div className="flex gap-4">
-              <div className="bg-red rounded-full p-2 w-20 h-20">
-                <Phone weight="light" />
-              </div>
-              <div>
-                <p className="text-gray-400">Telefone</p>{" "}
-                <a
-                  className="underline"
-                  target="_blank"
-                  href="tel:+559984763371"
-                >
-                  +55 99 9 8476-3371
-                </a>
-              </div>
-            </div>
             <div className="flex gap-4">
               <div className="bg-red rounded-full p-2 w-20 h-20">
                 <WhatsappLogo weight="light" />

@@ -23,7 +23,7 @@ export default function Navbar() {
     { title: "FIQUE POR DENTRO", url: "/#news" },
     { title: "PROGRAMAÇÃO", url: "/#schedule" },
     { title: "CONTATO", url: "/#contact" },
-    { title: "DOCUMENTOS", url: "/documents" },
+    { title: "DOCUMENTOS", url: "/#documents" },
   ];
 
   return (

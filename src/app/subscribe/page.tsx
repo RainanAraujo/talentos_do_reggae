@@ -24,7 +24,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 const formSchemaCategory = z.object({
-  categoria: z.enum(["band", "dj", "dancers"], {
+  categoria: z.enum(["band", "dj", "dancers", "cantor"], {
     required_error: "Seleção obrigatória",
   }),
 });
@@ -63,9 +63,8 @@ export default function FormCategory() {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="band">
-                    Banda (com cantor) | Concurso
-                  </SelectItem>
+                  <SelectItem value="band">Banda | Concurso</SelectItem>
+                  <SelectItem value="cantor">Cantor (a) | Concurso</SelectItem>
                   <SelectItem value="dj">DJ | Apresentação</SelectItem>
                   <SelectItem value="dancers">
                     Dançarinos (as) | Apresentação
@@ -78,7 +77,7 @@ export default function FormCategory() {
         />
         <div className="flex flex-col gap-2">
           <p className="text-sm">
-            OBS: Cada pessoa só pode ser inscrita uma vez, independentemente da
+            Obs.: Cada pessoa só pode ser inscrita uma vez, independentemente da
             categoria escolhida. Isso significa que não é permitido múltiplos
             registros com a mesma pessoa, mesmo em categorias diferentes.
           </p>

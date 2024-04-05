@@ -13,7 +13,6 @@ import {
 import { Checkbox } from "@/app/components/Checkbox";
 import { Input } from "@/app/components/Input";
 import { APIController } from "@/controllers/api.controller";
-import { djSchema } from "@/models/dj.model";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useReCaptcha } from "next-recaptcha-v3";
 import Link from "next/link";
@@ -40,11 +39,11 @@ import {
   SelectValue,
 } from "@/app/components/Select";
 import { CIDADES } from "@/configs/cidades";
+import { singerSchema } from "@/models/singer.model";
 import dayjs from "dayjs";
 import React from "react";
-import { cantorSchema } from "@/models/cantor.model";
 
-const cantorAuthorizedSchema = cantorSchema.extend({
+const singerAuthorizedSchema = singerSchema.extend({
   terms: z.boolean().refine((value) => value, {
     message:
       "Para prosseguir é preciso estar de acordo com os termos e condições. ",
@@ -55,13 +54,13 @@ const cantorAuthorizedSchema = cantorSchema.extend({
   }),
 });
 
-export default function FormCantor() {
+export default function FormSinger() {
   const router = useRouter();
   const { executeRecaptcha } = useReCaptcha();
   const [confirmDialog, setConfirmDialog] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
-  const formCantor = useForm<z.infer<typeof cantorAuthorizedSchema>>({
-    resolver: zodResolver(cantorAuthorizedSchema),
+  const formSinger = useForm<z.infer<typeof singerAuthorizedSchema>>({
+    resolver: zodResolver(singerAuthorizedSchema),
     defaultValues: {
       nome: "",
       cidade: "",
@@ -76,20 +75,22 @@ export default function FormCantor() {
     },
   });
 
-  const registerWithMask = useHookFormMask(formCantor.register);
+  const registerWithMask = useHookFormMask(formSinger.register);
 
-  async function onSubmitDJ(values: z.infer<typeof cantorAuthorizedSchema>) {
+  async function onSubmitSinger(
+    values: z.infer<typeof singerAuthorizedSchema>
+  ) {
     setIsLoading(true);
     try {
       const token = await executeRecaptcha("subscribe");
       if (!token) {
         throw new Error("Erro ao validar o reCAPTCHA.");
       }
-      const dj = djSchema.parse(values);
+      const singer = singerSchema.parse(values);
       const controller = await APIController.getInstance();
       await controller.register({
-        ...dj,
-        type: "dj",
+        ...singer,
+        type: "singer",
         recaptchaToken: token,
       });
       setIsLoading(false);
@@ -113,14 +114,14 @@ export default function FormCantor() {
       <div className="text-sm bg-yellow bg-opacity-15 border-opacity-45 p-4 rounded-lg border-2 border-yellow mb-4 text-white font-light">
         Obs.: O cantor terá uma banda de apoio para a apresentação no evento.
       </div>
-      <Form {...formCantor}>
+      <Form {...formSinger}>
         <form
           id="form"
-          onSubmit={formCantor.handleSubmit(onSubmitDJ)}
+          onSubmit={formSinger.handleSubmit(onSubmitSinger)}
           className="space-y-4"
         >
           <FormField
-            control={formCantor.control}
+            control={formSinger.control}
             name="nome"
             render={({ field }) => (
               <FormItem>
@@ -137,7 +138,7 @@ export default function FormCantor() {
             )}
           />
           <FormField
-            control={formCantor.control}
+            control={formSinger.control}
             name="cidade"
             render={({ field }) => (
               <FormItem>
@@ -161,7 +162,7 @@ export default function FormCantor() {
             )}
           />
           <FormField
-            control={formCantor.control}
+            control={formSinger.control}
             name={"cpf"}
             render={({ field }) => (
               <FormItem>
@@ -180,7 +181,7 @@ export default function FormCantor() {
             )}
           />
           <FormField
-            control={formCantor.control}
+            control={formSinger.control}
             name="email"
             render={({ field }) => (
               <FormItem>
@@ -193,7 +194,7 @@ export default function FormCantor() {
             )}
           />
           <FormField
-            control={formCantor.control}
+            control={formSinger.control}
             name="tel"
             render={({ field }) => (
               <FormItem>
@@ -213,7 +214,7 @@ export default function FormCantor() {
             )}
           />
           <FormField
-            control={formCantor.control}
+            control={formSinger.control}
             name="nascimento"
             render={({ field }) => (
               <FormItem>
@@ -230,7 +231,7 @@ export default function FormCantor() {
             )}
           />
           <FormField
-            control={formCantor.control}
+            control={formSinger.control}
             name="ig"
             render={({ field }) => (
               <FormItem>
@@ -243,7 +244,7 @@ export default function FormCantor() {
             )}
           />
           <FormField
-            control={formCantor.control}
+            control={formSinger.control}
             name="videoLinkURL"
             render={({ field }) => (
               <FormItem>
@@ -261,7 +262,7 @@ export default function FormCantor() {
             )}
           />
           <FormField
-            control={formCantor.control}
+            control={formSinger.control}
             name="terms"
             render={({ field }) => (
               <FormItem>
@@ -288,7 +289,7 @@ export default function FormCantor() {
           />
 
           <FormField
-            control={formCantor.control}
+            control={formSinger.control}
             name="privacy"
             render={({ field }) => (
               <FormItem>
@@ -317,7 +318,7 @@ export default function FormCantor() {
             <Button
               type="button"
               onClick={() =>
-                formCantor.trigger().then((isValid) => {
+                formSinger.trigger().then((isValid) => {
                   if (isValid) {
                     return setConfirmDialog(true);
                   }
@@ -339,35 +340,35 @@ export default function FormCantor() {
                 <div>
                   <h4 className="font-bold text-base ">Cantor</h4>
                   <div className="font-light text-sm ">
-                    <p>Nome: {formCantor.getValues().nome}</p>
-                    <p>Cidade: {formCantor.getValues().cidade}</p>
-                    <p>Email: {formCantor.getValues().email}</p>
-                    <p>Telefone: {formCantor.getValues().tel}</p>
-                    <p>CPF: {formCantor.getValues().cpf}</p>
+                    <p>Nome: {formSinger.getValues().nome}</p>
+                    <p>Cidade: {formSinger.getValues().cidade}</p>
+                    <p>Email: {formSinger.getValues().email}</p>
+                    <p>Telefone: {formSinger.getValues().tel}</p>
+                    <p>CPF: {formSinger.getValues().cpf}</p>
                     <p>
                       Data de nascimento:{" "}
-                      {dayjs(formCantor.getValues().nascimento).format(
+                      {dayjs(formSinger.getValues().nascimento).format(
                         "DD/MM/YYYY"
                       )}
                     </p>
                     <p>
                       Link Instagram:{" "}
                       <a
-                        href={formCantor.getValues().ig}
+                        href={formSinger.getValues().ig}
                         target="_blank"
                         className="text-blue-500"
                       >
-                        {formCantor.getValues().ig}
+                        {formSinger.getValues().ig}
                       </a>
                     </p>
                     <p>
                       Link do vídeo:{" "}
                       <a
-                        href={formCantor.getValues().videoLinkURL}
+                        href={formSinger.getValues().videoLinkURL}
                         target="_blank"
                         className="text-blue-500"
                       >
-                        {formCantor.getValues().videoLinkURL}
+                        {formSinger.getValues().videoLinkURL}
                       </a>
                     </p>
                   </div>

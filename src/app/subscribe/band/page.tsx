@@ -53,6 +53,10 @@ const bandAuthorizedSchema = bandSchema.extend({
     message:
       "Para prosseguir é preciso estar de acordo com a Política de Privacidade.",
   }),
+  isReggaeArtist: z.boolean().refine((value) => value, {
+    message:
+      "Para prosseguir é necessário que os integrantes sejam artistas de reggae.",
+  }),
 });
 
 export default function FormBand() {
@@ -82,6 +86,7 @@ export default function FormBand() {
       videoLinkURL: "",
       terms: false,
       privacy: false,
+      isReggaeArtist: false,
     },
   });
 
@@ -539,6 +544,25 @@ export default function FormBand() {
                     Política de Privacidade
                   </Link>
                   . *
+                </FormLabel>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={formBand.control}
+            name="isReggaeArtist"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Checkbox
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
+                </FormControl>
+                <FormLabel className="font-normal  ml-2">
+                  Declaro que os integrantes dessa inscrição são artistas de
+                  reggae. *
                 </FormLabel>
                 <FormMessage />
               </FormItem>

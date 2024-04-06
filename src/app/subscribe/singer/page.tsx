@@ -52,6 +52,9 @@ const singerAuthorizedSchema = singerSchema.extend({
     message:
       "Para prosseguir é preciso estar de acordo com a Política de Privacidade.",
   }),
+  isReggaeArtist: z.boolean().refine((value) => value, {
+    message: "Para prosseguir é preciso ser um artista de reggae.",
+  }),
 });
 
 export default function FormSinger() {
@@ -72,6 +75,7 @@ export default function FormSinger() {
       videoLinkURL: "",
       terms: false,
       privacy: false,
+      isReggaeArtist: false,
     },
   });
 
@@ -316,6 +320,25 @@ export default function FormSinger() {
               </FormItem>
             )}
           />
+          <FormField
+            control={formSinger.control}
+            name="isReggaeArtist"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Checkbox
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
+                </FormControl>
+                <FormLabel className="font-normal  ml-2">
+                  Declaro ser artista de reggae. *
+                </FormLabel>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
           <Dialog open={confirmDialog} onOpenChange={setConfirmDialog}>
             <Button
               type="button"

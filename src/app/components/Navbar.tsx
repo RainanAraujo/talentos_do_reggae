@@ -8,7 +8,7 @@ import { onValue, ref } from "firebase/database";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { useScrollPosition } from "../utils/useScrollPosition";
+import { useScrollPosition } from "../../utils/useScrollPosition";
 import CustomButton from "./Button";
 
 interface Options {

@@ -15,9 +15,11 @@ export const bandSchema = z.object({
   cantores: z
     .array(
       z.object({
-        nome: z.string().min(1, { message: "Campo obrigatório" }),
+        nome: z
+          .string({ required_error: "Campo obrigatório" })
+          .min(1, { message: "Campo obrigatório" }),
         nascimento: z
-          .string()
+          .string({ required_error: "Campo obrigatório" })
           .min(1, { message: "Campo obrigatório" })
           .regex(ISO8601DateRegex, "Data inválida")
           .refine((data) => isValidBirthData(data), {
@@ -35,9 +37,11 @@ export const bandSchema = z.object({
   instrumentistas: z
     .array(
       z.object({
-        nome: z.string().min(1, { message: "Campo obrigatório" }),
+        nome: z
+          .string({ required_error: "Campo obrigatório" })
+          .min(1, { message: "Campo obrigatório" }),
         nascimento: z
-          .string()
+          .string({ required_error: "Campo obrigatório" })
           .min(1, { message: "Campo obrigatório" })
           .regex(ISO8601DateRegex, "Data inválida")
           .refine((data) => isValidBirthData(data), {
@@ -49,7 +53,9 @@ export const bandSchema = z.object({
           .refine((cpf) => isValidCPF(cpf), {
             message: "CPF inválido",
           }),
-        instrumento: z.enum(INSTRUMENTOS).nullable(),
+        instrumento: z.enum(INSTRUMENTOS, {
+          errorMap: (issue, ctx) => ({ message: "Instrumento inválido" }),
+        }),
       })
     )
     .min(1, { message: "É necessário inserir pelo menos um músico" }),

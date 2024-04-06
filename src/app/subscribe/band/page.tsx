@@ -32,7 +32,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { useHookFormMask } from "use-mask-input";
-import { z } from "zod";
+import { nullable, z } from "zod";
 import Button from "../../components/Button";
 import {
   Form,
@@ -43,6 +43,7 @@ import {
   FormLabel,
   FormMessage,
 } from "../../components/Form";
+import { getDefaults } from "@/utils/defautsValueZod";
 
 const bandAuthorizedSchema = bandSchema.extend({
   terms: z.boolean().refine((value) => value, {
@@ -81,7 +82,7 @@ export default function FormBand() {
       tel: "",
       cantores: [{ nome: "", nascimento: undefined, cpf: "" }],
       instrumentistas: [
-        { nome: "", nascimento: "", cpf: "", instrumento: null },
+        { nome: "", nascimento: "", cpf: "", instrumento: undefined },
       ],
       videoLinkURL: "",
       terms: false,
@@ -341,10 +342,6 @@ export default function FormBand() {
                 <div
                   className="cursor-pointer flex items-center justify-center py-1 text-sm border-[1px] rounded-sm"
                   onClick={() => {
-                    formBand.setValue("cantores", [
-                      ...formBand.getValues().cantores,
-                      { nome: "", nascimento: "", cpf: "" },
-                    ]);
                     setCantores([
                       ...cantores,
                       { nome: "", nascimento: "", cpf: "" },
@@ -449,7 +446,7 @@ export default function FormBand() {
                           <Select onValueChange={field.onChange}>
                             <FormControl>
                               <SelectTrigger>
-                                <SelectValue placeholder="Selecione uma categoria" />
+                                <SelectValue placeholder="Selecione uma instrumento" />
                               </SelectTrigger>
                             </FormControl>
                             <SelectContent>
@@ -470,15 +467,6 @@ export default function FormBand() {
                 <div
                   className="cursor-pointer flex items-center justify-center py-1 text-sm border-[1px] rounded-sm"
                   onClick={() => {
-                    formBand.setValue("instrumentistas", [
-                      ...formBand.getValues().instrumentistas,
-                      {
-                        nome: "",
-                        nascimento: "",
-                        cpf: "",
-                        instrumento: null,
-                      },
-                    ]);
                     setInstrumentistas([
                       ...instrumentistas,
                       {
@@ -574,6 +562,7 @@ export default function FormBand() {
               onClick={() =>
                 formBand.trigger().then((isValid) => {
                   if (isValid) {
+                    console.log(formBand.getValues());
                     return setConfirmDialog(true);
                   }
                 })

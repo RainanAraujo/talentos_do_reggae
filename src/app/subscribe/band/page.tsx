@@ -571,7 +571,7 @@ export default function FormBand() {
             >
               Realizar inscrição
             </Button>
-            <DialogContent className="sm:max-w-md">
+            <DialogContent className="sm:max-w-md max-h-[90vh] overflow-y-auto">
               <DialogHeader>
                 <DialogTitle>Verifique seus dados</DialogTitle>
                 <DialogDescription>
@@ -579,7 +579,7 @@ export default function FormBand() {
                   inscrição.
                 </DialogDescription>
               </DialogHeader>
-              <div className="space-y-4 [&_p]:truncate [&_p]:w-full truncate ">
+              <div className="space-y-4 [&_p]:truncate truncate [&_p]:w-full ">
                 <div>
                   <h4 className="font-bold text-base ">Banda</h4>
                   <div className="font-light text-sm ">

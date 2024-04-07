@@ -10,6 +10,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useScrollPosition } from "../../utils/useScrollPosition";
 import CustomButton from "./Button";
+import { PhosphorLogo } from "@phosphor-icons/react/dist/ssr/PhosphorLogo";
+import { InstagramLogo } from "@phosphor-icons/react/dist/ssr/InstagramLogo";
 
 interface Options {
   title: string;
@@ -42,7 +44,7 @@ export default function Navbar() {
             "max-xl:px-5"
           )}
         >
-          <div className="flex-1">
+          <div className="flex-1 flex gap-4 items-center">
             <Link href="/">
               <Image
                 className="w-max h-max cursor-pointer"
@@ -50,6 +52,17 @@ export default function Navbar() {
                 width={120}
                 height={123}
                 alt="home"
+              />
+            </Link>
+
+            <Link
+              href="https://www.instagram.com/talentosdoreggae/"
+              target="_blank"
+              className="max-md:hidden"
+            >
+              <InstagramLogo
+                className="cursor-pointer hover:text-yellow "
+                size={32}
               />
             </Link>
           </div>
@@ -122,6 +135,15 @@ function MenuHamburger({ options }: MenuHamburgerProps) {
                   </a>
                 </li>
               ))}
+              <Link
+                href="https://www.instagram.com/talentosdoreggae/"
+                target="_blank"
+              >
+                <InstagramLogo
+                  className="cursor-pointer hover:text-yellow "
+                  size={32}
+                />
+              </Link>
             </ul>
           </div>
         </div>

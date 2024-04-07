@@ -58,7 +58,12 @@ export default async function Home() {
           </h1>
 
           <div className="flex items-center flex-col gap-2">
-            <div className=" flex items-center flex-col gap-1 text-orange animate-fadeIn animation-delay-75  opacity-0">
+            <div className=" flex items-center max-md:flex-col-reverse gap-1 text-orange animate-fadeIn animation-delay-75  opacity-0">
+              <a href="/#documents">
+                <CustomButton className="bg-transparent border-orange border text-orange">
+                  LEIA O EDITAL DE ABERTURA
+                </CustomButton>
+              </a>
               <a href="/subscribe">
                 <CustomButton className="bg-orange text-white">
                   FAÇA SUA INSCRIÇÃO AGORA MESMO

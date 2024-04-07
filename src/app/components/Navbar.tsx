@@ -8,7 +8,7 @@ import { onValue, ref } from "firebase/database";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { useScrollPosition } from "../utils/useScrollPosition";
+import { useScrollPosition } from "../../utils/useScrollPosition";
 import CustomButton from "./Button";
 
 interface Options {
@@ -16,31 +16,15 @@ interface Options {
   url: string;
 }
 
-interface NavbarProps {
-  subscriptionIsAvailable: boolean;
-}
-
-export default function Navbar(props: NavbarProps) {
+export default function Navbar() {
   const scrollPosition = useScrollPosition();
   const options: Options[] = [
-    { title: "SOBRE O EVENTO", url: "#about" },
-    { title: "FIQUE POR DENTRO", url: "#news" },
-    { title: "PROGRAMAÇÃO", url: "#schedule" },
-    { title: "CONTATO", url: "#contact" },
+    { title: "SOBRE O EVENTO", url: "/#about" },
+    { title: "FIQUE POR DENTRO", url: "/#news" },
+    { title: "PROGRAMAÇÃO", url: "/#schedule" },
+    { title: "CONTATO", url: "/#contact" },
+    { title: "DOCUMENTOS", url: "/#documents" },
   ];
-  const [subscriptionIsAvailable, setSubscriptionIsAvailable] = useState(
-    props.subscriptionIsAvailable
-  );
-
-  useEffect(() => {
-    const unsub = onValue(
-      ref(database, "subscriptionIsAvailable"),
-      (snapshot) => {
-        setSubscriptionIsAvailable(snapshot.val());
-      }
-    );
-    return () => unsub();
-  }, [props]);
 
   return (
     <>
@@ -88,23 +72,8 @@ export default function Navbar(props: NavbarProps) {
             ))}
           </ul>
           <div className="flex-1 flex items-center justify-end">
-            <a
-              onClick={() =>
-                !subscriptionIsAvailable &&
-                window.alert(
-                  "Abertas somente a partir do evento de lançamento no dia 30 de março"
-                )
-              }
-              href={
-                subscriptionIsAvailable ? "/subscribe" : "javascript:void(0)"
-              }
-            >
-              <CustomButton
-                className={clsx(
-                  "text-white",
-                  subscriptionIsAvailable ? "bg-orange" : " bg-gray-400"
-                )}
-              >
+            <a href={"/subscribe"}>
+              <CustomButton className={clsx("text-white", "bg-orange")}>
                 INSCREVA-SE
               </CustomButton>
             </a>

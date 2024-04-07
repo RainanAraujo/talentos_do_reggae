@@ -13,7 +13,6 @@ import {
 import { Checkbox } from "@/app/components/Checkbox";
 import { Input } from "@/app/components/Input";
 import { APIController } from "@/controllers/api.controller";
-import { djSchema } from "@/models/dj.model";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useReCaptcha } from "next-recaptcha-v3";
 import Link from "next/link";
@@ -40,10 +39,11 @@ import {
   SelectValue,
 } from "@/app/components/Select";
 import { CIDADES } from "@/configs/cidades";
+import { singerSchema } from "@/models/singer.model";
 import dayjs from "dayjs";
 import React from "react";
 
-const djAuthorizedSchema = djSchema.extend({
+const singerAuthorizedSchema = singerSchema.extend({
   terms: z.boolean().refine((value) => value, {
     message:
       "Para prosseguir é preciso estar de acordo com os termos e condições. ",
@@ -57,13 +57,13 @@ const djAuthorizedSchema = djSchema.extend({
   }),
 });
 
-export default function FormDJ() {
+export default function FormSinger() {
   const router = useRouter();
   const { executeRecaptcha } = useReCaptcha();
   const [confirmDialog, setConfirmDialog] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
-  const formDJ = useForm<z.infer<typeof djAuthorizedSchema>>({
-    resolver: zodResolver(djAuthorizedSchema),
+  const formSinger = useForm<z.infer<typeof singerAuthorizedSchema>>({
+    resolver: zodResolver(singerAuthorizedSchema),
     defaultValues: {
       nome: "",
       cidade: "",
@@ -79,20 +79,22 @@ export default function FormDJ() {
     },
   });
 
-  const registerWithMask = useHookFormMask(formDJ.register);
+  const registerWithMask = useHookFormMask(formSinger.register);
 
-  async function onSubmitDJ(values: z.infer<typeof djAuthorizedSchema>) {
+  async function onSubmitSinger(
+    values: z.infer<typeof singerAuthorizedSchema>
+  ) {
     setIsLoading(true);
     try {
       const token = await executeRecaptcha("subscribe");
       if (!token) {
         throw new Error("Erro ao validar o reCAPTCHA.");
       }
-      const dj = djSchema.parse(values);
+      const singer = singerSchema.parse(values);
       const controller = await APIController.getInstance();
       await controller.register({
-        ...dj,
-        type: "dj",
+        ...singer,
+        type: "singer",
         recaptchaToken: token,
       });
       setIsLoading(false);
@@ -112,15 +114,20 @@ export default function FormDJ() {
 
   return (
     <div className="animate-slideToRightFade">
-      <h1 className="text-xl font-bold text-white mb-3">Categoria DJ</h1>
-      <Form {...formDJ}>
+      <h1 className="text-xl font-bold text-white mb-3">
+        Categoria Cantor solo
+      </h1>
+      <div className="text-sm bg-yellow bg-opacity-15 border-opacity-45 p-4 rounded-lg border-2 border-yellow mb-4 text-white font-light">
+        Obs.: O cantor terá uma banda de apoio para a apresentação no evento.
+      </div>
+      <Form {...formSinger}>
         <form
           id="form"
-          onSubmit={formDJ.handleSubmit(onSubmitDJ)}
+          onSubmit={formSinger.handleSubmit(onSubmitSinger)}
           className="space-y-4"
         >
           <FormField
-            control={formDJ.control}
+            control={formSinger.control}
             name="nome"
             render={({ field }) => (
               <FormItem>
@@ -137,7 +144,7 @@ export default function FormDJ() {
             )}
           />
           <FormField
-            control={formDJ.control}
+            control={formSinger.control}
             name="cidade"
             render={({ field }) => (
               <FormItem>
@@ -161,7 +168,7 @@ export default function FormDJ() {
             )}
           />
           <FormField
-            control={formDJ.control}
+            control={formSinger.control}
             name={"cpf"}
             render={({ field }) => (
               <FormItem>
@@ -180,7 +187,7 @@ export default function FormDJ() {
             )}
           />
           <FormField
-            control={formDJ.control}
+            control={formSinger.control}
             name="email"
             render={({ field }) => (
               <FormItem>
@@ -193,7 +200,7 @@ export default function FormDJ() {
             )}
           />
           <FormField
-            control={formDJ.control}
+            control={formSinger.control}
             name="tel"
             render={({ field }) => (
               <FormItem>
@@ -213,7 +220,7 @@ export default function FormDJ() {
             )}
           />
           <FormField
-            control={formDJ.control}
+            control={formSinger.control}
             name="nascimento"
             render={({ field }) => (
               <FormItem>
@@ -230,7 +237,7 @@ export default function FormDJ() {
             )}
           />
           <FormField
-            control={formDJ.control}
+            control={formSinger.control}
             name="ig"
             render={({ field }) => (
               <FormItem>
@@ -243,7 +250,7 @@ export default function FormDJ() {
             )}
           />
           <FormField
-            control={formDJ.control}
+            control={formSinger.control}
             name="videoLinkURL"
             render={({ field }) => (
               <FormItem>
@@ -261,7 +268,7 @@ export default function FormDJ() {
             )}
           />
           <FormField
-            control={formDJ.control}
+            control={formSinger.control}
             name="terms"
             render={({ field }) => (
               <FormItem>
@@ -288,7 +295,7 @@ export default function FormDJ() {
           />
 
           <FormField
-            control={formDJ.control}
+            control={formSinger.control}
             name="privacy"
             render={({ field }) => (
               <FormItem>
@@ -314,7 +321,7 @@ export default function FormDJ() {
             )}
           />
           <FormField
-            control={formDJ.control}
+            control={formSinger.control}
             name="isReggaeArtist"
             render={({ field }) => (
               <FormItem>
@@ -331,11 +338,12 @@ export default function FormDJ() {
               </FormItem>
             )}
           />
+
           <Dialog open={confirmDialog} onOpenChange={setConfirmDialog}>
             <Button
               type="button"
               onClick={() =>
-                formDJ.trigger().then((isValid) => {
+                formSinger.trigger().then((isValid) => {
                   if (isValid) {
                     return setConfirmDialog(true);
                   }
@@ -355,37 +363,37 @@ export default function FormDJ() {
               </DialogHeader>
               <div className="space-y-4 [&_p]:truncate [&_p]:w-full truncate ">
                 <div>
-                  <h4 className="font-bold text-base ">DJ</h4>
+                  <h4 className="font-bold text-base ">Cantor solo</h4>
                   <div className="font-light text-sm ">
-                    <p>Nome: {formDJ.getValues().nome}</p>
-                    <p>Cidade: {formDJ.getValues().cidade}</p>
-                    <p>Email: {formDJ.getValues().email}</p>
-                    <p>Telefone: {formDJ.getValues().tel}</p>
-                    <p>CPF: {formDJ.getValues().cpf}</p>
+                    <p>Nome: {formSinger.getValues().nome}</p>
+                    <p>Cidade: {formSinger.getValues().cidade}</p>
+                    <p>Email: {formSinger.getValues().email}</p>
+                    <p>Telefone: {formSinger.getValues().tel}</p>
+                    <p>CPF: {formSinger.getValues().cpf}</p>
                     <p>
                       Data de nascimento:{" "}
-                      {dayjs(formDJ.getValues().nascimento).format(
+                      {dayjs(formSinger.getValues().nascimento).format(
                         "DD/MM/YYYY"
                       )}
                     </p>
                     <p>
                       Link Instagram:{" "}
                       <a
-                        href={formDJ.getValues().ig}
+                        href={formSinger.getValues().ig}
                         target="_blank"
                         className="text-blue-500"
                       >
-                        {formDJ.getValues().ig}
+                        {formSinger.getValues().ig}
                       </a>
                     </p>
                     <p>
                       Link do vídeo:{" "}
                       <a
-                        href={formDJ.getValues().videoLinkURL}
+                        href={formSinger.getValues().videoLinkURL}
                         target="_blank"
                         className="text-blue-500"
                       >
-                        {formDJ.getValues().videoLinkURL}
+                        {formSinger.getValues().videoLinkURL}
                       </a>
                     </p>
                   </div>

@@ -32,7 +32,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { useHookFormMask } from "use-mask-input";
-import { z } from "zod";
+import { nullable, z } from "zod";
 import Button from "../../components/Button";
 import {
   Form,
@@ -43,6 +43,7 @@ import {
   FormLabel,
   FormMessage,
 } from "../../components/Form";
+import { getDefaults } from "@/utils/defautsValueZod";
 
 const bandAuthorizedSchema = bandSchema.extend({
   terms: z.boolean().refine((value) => value, {
@@ -52,6 +53,10 @@ const bandAuthorizedSchema = bandSchema.extend({
   privacy: z.boolean().refine((value) => value, {
     message:
       "Para prosseguir é preciso estar de acordo com a Política de Privacidade.",
+  }),
+  isReggaeArtist: z.boolean().refine((value) => value, {
+    message:
+      "Para prosseguir é necessário que os integrantes sejam artistas de reggae.",
   }),
 });
 
@@ -77,11 +82,12 @@ export default function FormBand() {
       tel: "",
       cantores: [{ nome: "", nascimento: undefined, cpf: "" }],
       instrumentistas: [
-        { nome: "", nascimento: "", cpf: "", instrumento: null },
+        { nome: "", nascimento: "", cpf: "", instrumento: undefined },
       ],
       videoLinkURL: "",
       terms: false,
       privacy: false,
+      isReggaeArtist: false,
     },
   });
 
@@ -118,15 +124,8 @@ export default function FormBand() {
 
   return (
     <div className="animate-slideToRightFade ">
-      <h1 className="text-xl font-bold text-white mb-3">
-        Categoria Banda (com cantor)
-      </h1>
-      <div className="text-sm bg-yellow bg-opacity-15 border-opacity-45 p-4 rounded-lg border-2 border-yellow mb-4 text-white font-light">
-        Obs: Toda banda deve possuir um cantor. Da mesma forma, todo cantor deve
-        ter uma banda. No dia do evento, caso sua inscrição seja selecionada,
-        sua inscrição concorrerá a duas premiações: Melhor Cantor(a) e Melhor
-        Banda como um todo.
-      </div>
+      <h1 className="text-xl font-bold text-white mb-3">Categoria Banda</h1>
+
       <Form {...formBand}>
         <form
           id="form"
@@ -343,10 +342,6 @@ export default function FormBand() {
                 <div
                   className="cursor-pointer flex items-center justify-center py-1 text-sm border-[1px] rounded-sm"
                   onClick={() => {
-                    formBand.setValue("cantores", [
-                      ...formBand.getValues().cantores,
-                      { nome: "", nascimento: "", cpf: "" },
-                    ]);
                     setCantores([
                       ...cantores,
                       { nome: "", nascimento: "", cpf: "" },
@@ -451,7 +446,7 @@ export default function FormBand() {
                           <Select onValueChange={field.onChange}>
                             <FormControl>
                               <SelectTrigger>
-                                <SelectValue placeholder="Selecione uma categoria" />
+                                <SelectValue placeholder="Selecione uma instrumento" />
                               </SelectTrigger>
                             </FormControl>
                             <SelectContent>
@@ -472,15 +467,6 @@ export default function FormBand() {
                 <div
                   className="cursor-pointer flex items-center justify-center py-1 text-sm border-[1px] rounded-sm"
                   onClick={() => {
-                    formBand.setValue("instrumentistas", [
-                      ...formBand.getValues().instrumentistas,
-                      {
-                        nome: "",
-                        nascimento: "",
-                        cpf: "",
-                        instrumento: null,
-                      },
-                    ]);
                     setInstrumentistas([
                       ...instrumentistas,
                       {
@@ -551,12 +537,32 @@ export default function FormBand() {
               </FormItem>
             )}
           />
+          <FormField
+            control={formBand.control}
+            name="isReggaeArtist"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Checkbox
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
+                </FormControl>
+                <FormLabel className="font-normal  ml-2">
+                  Declaro que os integrantes dessa inscrição são artistas de
+                  reggae. *
+                </FormLabel>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
           <Dialog open={confirmDialog} onOpenChange={setConfirmDialog}>
             <Button
               type="button"
               onClick={() =>
                 formBand.trigger().then((isValid) => {
                   if (isValid) {
+                    console.log(formBand.getValues());
                     return setConfirmDialog(true);
                   }
                 })

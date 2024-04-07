@@ -17,14 +17,13 @@ import {
 } from "../components/Select";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
-import { z } from "zod";
-import Button from "../components/Button";
 import Link from "next/link";
 import { useState } from "react";
+import { z } from "zod";
+import Button from "../components/Button";
 
 const formSchemaCategory = z.object({
-  categoria: z.enum(["band", "dj", "dancers"], {
+  categoria: z.enum(["band", "dj", "dancers", "singer"], {
     required_error: "Seleção obrigatória",
   }),
 });
@@ -63,8 +62,9 @@ export default function FormCategory() {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="band">
-                    Banda (com cantor) | Concurso
+                  <SelectItem value="band">Banda | Concurso</SelectItem>
+                  <SelectItem value="singer">
+                    Cantor (a) solo | Concurso
                   </SelectItem>
                   <SelectItem value="dj">DJ | Apresentação</SelectItem>
                   <SelectItem value="dancers">
@@ -78,14 +78,14 @@ export default function FormCategory() {
         />
         <div className="flex flex-col gap-2">
           <p className="text-sm">
-            OBS: Cada pessoa só pode ser inscrita uma vez, independentemente da
+            Obs.: Cada pessoa só pode ser inscrita uma vez, independentemente da
             categoria escolhida. Isso significa que não é permitido múltiplos
             registros com a mesma pessoa, mesmo em categorias diferentes.
           </p>
 
           <Link
             onClick={() => formCategory.trigger().then(() => {})}
-            href={category ? `/subscribe/${category}` : "javascript:void(0)"}
+            href={category ? `/subscribe/${category}` : "#!"}
           >
             <Button
               type="button"

@@ -1,4 +1,5 @@
 import logo from "@/../public/logo.svg";
+import { WhatsappLogo } from "@phosphor-icons/react/dist/ssr/WhatsappLogo";
 import { ReCaptchaProvider } from "next-recaptcha-v3";
 import Image from "next/image";
 import React from "react";
@@ -16,6 +17,16 @@ export default function layoutSubscribe({
               <h3 className="text-2xl font-bold text-white">
                 Inscrição no evento
               </h3>
+              <div className="text-xs  ">
+                Duvidas no preenchimento?{" "}
+                <a
+                  className="text-blue-500"
+                  href="https://wa.me/message/FY426JEYIV4OK1"
+                >
+                  Clique aqui
+                </a>{" "}
+                para entrar em contato pelo WhatsApp.
+              </div>
             </div>
             <ReCaptchaProvider reCaptchaKey="6Lfwq58pAAAAAEpYxmspcwk2nfUudcMHofBboMdj">
               {children}

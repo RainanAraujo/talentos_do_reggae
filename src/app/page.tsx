@@ -145,13 +145,30 @@ export default async function Home() {
           >
             <h1 className="font-anton text-6xl text-center mb-3">DOCUMENTOS</h1>
             <a
+              href="/retificacao.pdf"
+              target="_blank"
+              className="border-2 border-white rounded-lg p-5 flex gap-2 cursor-pointer hover:bg-green bg-zinc-950  transition-all duration-300"
+            >
+              <FileText className="h-20 max-md:h-14" weight={"light"} />
+              <div className="">
+                <h2 className="font-anton text-3xl max-md:text-2xl">
+                  Retificação 01 do Edital de Abertura
+                </h2>
+                <p className="text-lg max-md:text-sm">
+                  Acesse a retificação 01 do Edital de Abertura
+                </p>
+              </div>
+            </a>
+            <a
               href="/edital.pdf"
               target="_blank"
               className="border-2 border-white rounded-lg p-5 flex gap-2 cursor-pointer hover:bg-green bg-zinc-950  transition-all duration-300"
             >
               <FileText className="h-20 max-md:h-14" weight={"light"} />
               <div className="">
-                <h2 className="font-anton text-3xl max-md:text-2xl">Edital</h2>
+                <h2 className="font-anton text-3xl max-md:text-2xl">
+                  Edital de abertura
+                </h2>
                 <p className="text-lg max-md:text-sm">
                   Acesse o edital do evento
                 </p>
@@ -298,16 +315,16 @@ export default async function Home() {
               <div className="absolute w-full flex items-center justify-center h-full -z-10">
                 <div className="w-1 bg-gradient-to-b from-green via-yellow to-red h-full"></div>
               </div>
-              <div className="rounded-full h-20 w-20 bg-green flex flex-col items-center justify-center font-anton leading-[1.1]">
+              <div className="rounded-full h-20 w-20 bg-gray-500 flex flex-col items-center justify-center font-anton leading-[1.1]">
                 <h5 className="text-2xl">30</h5>
                 <h1>MAR</h1>
               </div>
               <div className="rounded-full h-20 w-20 bg-yellow text-black flex flex-col items-center justify-center font-anton leading-[1.1]">
-                <h5 className="text-2xl">12</h5>
+                <h5 className="text-2xl">17</h5>
                 <h1>ABR</h1>
               </div>
               <div className="rounded-full h-20 w-20 bg-yellow text-black flex flex-col items-center justify-center font-anton leading-[1.1]">
-                <h5 className="text-2xl">19</h5>
+                <h5 className="text-2xl">24</h5>
                 <h1>ABR</h1>
               </div>
               <div className="rounded-full h-20 w-20 bg-yellow text-black flex flex-col items-center justify-center font-anton leading-[1.1]">
@@ -321,13 +338,11 @@ export default async function Home() {
             </div>
             <div>
               <div className="h-[500px] flex flex-col justify-between items-start">
-                <div>
+                <div className="opacity-65">
                   <h1 className="font-anton  pt-3">
                     EVENTO DE LANÇAMENTO | INÍCIO DAS INSCRIÇÕES
                   </h1>
-                  <h5 className="text-xs">
-                    VERSÁTIL EVENTOS, SÃO LUÍS - MA, ÀS 20:30H
-                  </h5>
+                  <h5 className="text-xs">ÀS 22:00H</h5>
                   <h5 className="text-xs">YOUTUBE KERA PRODUÇÕES</h5>
                 </div>
                 <div>

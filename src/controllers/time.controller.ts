@@ -36,7 +36,7 @@ export class TimeController {
         this.instance = new TimeController();
         try {
           const response = await axios.get(
-            `http://worldtimeapi.org/api/timezone/${TIMEZONE}`
+            `https://worldtimeapi.org/api/timezone/${TIMEZONE}`
           );
           const data = response.data;
           if (response.status === 200) {

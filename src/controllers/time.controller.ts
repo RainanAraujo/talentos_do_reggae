@@ -13,9 +13,7 @@ export class TimeController {
   private initTime: dayjs.Dayjs | null = null;
 
   now() {
-    console.log(this.baseTime, this.initTime);
-    (this.baseTime, this.initTime);
-    if (this.baseTime == null || !this.initTime == null) {
+    if (!this.baseTime || !this.initTime ) {
       throw new Error("Horário não inicializado.");
     }
     const now = dayjs().utc();

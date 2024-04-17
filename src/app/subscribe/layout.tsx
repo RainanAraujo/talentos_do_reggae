@@ -1,12 +1,24 @@
+"use client";
 import logo from "@/../public/logo.svg";
-import { WhatsappLogo } from "@phosphor-icons/react/dist/ssr/WhatsappLogo";
+import { REGISTRATION_END_TIME } from "@/configs/time";
+import { TimeController } from "@/controllers/time.controller";
 import { ReCaptchaProvider } from "next-recaptcha-v3";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 
-export default function layoutSubscribe({
+export default function LayoutSubscribe({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  useEffect(() => {
+    TimeController.getInstance().then((timeController) => {
+      if (timeController) {
+        timeController.schedule(() => {
+          window.location.reload();
+        }, REGISTRATION_END_TIME.add(1, "s"));
+      }
+    });
+  }, []);
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen  w-full m-auto  px-20  max-md:p-0 max-w-7xl max-md:max-w-full">
       <div className="bg-neutral-900 rounded-lg h-[80vh] max-md:min-h-screen w-full flex ">

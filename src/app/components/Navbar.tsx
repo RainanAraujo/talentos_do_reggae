@@ -84,7 +84,7 @@ export default function Navbar() {
               </li>
             ))}
           </ul>
-
+          <div className="flex-1 flex items-center justify-end"></div>
           <MenuHamburger options={options} />
         </div>
       </nav>

@@ -48,8 +48,6 @@ export default async function Home() {
             className={clsx("animate-pulse w-44", "max-md:w-[50%]")}
           />
 
-          <h1 className="font-anton text-6xl text-center mb-5">PARTICIPE!</h1>
-
           <h1 className="text-6xl max-md:text-4xl text-center font-anton bg-gradient-to-r from-green via-yellow to-red text-transparent bg-clip-text">
             BANDAS | CANTORES SOLOS | DJS | DANÇARINOS
           </h1>

@@ -84,13 +84,7 @@ export default function Navbar() {
               </li>
             ))}
           </ul>
-          <div className="flex-1 flex items-center justify-end">
-            <a href={"/subscribe"}>
-              <CustomButton className={clsx("text-white", "bg-orange")}>
-                INSCREVA-SE
-              </CustomButton>
-            </a>
-          </div>
+
           <MenuHamburger options={options} />
         </div>
       </nav>

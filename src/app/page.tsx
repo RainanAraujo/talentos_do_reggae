@@ -64,11 +64,6 @@ export default async function Home() {
                   LEIA O EDITAL DE ABERTURA
                 </CustomButton>
               </a>
-              <a href="/subscribe">
-                <CustomButton className="bg-orange text-white">
-                  FAÇA SUA INSCRIÇÃO AGORA MESMO
-                </CustomButton>
-              </a>
             </div>
           </div>
           <div className={clsx("flex gap-8 pt-4 items-baseline flex-wrap")}>

@@ -59,7 +59,7 @@ export default async function Home() {
             <div className=" flex items-center max-md:flex-col-reverse gap-1 text-orange animate-fadeIn animation-delay-75  opacity-0">
               <a href="/#documents">
                 <CustomButton className="bg-transparent border-orange border text-orange">
-                  LEIA O EDITAL DE ABERTURA
+                  LEIA AS ÚLTIMAS PUBLICAÇÕES
                 </CustomButton>
               </a>
             </div>
@@ -137,6 +137,22 @@ export default async function Home() {
             className="w-full flex justify-center md:px-20 flex-col  gap-10"
           >
             <h1 className="font-anton text-6xl text-center mb-3">DOCUMENTOS</h1>
+            <a
+              href="/preliminar_bandas_cantores.pdf"
+              target="_blank"
+              className="border-2 border-white rounded-lg p-5 flex gap-2 cursor-pointer hover:bg-green bg-zinc-950  transition-all duration-300"
+            >
+              <FileText className="h-20 max-md:h-14" weight={"light"} />
+              <div className="">
+                <h2 className="font-anton text-3xl max-md:text-2xl">
+                  Divulgação preliminar das bandas e cantores selecionados
+                </h2>
+                <p className="text-lg max-md:text-sm">
+                  Acesse a divulgação preliminar das bandas e cantores
+                  selecionados
+                </p>
+              </div>
+            </a>
             <a
               href="/preliminar_djs_dancarinos.pdf"
               target="_blank"

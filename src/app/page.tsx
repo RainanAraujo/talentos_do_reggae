@@ -138,6 +138,37 @@ export default async function Home() {
           >
             <h1 className="font-anton text-6xl text-center mb-3">DOCUMENTOS</h1>
             <a
+              href="/preliminar_djs_dancarinos.pdf"
+              target="_blank"
+              className="border-2 border-white rounded-lg p-5 flex gap-2 cursor-pointer hover:bg-green bg-zinc-950  transition-all duration-300"
+            >
+              <FileText className="h-20 max-md:h-14" weight={"light"} />
+              <div className="">
+                <h2 className="font-anton text-3xl max-md:text-2xl">
+                  Divulgação preliminar dos DJs e dançarinos classificados
+                </h2>
+                <p className="text-lg max-md:text-sm">
+                  Acesse a divulgação preliminar dos DJs e dançarinos
+                  classificados
+                </p>
+              </div>
+            </a>
+            <a
+              href="/retificacao2.pdf"
+              target="_blank"
+              className="border-2 border-white rounded-lg p-5 flex gap-2 cursor-pointer hover:bg-green bg-zinc-950  transition-all duration-300"
+            >
+              <FileText className="h-20 max-md:h-14" weight={"light"} />
+              <div className="">
+                <h2 className="font-anton text-3xl max-md:text-2xl">
+                  Retificação 02 do Edital de Abertura
+                </h2>
+                <p className="text-lg max-md:text-sm">
+                  Acesse a retificação 02 do Edital de Abertura
+                </p>
+              </div>
+            </a>
+            <a
               href="/retificacao.pdf"
               target="_blank"
               className="border-2 border-white rounded-lg p-5 flex gap-2 cursor-pointer hover:bg-green bg-zinc-950  transition-all duration-300"

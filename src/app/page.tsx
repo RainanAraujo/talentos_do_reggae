@@ -134,17 +134,49 @@ export default async function Home() {
           />
           <ScaleAnimWrapper
             finalValue={1}
-            className="w-full flex justify-center md:px-20 flex-col  gap-10"
+            className="w-full flex justify-center md:px-20 flex-col  gap-4"
           >
             <h1 className="font-anton text-6xl text-center mb-3">DOCUMENTOS</h1>
             <a
+              href="/final_bandas_cantores.pdf"
+              target="_blank"
+              className="border-2 border-white rounded-lg p-3 flex gap-2 cursor-pointer hover:bg-green bg-zinc-950  transition-all duration-300"
+            >
+              <FileText className="h-14 max-md:h-10" weight={"light"} />
+              <div className="">
+                <h2 className="font-anton text-2xl max-md:text-2xl">
+                  Divulgação final das bandas e cantores selecionados
+                </h2>
+                <p className="text-lg max-md:text-sm">
+                  Acesse a divulgação final das bandas e cantores selecionados
+                </p>
+              </div>
+            </a>
+            <a
+              href="/final_djs_dancarinos.pdf"
+              target="_blank"
+              className="border-2 border-white rounded-lg p-3 flex gap-2 cursor-pointer hover:bg-green bg-zinc-950  transition-all duration-300"
+            >
+              <FileText className="h-14 max-md:h-10" weight={"light"} />
+              <div className="">
+                <h2 className="font-anton text-2xl max-md:text-2xl">
+                  Divulgação final dos DJs e dançarinos classificados para o
+                  sorteio
+                </h2>
+                <p className="text-lg max-md:text-sm">
+                  Acesse a divulgação final dos DJs e dançarinos classificados
+                  para o sorteio
+                </p>
+              </div>
+            </a>
+            <a
               href="/preliminar_bandas_cantores.pdf"
               target="_blank"
-              className="border-2 border-white rounded-lg p-5 flex gap-2 cursor-pointer hover:bg-green bg-zinc-950  transition-all duration-300"
+              className="border-2 border-white rounded-lg p-3 flex gap-2 cursor-pointer hover:bg-green bg-zinc-950  transition-all duration-300"
             >
-              <FileText className="h-20 max-md:h-14" weight={"light"} />
+              <FileText className="h-14 max-md:h-10" weight={"light"} />
               <div className="">
-                <h2 className="font-anton text-3xl max-md:text-2xl">
+                <h2 className="font-anton text-2xl max-md:text-2xl">
                   Divulgação preliminar das bandas e cantores selecionados
                 </h2>
                 <p className="text-lg max-md:text-sm">
@@ -156,27 +188,28 @@ export default async function Home() {
             <a
               href="/preliminar_djs_dancarinos.pdf"
               target="_blank"
-              className="border-2 border-white rounded-lg p-5 flex gap-2 cursor-pointer hover:bg-green bg-zinc-950  transition-all duration-300"
+              className="border-2 border-white rounded-lg p-3 flex gap-2 cursor-pointer hover:bg-green bg-zinc-950  transition-all duration-300"
             >
-              <FileText className="h-20 max-md:h-14" weight={"light"} />
+              <FileText className="h-14 max-md:h-10" weight={"light"} />
               <div className="">
-                <h2 className="font-anton text-3xl max-md:text-2xl">
-                  Divulgação preliminar dos DJs e dançarinos classificados
+                <h2 className="font-anton text-2xl max-md:text-2xl">
+                  Divulgação preliminar dos DJs e dançarinos classificados para
+                  o sorteio
                 </h2>
                 <p className="text-lg max-md:text-sm">
                   Acesse a divulgação preliminar dos DJs e dançarinos
-                  classificados
+                  classificados para o sorteio
                 </p>
               </div>
             </a>
             <a
               href="/retificacao2.pdf"
               target="_blank"
-              className="border-2 border-white rounded-lg p-5 flex gap-2 cursor-pointer hover:bg-green bg-zinc-950  transition-all duration-300"
+              className="border-2 border-white rounded-lg p-3 flex gap-2 cursor-pointer hover:bg-green bg-zinc-950  transition-all duration-300"
             >
-              <FileText className="h-20 max-md:h-14" weight={"light"} />
+              <FileText className="h-14 max-md:h-10" weight={"light"} />
               <div className="">
-                <h2 className="font-anton text-3xl max-md:text-2xl">
+                <h2 className="font-anton text-2xl max-md:text-2xl">
                   Retificação 02 do Edital de Abertura
                 </h2>
                 <p className="text-lg max-md:text-sm">
@@ -187,11 +220,11 @@ export default async function Home() {
             <a
               href="/retificacao.pdf"
               target="_blank"
-              className="border-2 border-white rounded-lg p-5 flex gap-2 cursor-pointer hover:bg-green bg-zinc-950  transition-all duration-300"
+              className="border-2 border-white rounded-lg p-3 flex gap-2 cursor-pointer hover:bg-green bg-zinc-950  transition-all duration-300"
             >
-              <FileText className="h-20 max-md:h-14" weight={"light"} />
+              <FileText className="h-14 max-md:h-10" weight={"light"} />
               <div className="">
-                <h2 className="font-anton text-3xl max-md:text-2xl">
+                <h2 className="font-anton text-2xl max-md:text-2xl">
                   Retificação 01 do Edital de Abertura
                 </h2>
                 <p className="text-lg max-md:text-sm">
@@ -202,11 +235,11 @@ export default async function Home() {
             <a
               href="/edital.pdf"
               target="_blank"
-              className="border-2 border-white rounded-lg p-5 flex gap-2 cursor-pointer hover:bg-green bg-zinc-950  transition-all duration-300"
+              className="border-2 border-white rounded-lg p-3 flex gap-2 cursor-pointer hover:bg-green bg-zinc-950  transition-all duration-300"
             >
-              <FileText className="h-20 max-md:h-14" weight={"light"} />
+              <FileText className="h-14 max-md:h-10" weight={"light"} />
               <div className="">
-                <h2 className="font-anton text-3xl max-md:text-2xl">
+                <h2 className="font-anton text-2xl max-md:text-2xl">
                   Edital de abertura
                 </h2>
                 <p className="text-lg max-md:text-sm">
@@ -359,11 +392,11 @@ export default async function Home() {
                 <h5 className="text-2xl">30</h5>
                 <h1>MAR</h1>
               </div>
-              <div className="rounded-full h-20 w-20 bg-yellow text-black flex flex-col items-center justify-center font-anton leading-[1.1]">
+              <div className="rounded-full h-20 w-20 bg-gray-500 flex flex-col items-center justify-center font-anton leading-[1.1]">
                 <h5 className="text-2xl">17</h5>
                 <h1>ABR</h1>
               </div>
-              <div className="rounded-full h-20 w-20 bg-yellow text-black flex flex-col items-center justify-center font-anton leading-[1.1]">
+              <div className="rounded-full h-20 w-20 bg-gray-500 flex flex-col items-center justify-center font-anton leading-[1.1]">
                 <h5 className="text-2xl">24</h5>
                 <h1>ABR</h1>
               </div>
@@ -385,12 +418,12 @@ export default async function Home() {
                   <h5 className="text-xs">ÀS 22:00H</h5>
                   <h5 className="text-xs">YOUTUBE KERA PRODUÇÕES</h5>
                 </div>
-                <div>
+                <div className="opacity-65">
                   <h1 className="font-anton  pb-4">
                     ENCERRAMENTO DAS INSCRIÇÕES
                   </h1>
                 </div>
-                <div>
+                <div className="opacity-65">
                   <h1 className="font-anton pb-4">
                     DIVULGAÇÃO DOS SELECIONADOS
                   </h1>

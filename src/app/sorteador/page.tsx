@@ -33,7 +33,7 @@ export default function Drawer() {
     "Item 10",
   ]);
 
-  const avaliableList = useMemo(
+  const availableList = useMemo(
     () => list.filter((item) => !selectedList.includes(item)),
     [list, selectedList]
   );
@@ -42,8 +42,8 @@ export default function Drawer() {
     setSelectedList((prev) => [...prev, item]);
   }, []);
 
-  window["randomRange"] = (start: number, end: number) =>
-    Math.floor(Math.random() * (end - start)) + start;
+  // window["randomRange"] = (start: number, end: number) =>
+  //   Math.floor(Math.random() * (end - start)) + start;
 
   return (
     <>
@@ -51,20 +51,20 @@ export default function Drawer() {
         <div className="bg-neutral-900 rounded-lg h-[80vh] max-md:min-h-screen w-full flex ">
           <div className="flex flex-col justify-between flex-1 ">
             <div className="px-20 overflow-hidden py-20  h-full max-md:p-5  max-md:pt-20  gap-y-5 flex flex-col relative ">
-              <p>Items: {avaliableList.join(", ")}</p>
+              <p>Items: {availableList.join(", ")}</p>
               <p>Selected: {selectedList.join(", ")}</p>
               <button
                 onClick={() => {
                   do {
                     var selectedIndex = Math.floor(
-                      Math.random() * avaliableList.length
+                      Math.random() * availableList.length
                     );
                   } while (
-                    !(selectedIndex in avaliableList) &&
-                    avaliableList.length != 0
+                    !(selectedIndex in availableList) &&
+                    availableList.length != 0
                   );
-                  if (selectedIndex in avaliableList)
-                    handleSelect(avaliableList[selectedIndex]);
+                  if (selectedIndex in availableList)
+                    handleSelect(availableList[selectedIndex]);
                 }}
               >
                 teste

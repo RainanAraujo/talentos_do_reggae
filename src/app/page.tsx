@@ -40,12 +40,19 @@ export default async function Home() {
             "max-md:h-auto max-md:px-5"
           )}
         >
-          <Image
+          {/* <Image
             src={logo}
             alt="Talentos do Reggae"
             width={200}
             height={200}
             className={clsx("animate-pulse w-44", "max-md:w-[50%]")}
+          /> */}
+
+          <iframe
+            className="w-[700px] max-md:w-[90%] h-[400px] max-md:h-[300px]"
+            src="https://www.youtube.com/embed/PfbPVHafL40?si=_P299dFVHkd96O_a"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           />
 
           <h1 className="text-6xl max-md:text-4xl text-center font-anton bg-gradient-to-r from-green via-yellow to-red text-transparent bg-clip-text">
@@ -78,7 +85,7 @@ export default async function Home() {
             <div
               className={clsx(
                 "gap-2 flex flex-col opacity-0 animate-fadeIn  animation-delay-900",
-                " max-md:justify-center max-md:items-center hidden"
+                " max-md:justify-center max-md:items-center "
               )}
             >
               <span className="font-light text-xs">APOIO CULTURAL</span>

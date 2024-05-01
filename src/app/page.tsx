@@ -145,6 +145,22 @@ export default async function Home() {
           >
             <h1 className="font-anton text-6xl text-center mb-3">DOCUMENTOS</h1>
             <a
+              href="/final_sorteio_djs_dancarinos.pdf"
+              target="_blank"
+              className="border-2 border-white rounded-lg p-3 flex gap-2 cursor-pointer hover:bg-green bg-zinc-950  transition-all duration-300"
+            >
+              <FileText className="h-14 max-md:h-10" weight={"light"} />
+              <div className="">
+                <h2 className="font-anton text-2xl max-md:text-2xl">
+                  Divulgação final dos DJs e dançarinos selecionados por sorteio
+                </h2>
+                <p className="text-lg max-md:text-sm">
+                  Acesse a divulgação final dos DJs e dançarinos selecionados
+                  por sorteio
+                </p>
+              </div>
+            </a>
+            <a
               href="/final_bandas_cantores.pdf"
               target="_blank"
               className="border-2 border-white rounded-lg p-3 flex gap-2 cursor-pointer hover:bg-green bg-zinc-950  transition-all duration-300"

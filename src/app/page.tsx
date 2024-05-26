@@ -48,7 +48,7 @@ export default async function Home() {
             className={clsx("animate-pulse w-44", "max-md:w-[50%]")}
           />
 
-          <h1 className="text-8xl max-md:text-4xl text-center font-anton bg-gradient-to-r from-green via-yellow to-red text-transparent bg-clip-text">
+          <h1 className="text-8xl max-md:text-6xl text-center font-anton bg-gradient-to-r from-green via-yellow to-red text-transparent bg-clip-text">
             20 DE JULHO
           </h1>
           <h1 className="text-6xl max-md:text-4xl text-center font-anton bg-gradient-to-r from-green via-yellow to-red text-transparent bg-clip-text">

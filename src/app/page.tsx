@@ -40,21 +40,17 @@ export default async function Home() {
             "max-md:h-auto max-md:px-5"
           )}
         >
-          {/* <Image
+          <Image
             src={logo}
             alt="Talentos do Reggae"
             width={200}
             height={200}
             className={clsx("animate-pulse w-44", "max-md:w-[50%]")}
-          /> */}
-
-          <iframe
-            className="w-[700px] max-md:w-[90%] h-[400px] max-md:h-[300px]"
-            src="https://www.youtube.com/embed/PfbPVHafL40?si=_P299dFVHkd96O_a"
-            title="YouTube video player"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           />
 
+          <h1 className="text-8xl max-md:text-4xl text-center font-anton bg-gradient-to-r from-green via-yellow to-red text-transparent bg-clip-text">
+            20 DE JULHO
+          </h1>
           <h1 className="text-6xl max-md:text-4xl text-center font-anton bg-gradient-to-r from-green via-yellow to-red text-transparent bg-clip-text">
             BANDAS | CANTORES SOLOS | DJS | DANÇARINOS
           </h1>
@@ -144,6 +140,21 @@ export default async function Home() {
             className="w-full flex justify-center md:px-20 flex-col  gap-4"
           >
             <h1 className="font-anton text-6xl text-center mb-3">DOCUMENTOS</h1>
+            <a
+              href="/alteracao_do_cronograma.pdf"
+              target="_blank"
+              className="border-2 border-white rounded-lg p-3 flex gap-2 cursor-pointer hover:bg-green bg-zinc-950  transition-all duration-300"
+            >
+              <FileText className="h-14 max-md:h-10" weight={"light"} />
+              <div className="">
+                <h2 className="font-anton text-2xl max-md:text-2xl">
+                  ALTERAÇÃO DO CRONOGRAMA
+                </h2>
+                <p className="text-lg max-md:text-sm">
+                  Acesse a divulgação da alteração do cronograma.
+                </p>
+              </div>
+            </a>
             <a
               href="/final_sorteio_djs_dancarinos.pdf"
               target="_blank"
@@ -424,12 +435,12 @@ export default async function Home() {
                 <h1>ABR</h1>
               </div>
               <div className="rounded-full h-20 w-20 bg-yellow text-black flex flex-col items-center justify-center font-anton leading-[1.1]">
-                <h5 className="text-2xl">27</h5>
-                <h1>MAI</h1>
+                <h5 className="text-2xl">13</h5>
+                <h1>JUL</h1>
               </div>
               <div className="rounded-full h-20 w-20 bg-red flex flex-col items-center justify-center font-anton leading-[1.1]">
-                <h5 className="text-2xl">01</h5>
-                <h1>JUN</h1>
+                <h5 className="text-2xl">20</h5>
+                <h1>JUL</h1>
               </div>
             </div>
             <div>

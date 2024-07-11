@@ -1,8 +1,27 @@
+"use client";
+import { auth } from "@/services/auth.service";
 import { FacebookLogo } from "@phosphor-icons/react/dist/ssr/FacebookLogo";
 import { GoogleLogo } from "@phosphor-icons/react/dist/ssr/GoogleLogo";
-import React from "react";
+import {
+  browserLocalPersistence,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
+import { useRouter } from "next/navigation";
 
-export default function login() {
+export default function Login() {
+  const router = useRouter();
+
+  const googleProviderHandler = async () => {
+    try {
+      await signInWithPopup(auth, new GoogleAuthProvider());
+      auth.setPersistence(browserLocalPersistence);
+      router.push("/votacao");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="flex items-center justify-center max-w-md flex-col mx-auto">
       <h3 className="text-2xl font-bold text-white mb-1">
@@ -14,18 +33,17 @@ export default function login() {
       </span>
 
       <button
-        className="
-        flex items-center justify-center
+        className="flex items-center justify-center
         bg-white text-black
         px-4 py-2 min-w-[260px] 
         gap-2 rounded"
+        onClick={googleProviderHandler}
       >
         <GoogleLogo className="w-6 h-6" />
         Entrar com o Google
       </button>
       <button
-        className="
-        flex items-center justify-center
+        className="flex items-center justify-center
         bg-blue-500 text-white
         px-4 py-2 mt-2
          min-w-[260px] 

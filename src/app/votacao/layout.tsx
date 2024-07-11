@@ -1,10 +1,7 @@
 "use client";
 import logo from "@/../public/logo.svg";
-import { REGISTRATION_END_TIME } from "@/configs/time";
-import { TimeController } from "@/controllers/time.controller";
-import { ReCaptchaProvider } from "next-recaptcha-v3";
 import Image from "next/image";
-import React, { useEffect } from "react";
+import React from "react";
 
 export default function LayoutVotacao({
   children,
@@ -17,9 +14,7 @@ export default function LayoutVotacao({
             <div className="space-y-2 mx-auto">
               <Image alt="" src={logo} width={100} height={100} />
             </div>
-            <ReCaptchaProvider reCaptchaKey="6Lfwq58pAAAAAEpYxmspcwk2nfUudcMHofBboMdj">
-              {children}
-            </ReCaptchaProvider>
+            {children}
           </div>
         </div>
       </div>

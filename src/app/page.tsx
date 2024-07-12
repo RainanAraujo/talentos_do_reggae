@@ -5,7 +5,6 @@ import side from "@/../public/sideDetail.svg";
 import sideY from "@/../public/sideDetailY.svg";
 import logo from "@/../public/logo.svg";
 import { Envelope } from "@phosphor-icons/react/dist/ssr/Envelope";
-import { Phone } from "@phosphor-icons/react/dist/ssr/Phone";
 import { WhatsappLogo } from "@phosphor-icons/react/dist/ssr/WhatsappLogo";
 import clsx from "clsx";
 
@@ -22,6 +21,9 @@ import ScaleAnimWrapper from "./components/ScaleAnimWrapper";
 import VerticalAnimWrapper from "./components/VerticalAnimWrapper";
 import { FileText } from "@phosphor-icons/react/dist/ssr/FileText";
 import CustomButton from "./components/Button";
+import { DOCUMENTOS } from "@/configs/documents";
+import Button from "./components/Button";
+import Link from "next/link";
 
 export default async function Home() {
   return (
@@ -52,10 +54,10 @@ export default async function Home() {
             20 DE JULHO
           </h1>
           <h1 className="text-6xl max-md:text-4xl text-center font-anton bg-gradient-to-r from-green via-yellow to-red text-transparent bg-clip-text">
-            BANDAS | CANTORES SOLOS | DJS | DANÇARINOS
+            PRAÇA DAS MERÇÊS
           </h1>
           <h1 className="text-5xl font-anton text-center max-md:text-4xl ">
-            50 MIL REAIS EM PRÊMIOS
+            BANDAS | CANTORES SOLOS | DJS | DANÇARINOS
           </h1>
 
           <div className="flex items-center flex-col gap-2">
@@ -140,147 +142,27 @@ export default async function Home() {
             className="w-full flex justify-center md:px-20 flex-col  gap-4"
           >
             <h1 className="font-anton text-6xl text-center mb-3">DOCUMENTOS</h1>
-            <a
-              href="/alteracao_do_cronograma.pdf"
-              target="_blank"
-              className="border-2 border-white rounded-lg p-3 flex gap-2 cursor-pointer hover:bg-green bg-zinc-950  transition-all duration-300"
-            >
-              <FileText className="h-14 max-md:h-10" weight={"light"} />
-              <div className="">
-                <h2 className="font-anton text-2xl max-md:text-2xl">
-                  ALTERAÇÃO DO CRONOGRAMA
-                </h2>
-                <p className="text-lg max-md:text-sm">
-                  Acesse a divulgação da alteração do cronograma.
-                </p>
-              </div>
-            </a>
-            <a
-              href="/final_sorteio_djs_dancarinos.pdf"
-              target="_blank"
-              className="border-2 border-white rounded-lg p-3 flex gap-2 cursor-pointer hover:bg-green bg-zinc-950  transition-all duration-300"
-            >
-              <FileText className="h-14 max-md:h-10" weight={"light"} />
-              <div className="">
-                <h2 className="font-anton text-2xl max-md:text-2xl">
-                  Divulgação final dos DJs e dançarinos selecionados por sorteio
-                </h2>
-                <p className="text-lg max-md:text-sm">
-                  Acesse a divulgação final dos DJs e dançarinos selecionados
-                  por sorteio
-                </p>
-              </div>
-            </a>
-            <a
-              href="/final_bandas_cantores.pdf"
-              target="_blank"
-              className="border-2 border-white rounded-lg p-3 flex gap-2 cursor-pointer hover:bg-green bg-zinc-950  transition-all duration-300"
-            >
-              <FileText className="h-14 max-md:h-10" weight={"light"} />
-              <div className="">
-                <h2 className="font-anton text-2xl max-md:text-2xl">
-                  Divulgação final das bandas e cantores selecionados
-                </h2>
-                <p className="text-lg max-md:text-sm">
-                  Acesse a divulgação final das bandas e cantores selecionados
-                </p>
-              </div>
-            </a>
-            <a
-              href="/final_djs_dancarinos.pdf"
-              target="_blank"
-              className="border-2 border-white rounded-lg p-3 flex gap-2 cursor-pointer hover:bg-green bg-zinc-950  transition-all duration-300"
-            >
-              <FileText className="h-14 max-md:h-10" weight={"light"} />
-              <div className="">
-                <h2 className="font-anton text-2xl max-md:text-2xl">
-                  Divulgação final dos DJs e dançarinos classificados para o
-                  sorteio
-                </h2>
-                <p className="text-lg max-md:text-sm">
-                  Acesse a divulgação final dos DJs e dançarinos classificados
-                  para o sorteio
-                </p>
-              </div>
-            </a>
-            <a
-              href="/preliminar_bandas_cantores.pdf"
-              target="_blank"
-              className="border-2 border-white rounded-lg p-3 flex gap-2 cursor-pointer hover:bg-green bg-zinc-950  transition-all duration-300"
-            >
-              <FileText className="h-14 max-md:h-10" weight={"light"} />
-              <div className="">
-                <h2 className="font-anton text-2xl max-md:text-2xl">
-                  Divulgação preliminar das bandas e cantores selecionados
-                </h2>
-                <p className="text-lg max-md:text-sm">
-                  Acesse a divulgação preliminar das bandas e cantores
-                  selecionados
-                </p>
-              </div>
-            </a>
-            <a
-              href="/preliminar_djs_dancarinos.pdf"
-              target="_blank"
-              className="border-2 border-white rounded-lg p-3 flex gap-2 cursor-pointer hover:bg-green bg-zinc-950  transition-all duration-300"
-            >
-              <FileText className="h-14 max-md:h-10" weight={"light"} />
-              <div className="">
-                <h2 className="font-anton text-2xl max-md:text-2xl">
-                  Divulgação preliminar dos DJs e dançarinos classificados para
-                  o sorteio
-                </h2>
-                <p className="text-lg max-md:text-sm">
-                  Acesse a divulgação preliminar dos DJs e dançarinos
-                  classificados para o sorteio
-                </p>
-              </div>
-            </a>
-            <a
-              href="/retificacao2.pdf"
-              target="_blank"
-              className="border-2 border-white rounded-lg p-3 flex gap-2 cursor-pointer hover:bg-green bg-zinc-950  transition-all duration-300"
-            >
-              <FileText className="h-14 max-md:h-10" weight={"light"} />
-              <div className="">
-                <h2 className="font-anton text-2xl max-md:text-2xl">
-                  Retificação 02 do Edital de Abertura
-                </h2>
-                <p className="text-lg max-md:text-sm">
-                  Acesse a retificação 02 do Edital de Abertura
-                </p>
-              </div>
-            </a>
-            <a
-              href="/retificacao.pdf"
-              target="_blank"
-              className="border-2 border-white rounded-lg p-3 flex gap-2 cursor-pointer hover:bg-green bg-zinc-950  transition-all duration-300"
-            >
-              <FileText className="h-14 max-md:h-10" weight={"light"} />
-              <div className="">
-                <h2 className="font-anton text-2xl max-md:text-2xl">
-                  Retificação 01 do Edital de Abertura
-                </h2>
-                <p className="text-lg max-md:text-sm">
-                  Acesse a retificação 01 do Edital de Abertura
-                </p>
-              </div>
-            </a>
-            <a
-              href="/edital.pdf"
-              target="_blank"
-              className="border-2 border-white rounded-lg p-3 flex gap-2 cursor-pointer hover:bg-green bg-zinc-950  transition-all duration-300"
-            >
-              <FileText className="h-14 max-md:h-10" weight={"light"} />
-              <div className="">
-                <h2 className="font-anton text-2xl max-md:text-2xl">
-                  Edital de abertura
-                </h2>
-                <p className="text-lg max-md:text-sm">
-                  Acesse o edital do evento
-                </p>
-              </div>
-            </a>
+            {DOCUMENTOS.slice(0, 3).map((v, i) => (
+              <a
+                href={v.url}
+                key={i}
+                target="_blank"
+                className="border-2 border-white rounded-lg p-3 flex gap-2 cursor-pointer hover:bg-green bg-zinc-950  transition-all duration-300"
+              >
+                <FileText className="h-14 max-md:h-10" weight={"light"} />
+                <div className="">
+                  <h2 className="font-anton text-2xl max-md:text-2xl">
+                    {v.nome}
+                  </h2>
+                  <p className="text-lg max-md:text-sm">{v.descricao}</p>
+                </div>
+              </a>
+            ))}
+            <Link href="/documents" className="m-auto">
+              <CustomButton className="bg-transparent border-orange border text-orange">
+                Ver todos
+              </CustomButton>
+            </Link>
           </ScaleAnimWrapper>
         </section>
         <section
@@ -468,7 +350,8 @@ export default async function Home() {
                   </h1>
                 </div>
                 <div>
-                  <h1 className="font-anton pb-7">O GRANDE DIA</h1>
+                  <h1 className="font-anton">O GRANDE DIA</h1>
+                  <h5 className="text-xs pb-5">PRAÇA DAS MERÇÊS</h5>
                 </div>
               </div>
             </div>

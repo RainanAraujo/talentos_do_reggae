@@ -1,4 +1,5 @@
 import { SubscribeParams } from "@/models/subscribe_params.model";
+import { Vote } from "@/models/vote.model";
 import { auth } from "@/services/auth.service";
 import axios from "axios";
 import { signInAnonymously } from "firebase/auth";
@@ -11,7 +12,7 @@ export class APIController {
 
     static async getInstance() {
         try {
-            await signInAnonymously(auth)
+            if (auth.currentUser == null) await signInAnonymously(auth)
             if (!this.instance) {
                 this.instance = new APIController();
             }
@@ -36,4 +37,23 @@ export class APIController {
         }
     }
 
+    async vote(params: Vote) {
+        try{
+            const {data} = await this.api.post('/vote', params, {
+                headers: {
+                    'Authorization': 'Bearer ' + await auth.currentUser?.getIdToken(),
+                }
+            });
+            const {success, message} = data;
+            if (!success) {
+                throw new Error(message);
+            }
+        }catch (error) {
+            if (axios.isAxiosError(error)) {
+                throw new Error(error.response?.data?.message);
+            }else {
+                throw error;
+            }
+        }
+    }
 }

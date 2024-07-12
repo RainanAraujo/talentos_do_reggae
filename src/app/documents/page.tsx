@@ -18,6 +18,7 @@ export default function Documents() {
           {DOCUMENTOS.map((v, i) => (
             <a
               href={v.url}
+              key={i}
               target="_blank"
               className="border-2 border-white rounded-lg p-3 flex gap-2 cursor-pointer hover:bg-green bg-zinc-950  transition-all duration-300"
             >

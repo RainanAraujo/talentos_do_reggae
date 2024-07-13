@@ -1,30 +1,31 @@
-
 interface BandSelected {
-    email: string;
-    tel: string;
-    instrumentistas: {
-        cpf: string;
-        nascimento: Date;
-        nome: string;
-        instrumento: string;
-    }[];
-    cantores: {
-        cpf: string;
-        nascimento: Date;
-        nome: string;
-    }[];
-    videoLinkURL: string;
-    ig: string;
+  email: string;
+  imgPatch: string;
+  tel: string;
+  instrumentistas: {
+    cpf: string;
+    nascimento: Date;
     nome: string;
-    type: string;
-    cidade: string;
-    cpfList: string[];
+    instrumento: string;
+  }[];
+  cantores: {
+    cpf: string;
+    nascimento: Date;
+    nome: string;
+  }[];
+  videoLinkURL: string;
+  ig: string;
+  nome: string;
+  type: string;
+  cidade: string;
+  cpfList: string[];
 }
 
 export const BAND_SELECTEDS: BandSelected[] = [
   {
     email: "ronadrums@hotmail.com",
     tel: "(98) 98419-2655",
+    imgPatch: "/participants/dona_rita.svg",
     instrumentistas: [
       {
         nascimento: new Date("1991-10-02T00:00:00Z"),
@@ -74,6 +75,7 @@ export const BAND_SELECTEDS: BandSelected[] = [
     ],
     videoLinkURL: "https://youtu.be/G4YLvFTM2hY?si=MsRVsc4W57-cs3bq",
     nome: "Banda Guetos",
+    imgPatch: "/participants/guetos.svg",
     cidade: "São Luís",
     ig: "https://www.instagram.com/bandaguetos_?igsh=cGdvbHhrbmc4dTI0",
     cpfList: ["252.662.333-20", "215.729.173-34"],
@@ -93,6 +95,7 @@ export const BAND_SELECTEDS: BandSelected[] = [
     email: "magaproducoes3@gmail.com",
     cidade: "São Luís",
     type: "band",
+    imgPatch: "/participants/orquestra.svg",
     nome: "Orquestra Maranhense de Reggae",
     cpfList: [
       "032.653.683-35",
@@ -209,6 +212,7 @@ export const BAND_SELECTEDS: BandSelected[] = [
         cpf: "008.027.723-31",
       },
     ],
+    imgPatch: "/participants/radio_98.svg",
     cidade: "São Luís",
     type: "band",
     email: "rafaelhachemm@gmail.com",
@@ -251,6 +255,7 @@ export const BAND_SELECTEDS: BandSelected[] = [
     videoLinkURL: "https://youtu.be/mhatBncP9YA?si=dAnZNmG91ngoDUHE",
   },
   {
+    imgPatch: "/participants/rasta_mind.svg",
     cantores: [
       {
         nome: "Alan Christian Machado Dias",
@@ -258,6 +263,7 @@ export const BAND_SELECTEDS: BandSelected[] = [
         nascimento: new Date("1993-06-25T00:00:00Z"),
       },
     ],
+
     instrumentistas: [
       {
         nome: "José Jonas Ribeiro Alves Filho",
@@ -279,7 +285,8 @@ export const BAND_SELECTEDS: BandSelected[] = [
       },
     ],
     nome: "Rastamind",
-    videoLinkURL: "https://www.youtube.com/watch?v=1gxXbcSiauQ&ab_channel=Rastamind",
+    videoLinkURL:
+      "https://www.youtube.com/watch?v=1gxXbcSiauQ&ab_channel=Rastamind",
     cpfList: [
       "059.178.283-93",
       "614.685.053-51",
@@ -293,6 +300,7 @@ export const BAND_SELECTEDS: BandSelected[] = [
     cidade: "Pinheiro",
   },
   {
+    imgPatch: "/participants/tav_zareia.svg",
     instrumentistas: [
       {
         cpf: "050.920.263-24",
@@ -313,7 +321,8 @@ export const BAND_SELECTEDS: BandSelected[] = [
         cpf: "613.035.923-39",
       },
     ],
-    videoLinkURL: "https://www.instagram.com/reel/C5judRSMZgO/?igsh=MTB1dDc3bjlyYWM4aw==",
+    videoLinkURL:
+      "https://www.instagram.com/reel/C5judRSMZgO/?igsh=MTB1dDc3bjlyYWM4aw==",
     ig: "https://www.instagram.com/p/C5GZqrBOMwF/?igsh=MTJiMDhncDI1djZxYg==",
     cantores: [
       {

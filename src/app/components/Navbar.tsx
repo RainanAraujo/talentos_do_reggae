@@ -84,7 +84,11 @@ export default function Navbar() {
               </li>
             ))}
           </ul>
-          <div className="flex-1 flex items-center justify-end"></div>
+          <div className="flex-1 flex items-center justify-end">
+            <Link href="/votacao" target="_blank">
+              <CustomButton className="bg-orange">VOTAÇÃO POPULAR</CustomButton>
+            </Link>
+          </div>
           <MenuHamburger options={options} />
         </div>
       </nav>

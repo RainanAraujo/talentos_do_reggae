@@ -4,6 +4,7 @@ import logoMaranhao from "@/../public/logoMaranhao.svg";
 import side from "@/../public/sideDetail.svg";
 import sideY from "@/../public/sideDetailY.svg";
 import logo from "@/../public/logo.svg";
+import allParticipants from "@/../public/participants/all.svg";
 import { Envelope } from "@phosphor-icons/react/dist/ssr/Envelope";
 import { WhatsappLogo } from "@phosphor-icons/react/dist/ssr/WhatsappLogo";
 import clsx from "clsx";
@@ -45,30 +46,28 @@ export default async function Home() {
           <Image
             src={logo}
             alt="Talentos do Reggae"
+            width={140}
+            height={140}
+            className={clsx("animate-pulse w-44", "max-md:w-[40%]")}
+          />
+          <Image
+            src={allParticipants}
+            alt="Talentos do Reggae"
             width={200}
             height={200}
-            className={clsx("animate-pulse w-44", "max-md:w-[50%]")}
+            className={clsx("w-[70%] h-96", "max-md:w-[90%] max-md:h-auto")}
           />
-
-          <h1 className="text-8xl max-md:text-6xl text-center font-anton bg-gradient-to-r from-green via-yellow to-red text-transparent bg-clip-text">
-            20 DE JULHO
+          <h1 className="text-5xl max-md:text-4xl text-center font-anton bg-gradient-to-r from-green via-yellow to-red text-transparent bg-clip-text">
+            VOTAÇÃO POPULAR INICIADA
           </h1>
-          <h1 className="text-6xl max-md:text-4xl text-center font-anton bg-gradient-to-r from-green via-yellow to-red text-transparent bg-clip-text">
-            PRAÇA DAS MERÇÊS
-          </h1>
-          <h1 className="text-5xl font-anton text-center max-md:text-4xl ">
-            BANDAS | CANTORES SOLOS | DJS | DANÇARINOS
-          </h1>
-
           <div className="flex items-center flex-col gap-2">
             <div className=" flex items-center max-md:flex-col-reverse gap-1 text-orange animate-fadeIn animation-delay-75  opacity-0">
-              <a href="/#documents">
-                <CustomButton className="bg-transparent border-orange border text-orange">
-                  LEIA AS ÚLTIMAS PUBLICAÇÕES
-                </CustomButton>
+              <a href="/votacao">
+                <CustomButton className="bg-orange">VOTAR AGORA</CustomButton>
               </a>
             </div>
           </div>
+
           <div className={clsx("flex gap-8 pt-4 items-baseline flex-wrap")}>
             <div
               className={clsx(

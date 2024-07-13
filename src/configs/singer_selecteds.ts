@@ -16,7 +16,7 @@ export const SINGER_SELECTEDS: SingerSelected[] = [
   {
     cpf: "028.963.713-97",
     cpfList: ["028.963.713-97"],
-    imgPatch: "/participants/claudinete.svg",
+    imgPatch: "/participants/claudinete.png",
     tel: "(98) 98447-4165",
     email: "claudinetebatista531@gmail.com",
     cidade: "Itapecuru Mirim",
@@ -29,7 +29,7 @@ export const SINGER_SELECTEDS: SingerSelected[] = [
   {
     cpfList: ["001.619.917-00"],
     type: "singer",
-    imgPatch: "/participants/edy_candido.svg",
+    imgPatch: "/participants/edy_candido.png",
     videoLinkURL: "https://youtu.be/UcCF-O-PGdI?si=Y6zzG8V-ysJ0yIVS",
     email: "edycandido50@gmail.com",
     tel: "(98) 98751-0034",
@@ -42,7 +42,7 @@ export const SINGER_SELECTEDS: SingerSelected[] = [
   {
     videoLinkURL: "https://youtu.be/kvwWPfaPJ1s",
     cidade: "São Luís",
-    imgPatch: "/participants/emanuele.svg",
+    imgPatch: "/participants/emanuele.png",
     email: "emanuelepazzz@gmail.com",
     cpfList: ["614.360.423-13"],
     ig: "https://www.instagram.com/emanuelepazz/",
@@ -53,7 +53,7 @@ export const SINGER_SELECTEDS: SingerSelected[] = [
     nome: "EMANUELE PAZ",
   },
   {
-    imgPatch: "/participants/george.svg",
+    imgPatch: "/participants/george.png",
     nome: "GEORGE GOMES",
     cpfList: ["471.112.673-20"],
     email: "georgelegenda@hotmail.com",
@@ -67,7 +67,7 @@ export const SINGER_SELECTEDS: SingerSelected[] = [
     cpf: "471.112.673-20",
   },
   {
-    imgPatch: "/participants/joao_carlos.svg",
+    imgPatch: "/participants/joao_carlos.png",
     cpf: "137.641.873-87",
     nascimento: new Date("1957-01-20T00:00:00Z"),
     type: "singer",
@@ -80,7 +80,7 @@ export const SINGER_SELECTEDS: SingerSelected[] = [
     email: "katilane26@gmail.com",
   },
   {
-    imgPatch: "/participants/oswaldo.svg",
+    imgPatch: "/participants/oswaldo.png",
     email: "ateliedosonho37@gmail.com",
     nome: "OSWALDO ABREU",
     cidade: "São Luís",

@@ -25,7 +25,7 @@ export const BAND_SELECTEDS: BandSelected[] = [
   {
     email: "ronadrums@hotmail.com",
     tel: "(98) 98419-2655",
-    imgPatch: "/participants/dona_rita.svg",
+    imgPatch: "/participants/dona_rita.png",
     instrumentistas: [
       {
         nascimento: new Date("1991-10-02T00:00:00Z"),
@@ -75,7 +75,7 @@ export const BAND_SELECTEDS: BandSelected[] = [
     ],
     videoLinkURL: "https://youtu.be/G4YLvFTM2hY?si=MsRVsc4W57-cs3bq",
     nome: "Banda Guetos",
-    imgPatch: "/participants/guetos.svg",
+    imgPatch: "/participants/guetos.png",
     cidade: "São Luís",
     ig: "https://www.instagram.com/bandaguetos_?igsh=cGdvbHhrbmc4dTI0",
     cpfList: ["252.662.333-20", "215.729.173-34"],
@@ -95,7 +95,7 @@ export const BAND_SELECTEDS: BandSelected[] = [
     email: "magaproducoes3@gmail.com",
     cidade: "São Luís",
     type: "band",
-    imgPatch: "/participants/orquestra.svg",
+    imgPatch: "/participants/orquestra.png",
     nome: "Orquestra Maranhense de Reggae",
     cpfList: [
       "032.653.683-35",
@@ -212,7 +212,7 @@ export const BAND_SELECTEDS: BandSelected[] = [
         cpf: "008.027.723-31",
       },
     ],
-    imgPatch: "/participants/radio_98.svg",
+    imgPatch: "/participants/radio_98.png",
     cidade: "São Luís",
     type: "band",
     email: "rafaelhachemm@gmail.com",
@@ -255,7 +255,7 @@ export const BAND_SELECTEDS: BandSelected[] = [
     videoLinkURL: "https://youtu.be/mhatBncP9YA?si=dAnZNmG91ngoDUHE",
   },
   {
-    imgPatch: "/participants/rasta_mind.svg",
+    imgPatch: "/participants/rasta_mind.png",
     cantores: [
       {
         nome: "Alan Christian Machado Dias",
@@ -300,7 +300,7 @@ export const BAND_SELECTEDS: BandSelected[] = [
     cidade: "Pinheiro",
   },
   {
-    imgPatch: "/participants/tav_zareia.svg",
+    imgPatch: "/participants/tav_zareia.png",
     instrumentistas: [
       {
         cpf: "050.920.263-24",

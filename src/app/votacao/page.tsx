@@ -77,7 +77,7 @@ export default function Votacao() {
   }, []);
 
   return (
-    <div className="flex items-center justify-center flex-col mx-auto">
+    <div className="flex items-center justify-center flex-col mx-auto mb-4">
       <Dialog
         open={candidateSelected == null ? false : true}
         onOpenChange={(v) => {

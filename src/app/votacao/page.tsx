@@ -150,12 +150,12 @@ export default function Votacao() {
                     );
                   }}
                   key={idx}
-                  className="w-auto h-[150px] rounded-lg flex flex-col text-center items-center justify-center cursor-pointer transition-all hover:scale-105  "
+                  className="w-auto h-[190px] rounded-lg flex flex-col text-center items-center justify-center cursor-pointer transition-all hover:scale-105  "
                 >
                   <Image
                     src={candidate.imgPatch}
                     alt="singer"
-                    className="w-full h-full"
+                    className="w-full h-full object-contain"
                     width={120}
                     height={120}
                   />

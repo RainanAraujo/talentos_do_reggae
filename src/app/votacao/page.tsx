@@ -65,6 +65,7 @@ export default function Votacao() {
     }
     setIsLoading(false);
     window.grecaptcha.reset();
+    setRecaptchaToken("");
     setCandidateSelected(null);
   };
 
@@ -82,6 +83,7 @@ export default function Votacao() {
         open={candidateSelected == null ? false : true}
         onOpenChange={(v) => {
           setCandidateSelected(null);
+          setRecaptchaToken("");
         }}
       >
         <DialogContent

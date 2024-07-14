@@ -4,32 +4,22 @@ import { GoogleLogo } from "@phosphor-icons/react/dist/ssr/GoogleLogo";
 import {
   browserLocalPersistence,
   GoogleAuthProvider,
-  onAuthStateChanged,
-  signInWithRedirect,
+  signInWithPopup,
 } from "firebase/auth";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 
 export default function Login() {
   const router = useRouter();
 
   const googleProviderHandler = async () => {
     try {
-      await signInWithRedirect(auth, new GoogleAuthProvider());
+      await signInWithPopup(auth, new GoogleAuthProvider());
       auth.setPersistence(browserLocalPersistence);
       router.push("/votacao");
     } catch (err) {
       console.log(err);
     }
   };
-
-  useEffect(() => {
-    return onAuthStateChanged(auth, (user) => {
-      if (user != null && !user.isAnonymous) {
-        router.push("/votacao");
-      }
-    });
-  }, []);
 
   return (
     <div className="flex items-center justify-center max-w-md flex-col mx-auto">

@@ -4,20 +4,14 @@ import { SINGER_SELECTEDS } from "@/configs/singer_selecteds";
 import { APIController } from "@/controllers/api.controller";
 import { Vote } from "@/models/vote.model";
 import { auth } from "@/services/auth.service";
+import { Guitar } from "@phosphor-icons/react/dist/ssr/Guitar";
+import { MicrophoneStage } from "@phosphor-icons/react/dist/ssr/MicrophoneStage";
+import { signInAnonymously } from "firebase/auth";
 import Image from "next/image";
-import { onAuthStateChanged } from "firebase/auth";
-import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "../components/Select";
-import { MicrophoneStage } from "@phosphor-icons/react/dist/ssr/MicrophoneStage";
-import { Guitar } from "@phosphor-icons/react/dist/ssr/Guitar";
+import { toast } from "sonner";
+import Button from "../components/Button";
 import {
   Dialog,
   DialogClose,
@@ -27,8 +21,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "../components/Dialog";
-import Button from "../components/Button";
-import { toast } from "sonner";
 
 interface CandidateSelected {
   name: string;
@@ -37,7 +29,6 @@ interface CandidateSelected {
 }
 
 export default function Votacao() {
-  const router = useRouter();
   const [type, setType] = useState<Vote["type"] | null>(null);
   const [candidateSelected, setCandidateSelected] =
     useState<CandidateSelected | null>(null);
@@ -70,11 +61,7 @@ export default function Votacao() {
   };
 
   useEffect(() => {
-    return onAuthStateChanged(auth, (user) => {
-      if (user == null || user.isAnonymous) {
-        router.push("/votacao/login");
-      }
-    });
+    signInAnonymously(auth);
   }, []);
 
   return (

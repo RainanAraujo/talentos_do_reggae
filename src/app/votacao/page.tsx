@@ -100,6 +100,10 @@ export default function Votacao() {
             sitekey="6Ld4zQ0qAAAAAKDe5mFJond4SAhkxFjW5HKSCL4j"
             onChange={(token) => setRecaptchaToken(token ?? "")}
           />
+          <span className="text-xs text-red-300">
+            É necessário confirmar que você não é um robô no botão acima para
+            realizar a votação.
+          </span>
           <DialogFooter className="sm:justify-start">
             <DialogClose asChild>
               <Button
@@ -111,6 +115,7 @@ export default function Votacao() {
             </DialogClose>
             <Button
               onClick={() =>
+                recaptchaToken != "" &&
                 voteHandler({
                   recaptchaToken,
                   type: candidateSelected ? candidateSelected.type : "band",
@@ -118,7 +123,7 @@ export default function Votacao() {
                 })
               }
               className="bg-green text-white hover:bg-green-600 disabled:bg-gray-600 w-full"
-              disabled={isLoading}
+              disabled={isLoading || recaptchaToken == ""}
             >
               {isLoading ? "Realizando votação..." : "Votar"}
             </Button>

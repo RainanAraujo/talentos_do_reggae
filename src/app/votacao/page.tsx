@@ -21,6 +21,8 @@ import {
   DialogHeader,
   DialogTitle,
 } from "../components/Dialog";
+import CustomButton from "../components/Button";
+import Link from "next/link";
 
 interface CandidateSelected {
   name: string;
@@ -121,8 +123,15 @@ export default function Votacao() {
       </Dialog>
       {type ? (
         <div className="flex flex-col gap-4 items-center">
+          <CustomButton onClick={() => setType(null)} typeStyle="secondary">
+            Mudar categoria
+          </CustomButton>
+
+          <h1 className="text-2xl  text-center  max-md:text-2xl ">
+            VOTE QUANTAS VEZES QUISER!
+          </h1>
           <h1 className="text-5xl font-anton text-center max-md:text-4xl">
-            SELECIONE SEU TALENTO
+            ESCOLHA SEU TALENTO
           </h1>
           <div
             className={
@@ -160,6 +169,9 @@ export default function Votacao() {
         </div>
       ) : (
         <div className="space-y-6">
+          <h1 className="text-3xl font-anton text-center  max-md:text-2xl bg-gradient-to-r from-green via-yellow to-red text-transparent bg-clip-text">
+            20 DE JULHO | PRAÇA DAS MERCÊS | 20H
+          </h1>
           <h1 className="text-5xl font-anton text-center max-md:text-4xl">
             SELECIONE A CATEGORIA
           </h1>

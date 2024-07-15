@@ -1,6 +1,7 @@
 "use client";
 import logo from "@/../public/logo.svg";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 export default function LayoutVotacao({
@@ -11,9 +12,9 @@ export default function LayoutVotacao({
       <div className="bg-neutral-900 rounded-lg h-[80vh] max-md:min-h-screen max-md:h-auto w-full flex ">
         <div className="flex flex-col justify-between flex-1 ">
           <div className="px-20 py-20  min-h-full max-md:p-5  max-md:pt-20  gap-y-5 flex flex-col relative">
-            <div className="space-y-2 mx-auto">
+            <Link className="space-y-2 mx-auto" href="/">
               <Image alt="" src={logo} width={100} height={100} />
-            </div>
+            </Link>
             {children}
           </div>
         </div>

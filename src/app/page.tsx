@@ -1,30 +1,29 @@
 import detailFlag from "@/../public/detailFlag.svg";
+import logo from "@/../public/logo.svg";
 import logoDeputado from "@/../public/logoDeputado.svg";
 import logoMaranhao from "@/../public/logoMaranhao.svg";
+import allParticipants from "@/../public/participants/all.svg";
 import side from "@/../public/sideDetail.svg";
 import sideY from "@/../public/sideDetailY.svg";
-import logo from "@/../public/logo.svg";
-import allParticipants from "@/../public/participants/all.svg";
 import { Envelope } from "@phosphor-icons/react/dist/ssr/Envelope";
 import { WhatsappLogo } from "@phosphor-icons/react/dist/ssr/WhatsappLogo";
 import clsx from "clsx";
 
+import { DOCUMENTOS } from "@/configs/documents";
+import { FileText } from "@phosphor-icons/react/dist/ssr/FileText";
 import Image from "next/image";
+import Link from "next/link";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "./components/Accordion";
+import CustomButton from "./components/Button";
 import InstagramViewer from "./components/InstagramViewer";
 import Navbar from "./components/Navbar";
 import ScaleAnimWrapper from "./components/ScaleAnimWrapper";
 import VerticalAnimWrapper from "./components/VerticalAnimWrapper";
-import { FileText } from "@phosphor-icons/react/dist/ssr/FileText";
-import CustomButton from "./components/Button";
-import { DOCUMENTOS } from "@/configs/documents";
-import Button from "./components/Button";
-import Link from "next/link";
 
 export default async function Home() {
   return (
@@ -57,7 +56,7 @@ export default async function Home() {
             height={200}
             className={clsx("w-[70%] h-96", "max-md:w-[90%] max-md:h-auto")}
           />
-          <h1 className="text-5xl max-md:text-4xl text-center font-anton bg-gradient-to-r from-green via-yellow to-red text-transparent bg-clip-text">
+          {/* <h1 className="text-5xl max-md:text-4xl text-center font-anton bg-gradient-to-r from-green via-yellow to-red text-transparent bg-clip-text">
             VOTAÇÃO POPULAR INICIADA
           </h1>
           <div className="flex items-center flex-col gap-2">
@@ -66,7 +65,7 @@ export default async function Home() {
                 <CustomButton className="bg-orange">VOTAR AGORA</CustomButton>
               </a>
             </div>
-          </div>
+          </div> */}
 
           <div className={clsx("flex gap-8 pt-4 items-baseline flex-wrap")}>
             <div

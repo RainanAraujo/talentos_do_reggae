@@ -1,17 +1,13 @@
 "use client";
 
 import logo from "@/../public/simbol.svg";
-import { database } from "@/services/database.service";
 import { List, X } from "@phosphor-icons/react";
+import { InstagramLogo } from "@phosphor-icons/react/dist/ssr/InstagramLogo";
 import clsx from "clsx";
-import { onValue, ref } from "firebase/database";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useScrollPosition } from "../../utils/useScrollPosition";
-import CustomButton from "./Button";
-import { PhosphorLogo } from "@phosphor-icons/react/dist/ssr/PhosphorLogo";
-import { InstagramLogo } from "@phosphor-icons/react/dist/ssr/InstagramLogo";
 
 interface Options {
   title: string;
@@ -84,11 +80,11 @@ export default function Navbar() {
               </li>
             ))}
           </ul>
-          <div className="flex-1 flex items-center justify-end">
+          {/* <div className="flex-1 flex items-center justify-end">
             <Link href="/votacao" target="_blank">
               <CustomButton className="bg-orange">VOTAÇÃO POPULAR</CustomButton>
             </Link>
-          </div>
+          </div> */}
           <MenuHamburger options={options} />
         </div>
       </nav>

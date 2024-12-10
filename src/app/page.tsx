@@ -257,7 +257,7 @@ export default async function Home() {
           NÃO PERCA AS <span className="text-yellow">NOVIDADES</span>
         </h1>
 
-        <InstagramViewer />
+        {/* <InstagramViewer /> */}
       </section>
 
       <section className="flex flex-col gap-8 justify-center items-center min-h-screen  bg-orange w-full max-md:p-5 px-20">
